@@ -7,19 +7,19 @@ public class AIController : MonoBehaviour
 {
     public Transform playerTransform;
     NavMeshAgent agent;
-    Animator animator;
+    //Animator animator;
      
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         agent.destination = playerTransform.position;
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        //animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 }
