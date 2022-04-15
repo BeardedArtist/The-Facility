@@ -662,10 +662,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: ../../Audio/Implementation/FMOD/The_Red_Room_FMOD/The_Red_Room_FMOD.fspro
-  sourceBankPath: ../../Audio/Implementation/FMOD/The_Red_Room_FMOD/Build
+  sourceBankPath: Audio/Banks/Desktop
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
