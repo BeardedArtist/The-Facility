@@ -14936,7 +14936,7 @@ GameObject:
   - component: {fileID: 820553426}
   - component: {fileID: 820553424}
   - component: {fileID: 820553425}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30430,7 +30430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932525013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.85, y: 1.136, z: 9.34}
+  m_LocalPosition: {x: -0.85, y: 1.136, z: 3.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 55459699}
