@@ -673,7 +673,7 @@ MonoBehaviour:
   BankLoadType: 0
   AutomaticSampleLoading: 0
   EncryptionKey: 
-  ImportType: 0
+  ImportType: 1
   TargetAssetPath: FMODBanks
   TargetBankFolder: 
   EventLinkage: 0
@@ -688,8 +688,9 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
-  Banks: []
+  - Desktop/Master
+  Banks:
+  - Tests
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
