@@ -18,22 +18,44 @@ public class OpenCloseDoor : MonoBehaviour
         trigger = false;
     }
 
-    private void Update()
-    {
-        trigger = myDoor.GetBool("Open");
+    // private void Update()
+    // {
+    //     trigger = myDoor.GetBool("Open");
 
-        if(Input.GetKeyDown(KeyCode.E))
+    //     if(Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         if (!trigger)
+    //         {
+    //             myDoor.SetBool("Open", true);
+    //         }
+    //         else
+    //         {
+    //             myDoor.SetBool("Open", false);
+    //         }
+    //     }
+    // }
+
+    private void OnTriggerStay(Collider other) 
+    {
+        if (other.tag == "Player")
         {
-            if (!trigger)
+            Debug.Log("Player is in range");
+            trigger = myDoor.GetBool("Open");
+
+            if(Input.GetKeyDown(KeyCode.E))
             {
-                myDoor.SetBool("Open", true);
-            }
-            else
-            {
+                if (!trigger)
+                {
+                    myDoor.SetBool("Open", true);
+                }
+                else
+                {
                 myDoor.SetBool("Open", false);
+                }
             }
         }
     }
+
 
     // private void OnTriggerEnter(Collider other) 
     // {
