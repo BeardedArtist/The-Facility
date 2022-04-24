@@ -5,11 +5,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 12f;
+    public float walkSpeed = 7f;
+    public float sprintSpeed = 10f;
+    public float currentSpeed;
     public float gravity = -9.81f;
     public float jumpHeight = 1f;
 
     Vector3 velocity;
+
+    private void Start() 
+    {
+        currentSpeed = walkSpeed;    
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         //Take above inputs and turn them into a moveable direction.
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime); // takes the move variable and instantiates it in the player controller.
+        controller.Move(move * currentSpeed * Time.deltaTime); // takes the move variable and instantiates it in the player controller.
 
 
         velocity.y += gravity * Time.deltaTime; // applies gravity and velocity to player.
@@ -34,6 +41,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && controller.isGrounded) // allows for player to jump
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); 
+        }
+
+        Sprint();
+    }
+
+    void Sprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = walkSpeed;
         }
     }
 }
