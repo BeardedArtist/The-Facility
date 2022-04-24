@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
 
+
+
     private void Start() 
     {
         currentSpeed = walkSpeed;    
