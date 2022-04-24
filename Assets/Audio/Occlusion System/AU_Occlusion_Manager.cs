@@ -42,7 +42,7 @@ public class AU_Occlusion_Manager : MonoBehaviour
 
         Listener = FindObjectOfType<StudioListener>();
 
-        Debug.Log("OclusionManager Added");
+        //Debug.Log("OclusionManager Added");
 
     }
 
@@ -54,10 +54,13 @@ public class AU_Occlusion_Manager : MonoBehaviour
         Audio.isVirtual(out AudioIsVirtual);
         Audio.getPlaybackState(out pb);
         ListenerDistance = Vector3.Distance(transform.position, Listener.transform.position);
+        Debug.Log(pb);
+        //Debug.Log($"!AudioIsVirtual = {!AudioIsVirtual} \n pb = {pb}");
 
-        if (!AudioIsVirtual && pb == PLAYBACK_STATE.PLAYING && ListenerDistance <= MaxDistance)
+        if (!AudioIsVirtual && pb == PLAYBACK_STATE.PLAYING || pb == PLAYBACK_STATE.SUSTAINING && ListenerDistance <= MaxDistance)
         {
             OccludeBetween(transform.position, Listener.transform.position);
+            Debug.Log("Occluding");
         }
         lineCastHitCount = 0f;
     }
@@ -66,6 +69,7 @@ public class AU_Occlusion_Manager : MonoBehaviour
     //Occlusion function, draws multiple raycasts to get an idea of how occluded the object is
     private void OccludeBetween(Vector3 sound, Vector3 listener)
     {
+        Debug.Log("Occluding Between");
         Vector3 SoundLeft = CalculatePoint(sound, listener, occlusionDetails.SoundOcclusionWidening, true);
         Vector3 SoundRight = CalculatePoint(sound, listener, occlusionDetails.SoundOcclusionWidening, false);
 
