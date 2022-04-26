@@ -26,6 +26,7 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is read to hide");
                     characterController.enabled = false;
                     player.transform.position = warpTarget.transform.position;
+                    player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
                 }
                 
