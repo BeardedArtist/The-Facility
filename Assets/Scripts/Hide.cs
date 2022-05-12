@@ -48,7 +48,7 @@ public class Hide : MonoBehaviour
 
                 if (isHiding == true)
                 {
-                    if (Input.GetKeyDown(KeyCode.Q))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         Debug.Log("Player is not hiding anymore");
 
