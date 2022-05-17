@@ -7,9 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
+    public float tiredSpeed = 4f;
     public float currentSpeed;
     public float gravity = -9.81f;
     public float jumpHeight = 1f;
+
+    public float stamina = 100f;
 
     Vector3 velocity;
 
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = sprintSpeed;
+            stamina--;
         }
         else
         {
