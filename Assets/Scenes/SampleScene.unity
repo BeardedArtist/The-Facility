@@ -95680,9 +95680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1932525014}
-  walkSpeed: 7
+  walkSpeed: 4
   sprintSpeed: 10
-  tiredSpeed: 1
   currentSpeed: 0
   gravity: -9.81
   jumpHeight: 1
