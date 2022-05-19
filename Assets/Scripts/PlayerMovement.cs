@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public float walkSpeed = 7f;
     public float sprintSpeed = 10f;
-    public float tiredSpeed = 4f;
     public float currentSpeed;
     public float gravity = -9.81f;
     public float jumpHeight = 1f;
 
     public float stamina = 100f;
 
+    private bool isRunning = true;
     Vector3 velocity;
 
 
@@ -53,14 +53,50 @@ public class PlayerMovement : MonoBehaviour
 
     void Sprint()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isRunning)
         {
-            currentSpeed = sprintSpeed;
-            stamina--;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currentSpeed = sprintSpeed;
+                stamina--;
+            }
+            else
+            {
+                currentSpeed = walkSpeed;
+            }
+
+            if (stamina <= 0)
+            {
+                isRunning = false;
+                currentSpeed = walkSpeed;
+            }
         }
-        else
+
+        if (isRunning == false)
         {
-            currentSpeed = walkSpeed;
+            stamina++;
+
+            if (stamina >= 100)
+            {
+                isRunning = true;
+            }
         }
+
+
+        // if (Input.GetKey(KeyCode.LeftShift) && isRunning)
+        // {
+        //     currentSpeed = sprintSpeed;
+        //     stamina--;
+        // }
+
+        // if (stamina <= 0)
+        // {
+        //     currentSpeed = walkSpeed;
+        // }
+
+        // else
+        // {
+        //     currentSpeed = walkSpeed;
+        // }
     }
 }
