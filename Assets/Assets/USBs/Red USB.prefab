@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 524703611217878330}
   - component: {fileID: 524703611217878329}
   - component: {fileID: 524703611217878328}
+  - component: {fileID: 992145658794985687}
   m_Layer: 0
   m_Name: Red USB
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524703611217878335}
-  m_LocalRotation: {x: -0, y: -0.314395, z: -0, w: 0.94929224}
+  m_LocalRotation: {x: 0, y: -0.31439838, z: 0, w: 0.94929117}
   m_LocalPosition: {x: -19.307463, y: -0.033, z: 0.391}
   m_LocalScale: {x: 0.62172, y: 0.62172, z: 0.62172}
   m_Children:
@@ -63,6 +64,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5508478
   m_Center: {x: 3.0606246, y: 2.2078943, z: -0.9899968}
+--- !u!114 &992145658794985687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524703611217878335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88cc4f4c3aa19e47ba63805df8c6445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e9a670b0eb8bcee49a06ba09de60fa68, type: 2}
 --- !u!1 &524703611757371799
 GameObject:
   m_ObjectHideFlags: 0
