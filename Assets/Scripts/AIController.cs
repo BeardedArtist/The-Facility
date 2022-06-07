@@ -23,6 +23,7 @@ public class AIController : MonoBehaviour
     public GameObject deathCam;
     public Transform deathCamPosition;
     public GameObject mainPlayer;
+    public MeshRenderer mainPlayerMesh;
     player Player;
     PlayerMovement playerMovement;
     // TESTING ATTACK EVENT
@@ -45,7 +46,7 @@ public class AIController : MonoBehaviour
             RaycastHit rayHit;
             if (Physics.Linecast(eyes.position, playerTransform.position, out rayHit)) // checks to see if the raycast intersects with anything
             {
-                //print("hit " + rayHit.collider.gameObject.name);
+                print("hit " + rayHit.collider.gameObject.name);
                 if (rayHit.collider.gameObject.name == "FirstPersonPlayer")
                 {
                     print("hit " + rayHit.collider.gameObject.name);
@@ -140,6 +141,7 @@ public class AIController : MonoBehaviour
                         state = "kill";
                         //Player.GetComponent<player>().alive = false;
                         mainPlayer.GetComponent<PlayerMovement>().enabled = false;
+                        mainPlayerMesh.enabled = false;
                         deathCam.SetActive(true);
                         deathCam.transform.position = Camera.main.transform.position;
                         deathCam.transform.rotation = Camera.main.transform.rotation;
@@ -171,6 +173,7 @@ public class AIController : MonoBehaviour
                 deathCam.transform.position = Vector3.Slerp(deathCam.transform.position, deathCamPosition.position, 10f * Time.deltaTime);
                 deathCam.transform.rotation = Quaternion.Slerp(deathCam.transform.rotation, deathCamPosition.rotation, 10f * Time.deltaTime);
                 agent.SetDestination(deathCam.transform.position);
+                agent.speed = 0f;
             }
 
             // TESTING ATTACK EVENT
