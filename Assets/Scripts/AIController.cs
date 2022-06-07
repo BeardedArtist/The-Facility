@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; // Make sure to always have this for AI
+using UnityEngine.SceneManagement;
+
 
 public class AIController : MonoBehaviour
 {
@@ -15,10 +17,24 @@ public class AIController : MonoBehaviour
     private bool highAlert = false;
     private float alertTime = 50f;
 
+
+
+    // TESTING ATTACK EVENT
+    public GameObject deathCam;
+    public Transform deathCamPosition;
+    public GameObject mainPlayer;
+    player Player;
+    PlayerMovement playerMovement;
+    // TESTING ATTACK EVENT
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        Player = GetComponent<player>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     //check if we can see player
@@ -112,6 +128,26 @@ public class AIController : MonoBehaviour
                 {
                     state = "find";
                 }
+
+
+
+                // TESTING ATTACK EVENT
+                // kill the player
+                else if (agent.remainingDistance <= agent.stoppingDistance + 1f && !agent.pathPending)
+                {
+                    if(Player.alive)
+                    {
+                        state = "kill";
+                        Player.GetComponent<player>().alive = false;
+                        mainPlayer.GetComponent<PlayerMovement>().enabled = false;
+                        deathCam.SetActive(true);
+                        deathCam.transform.position = Camera.main.transform.position;
+                        deathCam.transform.rotation = Camera.main.transform.rotation;
+                        Camera.main.gameObject.SetActive(false);
+                        Invoke("reset", 1f);
+                    }
+                }
+                // TESTING ATTACK EVENT
             }
 
             //find
@@ -127,9 +163,27 @@ public class AIController : MonoBehaviour
                 }
             }
 
+            // TESTING ATTACK EVENT
+
+            // KIll
+            if (state == "kill")
+            {
+                deathCam.transform.position = Vector3.Slerp(deathCam.transform.position, deathCamPosition.position, 10f * Time.deltaTime);
+                deathCam.transform.rotation = Quaternion.Slerp(deathCam.transform.rotation, deathCamPosition.rotation, 10f * Time.deltaTime);
+                agent.SetDestination(deathCam.transform.position);
+            }
+
+            // TESTING ATTACK EVENT
+
             // agent.destination = playerTransform.position; // this gives the AI the players position and tells it to walk to the player
         }
 
         
+    }
+
+    //reset//
+    void reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
