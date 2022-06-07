@@ -135,17 +135,17 @@ public class AIController : MonoBehaviour
                 // kill the player
                 else if (agent.remainingDistance <= agent.stoppingDistance + 1f && !agent.pathPending)
                 {
-                    if(Player.alive)
-                    {
+                    //if(playerTransform.GetComponent<player>().alive)
+                    //{
                         state = "kill";
-                        Player.GetComponent<player>().alive = false;
+                        //Player.GetComponent<player>().alive = false;
                         mainPlayer.GetComponent<PlayerMovement>().enabled = false;
                         deathCam.SetActive(true);
                         deathCam.transform.position = Camera.main.transform.position;
                         deathCam.transform.rotation = Camera.main.transform.rotation;
                         Camera.main.gameObject.SetActive(false);
                         Invoke("reset", 1f);
-                    }
+                    //}
                 }
                 // TESTING ATTACK EVENT
             }
