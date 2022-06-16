@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     public Item Item;
+    private bool trig;
 
     void Pickup()
     {
@@ -12,14 +13,31 @@ public class ItemPickup : MonoBehaviour
         InventoryManager.Instance.Add(Item);
     }
 
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Player in Area");
+        trig = true;
+    }
+    private void OnTriggerExit(Collider other) 
+    {
+        trig = false;    
+    }
 
+    private void FixedUpdate() 
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log(Input.inputString);
             Pickup();
-        }
+        }    
     }
+
+    // private void OnTriggerStay(Collider other) 
+    // {
+    //     Debug.Log("Player in Area");
+
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         Debug.Log(Input.inputString);
+    //         Pickup();
+    //     }
+    // }
 }
