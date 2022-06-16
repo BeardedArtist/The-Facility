@@ -7,6 +7,7 @@ public class OpenCloseDoor : MonoBehaviour
    
     [SerializeField] private Animator myDoor = null;
     private bool trigger;
+    private bool trig;
 
 
     // Start is called before the first frame update
@@ -18,28 +19,20 @@ public class OpenCloseDoor : MonoBehaviour
         trigger = false;
     }
 
-    // private void Update()
-    // {
-    //     trigger = myDoor.GetBool("Open");
-
-    //     if(Input.GetKeyDown(KeyCode.E))
-    //     {
-    //         if (!trigger)
-    //         {
-    //             myDoor.SetBool("Open", true);
-    //         }
-    //         else
-    //         {
-    //             myDoor.SetBool("Open", false);
-    //         }
-    //     }
-    // }
-
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player")
+        trig = true;
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        trig = false;    
+    }
+
+    void FixedUpdate() 
+    {
+        if (trig)
         {
-            Debug.Log("Player is in range");
             trigger = myDoor.GetBool("Open");
 
             if(Input.GetKeyDown(KeyCode.E))
@@ -50,30 +43,30 @@ public class OpenCloseDoor : MonoBehaviour
                 }
                 else
                 {
-                myDoor.SetBool("Open", false);
+                    myDoor.SetBool("Open", false);
                 }
             }
         }
     }
 
-
-    // private void OnTriggerEnter(Collider other) 
+    // private void OnTriggerStay(Collider other) 
     // {
     //     if (other.tag == "Player")
     //     {
-    //         Debug.Log("Player in area");
-    //         myDoor.Play("OpenDoor", 0, 0.0f);
-    //         Debug.Log("Opening Door");
+    //         Debug.Log("Player is in range");
+    //         trigger = myDoor.GetBool("Open");
 
-    //         // else if (isOpen == true)
-    //         // {
-    //         //     if (Input.GetKeyDown(KeyCode.E))
-    //         //     {
-    //         //         myDoor.Play("CloseDoor", 0, 0.0f);
-    //         //         Debug.Log("Opening Door");
-    //         //         isOpen = true;
-    //         //     }
-    //         // }      
+    //         if(Input.GetKeyDown(KeyCode.E))
+    //         {
+    //             if (!trigger)
+    //             {
+    //                 myDoor.SetBool("Open", true);
+    //             }
+    //             else
+    //             {
+    //             myDoor.SetBool("Open", false);
+    //             }
+    //         }
     //     }
     // }
 }

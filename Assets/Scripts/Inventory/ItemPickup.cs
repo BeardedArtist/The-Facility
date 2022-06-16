@@ -8,20 +8,18 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup()
     {
-        InventoryManager.Instance.Add(Item);
         Destroy(gameObject);
+        InventoryManager.Instance.Add(Item);
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("Player can reach USB");
+        Debug.Log("Player in Area");
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Pickup();
-            }
-        }    
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log(Input.inputString);
+            Pickup();
+        }
     }
 }
