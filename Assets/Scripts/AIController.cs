@@ -16,6 +16,7 @@ public class AIController : MonoBehaviour
     private float wait = 0f;
     private bool highAlert = false;
     private float alertTime = 50f;
+    public bool playerisHidingBadly = false;
 
 
 
@@ -26,6 +27,7 @@ public class AIController : MonoBehaviour
     public MeshRenderer mainPlayerMesh;
     player Player;
     PlayerMovement playerMovement;
+    Hide hide;
     // TESTING ATTACK EVENT
 
 
@@ -36,6 +38,7 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<player>();
         playerMovement = GetComponent<PlayerMovement>();
+        hide = GetComponent<Hide>();
     }
 
     //check if we can see player
@@ -129,6 +132,13 @@ public class AIController : MonoBehaviour
                 {
                     state = "find";
                 }
+
+                // TESTING KILLING PLAYER IF HIDING DURING CHASE (START)
+                // if (hide.isHiding == true)
+                // {
+                //     state = "kill";
+                // }
+                // TESTING KILLING PLAYER IF HIDING DURING CHASE (END)
 
 
 

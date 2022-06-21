@@ -8,12 +8,14 @@ public class Hide : MonoBehaviour
     public GameObject warpTarget;
     public GameObject warpTarget_2;
     private CharacterController characterController;
-    [SerializeField] private bool isHiding = false;
+    private AIController aIController;
+    [SerializeField] public bool isHiding = false;
 
 
     private void Start() 
     {
         characterController = player.GetComponent<CharacterController>();
+        aIController = GetComponent<AIController>();
     }
 
     private void Update() 
@@ -43,6 +45,7 @@ public class Hide : MonoBehaviour
                         characterController.enabled = true;
 
                         isHiding = true;
+                        //aIController.playerisHidingBadly = true;
                     }
                 }
 
