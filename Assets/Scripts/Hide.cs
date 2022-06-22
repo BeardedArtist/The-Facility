@@ -65,6 +65,8 @@ public class Hide : MonoBehaviour
                     characterController.enabled = true;
 
                     isHiding = false;
+                    AIController script = aiController.GetComponent<AIController>();
+                    script.playerisHidingBadly = false;
                 }
             }
         }

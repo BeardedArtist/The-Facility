@@ -22,6 +22,7 @@ public class AIController : MonoBehaviour
 
     // TESTING ATTACK EVENT
     public GameObject deathCam;
+    public GameObject hidingCloset;
     public Transform deathCamPosition;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
@@ -38,7 +39,6 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<player>();
         playerMovement = GetComponent<PlayerMovement>();
-        //hide = GetComponent<Hide>();
     }
 
     //check if we can see player
@@ -133,15 +133,6 @@ public class AIController : MonoBehaviour
                     state = "find";
                 }
 
-                // TESTING KILLING PLAYER IF HIDING DURING CHASE (START)
-                else if (playerisHidingBadly == true)
-                {
-                    state = "kill";
-                }
-                // TESTING KILLING PLAYER IF HIDING DURING CHASE (END)
-
-
-
                 // TESTING ATTACK EVENT
                 // kill the player
                 else if (agent.remainingDistance <= agent.stoppingDistance + 1f && !agent.pathPending)
@@ -160,6 +151,25 @@ public class AIController : MonoBehaviour
                     //}
                 }
                 // TESTING ATTACK EVENT
+            }
+
+            // TEST --> If player hides during chase
+            if (state == "chase" && playerisHidingBadly == true)
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
+                {
+                    agent.destination = playerTransform.position;
+                    hidingCloset.SetActive(false);
+                    state = "kill";
+
+                    mainPlayer.GetComponent<PlayerMovement>().enabled = false;
+                    mainPlayerMesh.enabled = false;
+                    deathCam.SetActive(true);
+                    deathCam.transform.position = Camera.main.transform.position;
+                    deathCam.transform.rotation = Camera.main.transform.rotation;
+                    Camera.main.gameObject.SetActive(false);
+                    Invoke("reset", 1f);
+                }
             }
 
             //find
