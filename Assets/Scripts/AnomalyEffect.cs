@@ -17,24 +17,34 @@ public class AnomalyEffect : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         Trig = true;
+
+        if (Trig == true && other.tag == "Player")
+        {
+            playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+        }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        Trig = false;    
-    }
+        Trig = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Trig == true)
-        {
-            playerHeadMovement.GetComponent<MouseLook>().enabled = false;
-        }
-
-        else if (Trig == false)
+        if (Trig == false)
         {
             playerHeadMovement.GetComponent<MouseLook>().enabled = true;
         }
     }
+
+    // Update is called once per frame
+    // void Update()
+    // {
+    //     if (Trig == true)
+    //     {
+    //         playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+    //     }
+
+    //     else if (Trig == false)
+    //     {
+    //         playerHeadMovement.GetComponent<MouseLook>().enabled = true;
+    //     }
+    // }
 }
