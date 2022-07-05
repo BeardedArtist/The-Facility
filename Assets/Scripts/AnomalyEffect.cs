@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnomalyEffect : MonoBehaviour
 {
     private bool Trig;
 
     public GameObject playerHeadMovement;
+
+    public Text text;
+    public int sanityPercentage;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +25,9 @@ public class AnomalyEffect : MonoBehaviour
         if (Trig == true && other.tag == "Player")
         {
             playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+
+            sanityPercentage += 10;
+            text.text = "Sanity %: " + sanityPercentage.ToString();
         }
     }
 
