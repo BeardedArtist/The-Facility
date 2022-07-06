@@ -16,6 +16,6 @@ public class Sanity : MonoBehaviour
     public void PlayerSanity(int percentage)
     {
         sanityPercentage += percentage * Time.deltaTime;
-        sanityText.text = "Sanity %: " + sanityPercentage.ToString();
+        sanityText.text = "Sanity %: " + sanityPercentage.ToString("f0");
     }
 }

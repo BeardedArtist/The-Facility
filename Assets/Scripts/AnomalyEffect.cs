@@ -8,6 +8,7 @@ public class AnomalyEffect : MonoBehaviour
     private bool Trig;
 
     public GameObject playerHeadMovement;
+    public GameObject playerBodyMovement;
     public Sanity playerSanity;
 
     // Start is called before the first frame update
@@ -22,21 +23,20 @@ public class AnomalyEffect : MonoBehaviour
 
         if (Trig == true && other.tag == "Player")
         {
-            playerHeadMovement.GetComponent<MouseLook>().enabled = false;
-
-            //playerSanity.PlayerSanity(1);
+            //playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+            StartCoroutine(DisablePlayer());
         }
     }
 
-    private void OnTriggerExit(Collider other) 
-    {
-        Trig = false;
+    // private void OnTriggerExit(Collider other) 
+    // {
+    //     Trig = false;
 
-        if (Trig == false)
-        {
-            playerHeadMovement.GetComponent<MouseLook>().enabled = true;
-        }
-    }
+    //     if (Trig == false)
+    //     {
+    //         playerHeadMovement.GetComponent<MouseLook>().enabled = true;
+    //     }
+    // }
 
     private void OnTriggerStay(Collider other) 
     {
@@ -44,5 +44,17 @@ public class AnomalyEffect : MonoBehaviour
         {
             playerSanity.PlayerSanity(1);
         }    
+    }
+
+    IEnumerator DisablePlayer ()
+    {
+        playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+        playerBodyMovement.GetComponent<PlayerMovement>().enabled = false;
+
+        yield return new WaitForSeconds(2f);
+
+        playerHeadMovement.GetComponent<MouseLook>().enabled = true;
+        playerBodyMovement.GetComponent<PlayerMovement>().enabled = true;
+
     }
 }
