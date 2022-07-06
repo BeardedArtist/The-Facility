@@ -8,14 +8,12 @@ public class AnomalyEffect : MonoBehaviour
     private bool Trig;
 
     public GameObject playerHeadMovement;
-
-    public Text text;
-    public int sanityPercentage;
+    public Sanity playerSanity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //playerSanity = GetComponent<Sanity>();
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -26,8 +24,7 @@ public class AnomalyEffect : MonoBehaviour
         {
             playerHeadMovement.GetComponent<MouseLook>().enabled = false;
 
-            sanityPercentage += 10;
-            text.text = "Sanity %: " + sanityPercentage.ToString();
+            //playerSanity.PlayerSanity(1);
         }
     }
 
@@ -41,17 +38,11 @@ public class AnomalyEffect : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (Trig == true)
-    //     {
-    //         playerHeadMovement.GetComponent<MouseLook>().enabled = false;
-    //     }
-
-    //     else if (Trig == false)
-    //     {
-    //         playerHeadMovement.GetComponent<MouseLook>().enabled = true;
-    //     }
-    // }
+    private void OnTriggerStay(Collider other) 
+    {
+        if (other.tag == "Player")
+        {
+            playerSanity.PlayerSanity(1);
+        }    
+    }
 }
