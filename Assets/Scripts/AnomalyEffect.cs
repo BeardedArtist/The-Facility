@@ -10,6 +10,7 @@ public class AnomalyEffect : MonoBehaviour
     public GameObject playerHeadMovement;
     public GameObject playerBodyMovement;
     public Sanity playerSanity;
+    public GameObject blackOutAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -24,19 +25,20 @@ public class AnomalyEffect : MonoBehaviour
         if (Trig == true && other.tag == "Player")
         {
             //playerHeadMovement.GetComponent<MouseLook>().enabled = false;
+            blackOutAnim.SetActive(true);
             StartCoroutine(DisablePlayer());
         }
     }
 
-    // private void OnTriggerExit(Collider other) 
-    // {
-    //     Trig = false;
+    private void OnTriggerExit(Collider other) 
+    {
+        Trig = false;
 
-    //     if (Trig == false)
-    //     {
-    //         playerHeadMovement.GetComponent<MouseLook>().enabled = true;
-    //     }
-    // }
+        if (Trig == false)
+        {
+            blackOutAnim.SetActive(false);
+        }
+    }
 
     private void OnTriggerStay(Collider other) 
     {
