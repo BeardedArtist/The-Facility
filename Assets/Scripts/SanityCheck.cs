@@ -30,6 +30,6 @@ public class SanityCheck : MonoBehaviour
             sanityLevel1_Appear.SetActive(true);
             sanityLevel1_Disappear.SetActive(false);
             Destroy(gameObject);
-        }    
+        }   
     }
 }
