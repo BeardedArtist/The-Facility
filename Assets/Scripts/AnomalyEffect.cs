@@ -51,12 +51,16 @@ public class AnomalyEffect : MonoBehaviour
     IEnumerator DisablePlayer ()
     {
         playerHeadMovement.GetComponent<MouseLook>().enabled = false;
-        playerBodyMovement.GetComponent<PlayerMovement>().enabled = false;
+        //playerBodyMovement.GetComponent<PlayerMovement>().enabled = false;
+        playerBodyMovement.GetComponent<PlayerMovement>().walkSpeed = 1.5f;
+        playerBodyMovement.GetComponent<PlayerMovement>().sprintSpeed = 2f;
 
         yield return new WaitForSeconds(2f);
 
         playerHeadMovement.GetComponent<MouseLook>().enabled = true;
-        playerBodyMovement.GetComponent<PlayerMovement>().enabled = true;
+        //playerBodyMovement.GetComponent<PlayerMovement>().enabled = true;
+        playerBodyMovement.GetComponent<PlayerMovement>().walkSpeed = 4f;
+        playerBodyMovement.GetComponent<PlayerMovement>().sprintSpeed = 10f;
 
     }
 }

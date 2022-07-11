@@ -29,7 +29,6 @@ public class SanityCheck_Level2 : MonoBehaviour
             Debug.Log("We can feel something strange in the air");
             sanityLevel2_Appear.SetActive(true);
             sanityLevel2_Disappear.SetActive(false);
-            Destroy(gameObject);
         }   
     }
 }
