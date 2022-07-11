@@ -9,6 +9,8 @@ public class JumpScare_1 : MonoBehaviour
 
     public GameObject AItoDisappear;
 
+    public bool hasAudioPlayed = false;
+
     private void Start() 
     {
 
@@ -19,8 +21,13 @@ public class JumpScare_1 : MonoBehaviour
         if (other.tag == "Player")
         {
             AItoDisappear.SetActive(false);
-            audioSource.PlayOneShot(audioClip);
-            //Destroy(gameObject);
+
+            if (hasAudioPlayed == false)
+            {
+                audioSource.PlayOneShot(audioClip);
+                hasAudioPlayed = true;
+            }
+            
         }    
     }
 }
