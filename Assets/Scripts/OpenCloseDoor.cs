@@ -29,7 +29,7 @@ public class OpenCloseDoor : MonoBehaviour
         trig = false;    
     }
 
-    void FixedUpdate() 
+    void Update() 
     {
         if (trig)
         {
