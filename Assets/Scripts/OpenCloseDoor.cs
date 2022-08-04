@@ -21,12 +21,18 @@ public class OpenCloseDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        trig = true;
+        if (other.tag == "Player")
+        {
+            trig = true;
+        }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        trig = false;    
+        if (other.tag == "Player")
+        {
+            trig = false;
+        }
     }
 
     void Update() 
