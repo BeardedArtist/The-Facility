@@ -7,10 +7,20 @@ public class AIController_WalkCreepy : MonoBehaviour
 {
     public Transform pointToWalkTo;
     public NavMeshAgent agent;
+    public GameObject eventTrigger;
+    private bool isWalking = false;
 
     private void Start() 
     {
         agent = GetComponent<NavMeshAgent>();    
+    }
+
+    private void Update() 
+    {
+        if (isWalking == true)
+        {
+            CreepyWalk();
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -18,23 +28,27 @@ public class AIController_WalkCreepy : MonoBehaviour
         if (other.tag == "Player")
         {
             agent.destination = pointToWalkTo.position;
-
-            float dist = agent.remainingDistance;
-
-            if (dist != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
-            {
-                Destroy(gameObject);
-            }
-
-            // if (agent.remainingDistance <= agent.stoppingDistance + 1f && !agent.pathPending)
-            // {
-            //     Destroy(gameObject);
-            // }
+            isWalking = true;
+            Destroy(eventTrigger);
         }
     }
 
-    private void Update() 
+    private void CreepyWalk() 
     {
-        
+        if (agent.remainingDistance < 0.1)
+        {
+            Destroy(gameObject);
+        }
+
+        // if (!agent.pathPending)
+        //     {
+        //         if (agent.remainingDistance <= agent.stoppingDistance)
+        //         {
+        //             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+        //             {
+        //                 Destroy(eventTrigger);
+        //             }
+        //         }
+        //     }
     }
 }
