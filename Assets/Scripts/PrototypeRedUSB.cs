@@ -33,11 +33,18 @@ public class PrototypeRedUSB : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 completelyBlackOut_Anim.SetActive(true);
-                characterController.enabled = false;
-                player.transform.position = warpPlayerToAnomaly.transform.position;
-                player.transform.rotation = warpPlayerToAnomaly.transform.rotation;
-                characterController.enabled = true;
+                StartCoroutine(DelayBlackOut());
+                
             }
         }
+    }
+
+    private IEnumerator DelayBlackOut()
+    {
+        yield return new WaitForSeconds (0.5f);
+        characterController.enabled = false;
+        player.transform.position = warpPlayerToAnomaly.transform.position;
+        player.transform.rotation = warpPlayerToAnomaly.transform.rotation;
+        characterController.enabled = true;
     }
 }
