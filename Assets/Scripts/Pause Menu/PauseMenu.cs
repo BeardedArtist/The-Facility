@@ -5,7 +5,9 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private bool isPaused;
+    [SerializeField] private bool isOptionsOpen;
 
     private void Update() 
     {
@@ -40,5 +42,19 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         isPaused = false;
+    }
+
+    public void ActivateOptionsMenu()
+    {
+        isOptionsOpen = true;
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(true);
+    }
+
+    public void DeactivateOptionsMenu()
+    {
+        isOptionsOpen = false;
+        optionsMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 }
