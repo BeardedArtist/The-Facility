@@ -18,7 +18,17 @@ public class PauseMenu : MonoBehaviour
 
         if (isPaused)
         {
-            ActivateMenu();
+            //ActivateMenu();
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            pauseMenuUI.SetActive(true);
+
+            if (isOptionsOpen)
+            {
+                pauseMenuUI.SetActive(false);
+                optionsMenuUI.SetActive(true);
+            }
         }
 
         else
@@ -33,6 +43,16 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenuUI.SetActive(true);
+
+        if (isOptionsOpen == true)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+        else if (isOptionsOpen == false)
+        {
+            pauseMenuUI.SetActive(true);
+            optionsMenuUI.SetActive(false);
+        }
     }
 
     public void DeactivateMenu()
@@ -47,14 +67,14 @@ public class PauseMenu : MonoBehaviour
     public void ActivateOptionsMenu()
     {
         isOptionsOpen = true;
-        pauseMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(true);
+        //pauseMenuUI.SetActive(false);
+        //optionsMenuUI.SetActive(true);
     }
 
     public void DeactivateOptionsMenu()
     {
         isOptionsOpen = false;
         optionsMenuUI.SetActive(false);
-        pauseMenuUI.SetActive(true);
+        //pauseMenuUI.SetActive(true);
     }
 }
