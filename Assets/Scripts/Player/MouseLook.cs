@@ -20,8 +20,14 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime; // get preprogrammed input for mouse on x-axis.
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime; // get preprogrammed input for mouse on x-axis.
+        // float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime; // get preprogrammed input for mouse on x-axis.
+        // float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime; // get preprogrammed input for mouse on x-axis.
+
+        // TEST - Trying without Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity; // get preprogrammed input for mouse on x-axis.
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity; // get preprogrammed input for mouse on x-axis.
+        // TEST - Trying without Time.deltaTime;
+
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // limit player camera movement for up and down. 
