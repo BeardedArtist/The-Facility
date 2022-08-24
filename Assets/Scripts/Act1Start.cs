@@ -10,12 +10,12 @@ public class Act1Start : MonoBehaviour
     [SerializeField] private GameObject wakeUpAnimObject;
     [SerializeField] private GameObject PCMessage;
     [SerializeField] private GameObject getUpMessage;
-    //[SerializeField] private GameObject wakeUp_Anim;
     [SerializeField] private Animator wakeUp_Anim;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private MouseLook mouseLook;
 
     private bool canGetup = false;
+    private bool isMethodFinished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,21 +25,31 @@ public class Act1Start : MonoBehaviour
         wakeUp_Anim = wakeUpAnimObject.GetComponent<Animator>();
 
         StartActOne();
+        Invoke("GetUpMessage", 5.0f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(GetUpMessage());
+        //Invoke("GetUpMessage", 5.0f);
 
         if (canGetup == true)
         {
             if (Input.anyKey)
             {
-                Destroy(getUpMessage);
+                getUpMessage.SetActive(false);
                 characterController.enabled = true;
                 mouseLook.enabled = true;
+
+                isMethodFinished = true;
             }
+        }
+
+
+        if (isMethodFinished == true)
+        {
+            Invoke("TurnOffMethod", 5.0f);
         }
     }
 
@@ -50,10 +60,21 @@ public class Act1Start : MonoBehaviour
         wakeUp_Anim.Play("CompleteBlackOut", 0, 0.0f);
     }
 
-    private IEnumerator GetUpMessage()
+    void GetUpMessage()
     {
-        yield return new WaitForSeconds(5.0f);
         getUpMessage.SetActive(true);
         canGetup = true;
+    }
+
+    // private IEnumerator GetUpMessage()
+    // {
+    //     yield return new WaitForSeconds(5.0f);
+    //     getUpMessage.SetActive(true);
+    //     canGetup = true;
+    // }
+
+    void TurnOffMethod()
+    {
+        enabled = false;
     }
 }
