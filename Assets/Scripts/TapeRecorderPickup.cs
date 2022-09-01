@@ -6,6 +6,7 @@ public class TapeRecorderPickup : MonoBehaviour
 {
     [SerializeField] private bool Trig;
     [SerializeField] private GameObject goBackMessage;
+    [SerializeField] private GameObject Part2Trigger;
 
     public AudioSource audioSource;
 
@@ -31,6 +32,7 @@ public class TapeRecorderPickup : MonoBehaviour
                 audioSource.Stop();
                 goBackMessage.SetActive(true);
                 Destroy(gameObject);
+                Part2Trigger.SetActive(true);
             }
         }
     }
