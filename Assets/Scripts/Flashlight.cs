@@ -10,7 +10,7 @@ public class Flashlight : MonoBehaviour
 
     void Start()
     {
-        lightIsOn = false;
+        //lightIsOn = lightIsOn;
     }
 
     void Update()
