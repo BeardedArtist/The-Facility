@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/PA System/PA_Occlusion_Details.asset.meta
+guid: 84063016ce722a84aaea1e4d583f8e19
+NativeFormatImporter:
+========
+guid: 71e1650a75f53454e83a6bf84bfbad3f
+labels:
+- FMOD
+TextScriptImporter:
+>>>>>>>> main:Assets/FMODBanks/Master.bytes.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
