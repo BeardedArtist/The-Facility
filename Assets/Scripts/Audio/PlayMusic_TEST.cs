@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class PlayMusic_TEST : MonoBehaviour
 {
-    [SerializeField] private bool hasPlayed;
-
-    [SerializeField] private AudioSource audioSource;
-
-    private void Start() 
-    {
-        audioSource = GetComponent<AudioSource>();    
-    }
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] bool hasPlayed = false;
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !audioSource.isPlaying && hasPlayed == false)
         {
             audioSource.Play();
+            hasPlayed = true;
         }    
     }
 }
