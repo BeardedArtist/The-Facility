@@ -19,8 +19,14 @@ public class CircuitBreakerManager : MonoBehaviour
     [SerializeField] private Material greenMat;
     // -------------------------
 
+
     // For Hallway lights
     [SerializeField] private GameObject lightsToBeTurnedOn;
+    // -------------------------
+
+
+    // For Scary Moment with AI
+    [SerializeField] private GameObject creepyAI;
     // -------------------------
 
     private void Update() 
@@ -53,6 +59,7 @@ public class CircuitBreakerManager : MonoBehaviour
             pLight_3.color = colorGreen;
 
             lightsToBeTurnedOn.SetActive(true);
+            creepyAI.SetActive(true);
         }
     }
 }
