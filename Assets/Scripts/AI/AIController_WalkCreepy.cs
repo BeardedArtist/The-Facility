@@ -38,6 +38,7 @@ public class AIController_WalkCreepy : MonoBehaviour
         if (agent.remainingDistance < 0.1)
         {
             Destroy(gameObject);
+            isWalking = false;
         }
 
         // if (!agent.pathPending)
