@@ -59,7 +59,11 @@ public class CircuitBreakerManager : MonoBehaviour
             pLight_3.color = colorGreen;
 
             lightsToBeTurnedOn.SetActive(true);
-            creepyAI.SetActive(true);
+
+            if (creepyAI != null)
+            {
+                creepyAI.SetActive(true);
+            }
         }
     }
 }
