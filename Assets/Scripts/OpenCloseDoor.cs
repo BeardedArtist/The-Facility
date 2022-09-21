@@ -8,6 +8,13 @@ public class OpenCloseDoor : MonoBehaviour
     [SerializeField] private Animator myDoor = null;
     private bool trigger;
     private bool trig;
+    [SerializeField] private bool isLocked;
+
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+
+    [SerializeField] private GameObject openDoorUI;
 
 
     // Start is called before the first frame update
@@ -24,20 +31,19 @@ public class OpenCloseDoor : MonoBehaviour
         if (other.tag == "Player")
         {
             trig = true;
+            openDoorUI.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        if (other.tag == "Player")
-        {
-            trig = false;
-        }
+        trig = false;
+        openDoorUI.SetActive(false);
     }
 
     void Update() 
     {
-        if (trig)
+        if (trig && isLocked == false)
         {
             trigger = myDoor.GetBool("Open");
 
@@ -50,6 +56,19 @@ public class OpenCloseDoor : MonoBehaviour
                 else
                 {
                     myDoor.SetBool("Open", false);
+                }
+            }
+        }
+
+        else if (trig && isLocked == true)
+        {
+            openDoorUI.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (audioSource != null && !audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioClip);
                 }
             }
         }
