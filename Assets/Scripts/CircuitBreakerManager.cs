@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CircuitBreakerManager : MonoBehaviour
 {
-    [SerializeField] private int circuitBreakerOn;
+    [SerializeField] public int circuitBreakerOn;
+    [SerializeField] private bool hasLightsTurnedOn = false;
 
     // For Main Circuit Breaker Lights
     [SerializeField] private GameObject mainCircuit_1;
@@ -58,7 +59,11 @@ public class CircuitBreakerManager : MonoBehaviour
             mainCircuit_3.GetComponent<MeshRenderer>().material = greenMat;
             pLight_3.color = colorGreen;
 
-            lightsToBeTurnedOn.SetActive(true);
+            if (hasLightsTurnedOn == false)
+            {
+                lightsToBeTurnedOn.SetActive(true);
+                hasLightsTurnedOn = true;
+            }
 
             if (creepyAI != null)
             {
