@@ -13,6 +13,11 @@ public class ServerRoom_Manager : MonoBehaviour
     [SerializeField] private GameObject lightsToBeTurnedOff;
     // -------------------------
 
+    // For PA System
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
+    // -------------------------
+
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
@@ -37,7 +42,11 @@ public class ServerRoom_Manager : MonoBehaviour
                 if (circuitBreakerManager.circuitBreakerOn >= 3)
                 {
                     lightsToBeTurnedOff.SetActive(false);
-                    Debug.Log("Turing Power Back On!");
+
+                    if (audioSource != null && !audioSource.isPlaying)
+                    {
+                        audioSource.PlayOneShot(audioClip);
+                    }
                 }
 
                 else
