@@ -12,7 +12,7 @@ public class Hide : MonoBehaviour
     [SerializeField] public bool isHiding = false;
 
 
-    private bool trig;
+    [SerializeField] private bool trig;
 
 
     private void Start() 
@@ -22,7 +22,10 @@ public class Hide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        trig = true;    
+        if (other.tag == "Player")
+        {
+            trig = true;    
+        }
     }
     private void OnTriggerExit(Collider other) 
     {
@@ -46,7 +49,7 @@ public class Hide : MonoBehaviour
                     player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
 
-                    isHiding = true;
+                    isHiding = true;   
                     AIController script = aiController.GetComponent<AIController>();
                     script.playerisHidingBadly = true;
 
@@ -71,47 +74,6 @@ public class Hide : MonoBehaviour
             }
         }
     }
-
-    // private void OnTriggerStay(Collider other) 
-    //     {
-    //         if (other.tag == "Player")
-    //         {
-    //             Debug.Log("Player is ready to hide");
-
-    //             if (isHiding == false)
-    //             {
-    //                 if (Input.GetKeyDown(KeyCode.E))
-    //                 {
-    //                     Debug.Log("Player is hiding!");
-
-    //                     characterController.enabled = false;
-    //                     player.transform.position = warpTarget.transform.position;
-    //                     player.transform.rotation = warpTarget.transform.rotation;
-    //                     characterController.enabled = true;
-
-    //                     isHiding = true;
-    //                     aIController.playerisHidingBadly = true;
-    //                 }
-    //             }
-
-    //             if (isHiding == true)
-    //             {
-    //                 if (Input.GetKeyDown(KeyCode.Q))
-    //                 {
-    //                     Debug.Log("Player is not hiding anymore");
-
-    //                     characterController.enabled = false;
-    //                     player.transform.position = warpTarget_2.transform.position;
-    //                     player.transform.rotation = warpTarget.transform.rotation;
-    //                     characterController.enabled = true;
-    //                     //player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"));
-
-    //                     isHiding = false;
-                        
-    //                 }                  
-    //             }
-    //         }
-    //     }
 
 
 }
