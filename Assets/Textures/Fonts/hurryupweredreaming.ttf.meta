@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e1b1b0ef4f591d647a118da1d817db82
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - hurryupweredreaming
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0ce4880fd353b8e48ba51bfbc60d5eee, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

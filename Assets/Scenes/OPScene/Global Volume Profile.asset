@@ -16,7 +16,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.276
+    m_Value: 1
     min: 0
     max: 1
 --- !u!114 &-4738552940600338679
@@ -43,7 +43,7 @@ MonoBehaviour:
     max: 1
   response:
     m_OverrideState: 1
-    m_Value: 0.53
+    m_Value: 1
     min: 0
     max: 1
   texture:
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.72529846, b: 0.7830189, a: 1}
+    m_Value: {r: 0.1792453, g: 0.05833927, b: 0.05833927, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -382,12 +382,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.46
+    m_Value: 0.39
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.328
+    m_Value: 0.89
     min: 0.01
     max: 1
   rounded:
@@ -493,11 +493,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.21
+    m_Value: 0
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.22
+    m_Value: 0.53
     min: 0
   scatter:
     m_OverrideState: 1
@@ -509,7 +509,7 @@ MonoBehaviour:
     m_Value: 65462.7
     min: 0
   tint:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 0
     showAlpha: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_Value: {fileID: 2800000, guid: 283f897e4925411ebbaa758b4cb13fc2, type: 3}
   dirtIntensity:
     m_OverrideState: 1
-    m_Value: 7.7
+    m_Value: 13.3
     min: 0
 --- !u!114 &5914230483180340756
 MonoBehaviour:
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.12
+    m_Value: 0.15
   contrast:
     m_OverrideState: 1
     m_Value: 19
@@ -553,18 +553,18 @@ MonoBehaviour:
     max: 100
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.8018868, g: 0.66193485, b: 0.66193485, a: 1}
+    m_Value: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
   hueShift:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
     min: -180
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 13
+    m_Value: 51.8
     min: -100
     max: 100
 --- !u!114 &8498738295118767238

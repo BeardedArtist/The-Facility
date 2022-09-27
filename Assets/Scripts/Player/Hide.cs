@@ -20,7 +20,7 @@ public class Hide : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
         if (other.tag == "Player")
         {
@@ -45,9 +45,11 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is hiding!");
 
                     characterController.enabled = false;
+                    GetComponent<Collider>().enabled = false;
                     player.transform.position = warpTarget.transform.position;
                     player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
+                    GetComponent<Collider>().enabled = true;
 
                     isHiding = true;   
                     AIController script = aiController.GetComponent<AIController>();
