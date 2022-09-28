@@ -37,6 +37,11 @@ public class AIController_ServerSearch : MonoBehaviour
     public float speed = 4f;
     // Decided points to walk to <--
 
+    // AUDIO FOR AI --> 
+    [SerializeField] AudioSource audioSource;
+    //[SerializeField] AudioClip audioClip;
+    // AUDIO FOR AI <--
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +49,11 @@ public class AIController_ServerSearch : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<AIController_ServerSearch_Eyes>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        if (audioSource != null & !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 
     // Check if we can see player
@@ -102,6 +112,11 @@ public class AIController_ServerSearch : MonoBehaviour
                     if (currentWayPoint < this.wayPointList.Length)
                     {
                         targetWayPoint = wayPointList[currentWayPoint];
+                    }
+
+                    else if (currentWayPoint >= this.wayPointList.Length)
+                    {
+                        Destroy(gameObject);
                     }
                     //-----
                     state = "search";

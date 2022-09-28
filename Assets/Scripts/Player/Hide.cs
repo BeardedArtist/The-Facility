@@ -7,9 +7,11 @@ public class Hide : MonoBehaviour
     public GameObject player;
     public GameObject warpTarget;
     public GameObject warpTarget_2;
+    [SerializeField] private GameObject flashlight;
     private CharacterController characterController;
     public GameObject aiController;
     [SerializeField] public bool isHiding = false;
+    [SerializeField] private MeshRenderer mainPlayerMesh;
 
 
     [SerializeField] private bool trig;
@@ -45,11 +47,11 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is hiding!");
 
                     characterController.enabled = false;
-                    GetComponent<Collider>().enabled = false;
+                    flashlight.SetActive(false);
+                    mainPlayerMesh.enabled = false;
                     player.transform.position = warpTarget.transform.position;
                     player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
-                    GetComponent<Collider>().enabled = true;
 
                     isHiding = true;   
                     AIController script = aiController.GetComponent<AIController>();
@@ -65,9 +67,11 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is not hiding anymore");
 
                     characterController.enabled = false;
+                    flashlight.SetActive(true);
                     player.transform.position = warpTarget_2.transform.position;
                     player.transform.rotation = warpTarget_2.transform.rotation;
                     characterController.enabled = true;
+                    mainPlayerMesh.enabled = true;
 
                     isHiding = false;
                     AIController script = aiController.GetComponent<AIController>();

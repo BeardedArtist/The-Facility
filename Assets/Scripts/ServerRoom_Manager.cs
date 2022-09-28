@@ -18,6 +18,10 @@ public class ServerRoom_Manager : MonoBehaviour
     [SerializeField] AudioClip audioClip;
     // -------------------------
 
+    // Activate AI
+    [SerializeField] private GameObject ServerScene_AI;
+    // -------------------------
+
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
@@ -46,6 +50,7 @@ public class ServerRoom_Manager : MonoBehaviour
                     if (audioSource != null && !audioSource.isPlaying)
                     {
                         audioSource.PlayOneShot(audioClip);
+                        ServerScene_AI.SetActive(true);
                     }
                 }
 
