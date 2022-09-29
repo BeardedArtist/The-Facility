@@ -9,6 +9,7 @@ public class TapeRecorderPickup : MonoBehaviour
     [SerializeField] private GameObject Part2Trigger;
 
     [SerializeField] private GameObject InteractUI;
+    [SerializeField] private MeshRenderer objectRender;
 
     public AudioSource audioSource;
 
@@ -35,9 +36,17 @@ public class TapeRecorderPickup : MonoBehaviour
             {
                 audioSource.Stop();
                 goBackMessage.SetActive(true);
-                Destroy(gameObject);
+                StartCoroutine(closeMessage());
+                objectRender.enabled = false;
                 Part2Trigger.SetActive(true);
             }
         }
+    }
+
+    private IEnumerator closeMessage()
+    {
+        yield return new WaitForSeconds (5.0f);
+        goBackMessage.SetActive(false);
+        Destroy(gameObject);
     }
 }
