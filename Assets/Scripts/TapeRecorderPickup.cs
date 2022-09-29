@@ -8,6 +8,8 @@ public class TapeRecorderPickup : MonoBehaviour
     [SerializeField] private GameObject goBackMessage;
     [SerializeField] private GameObject Part2Trigger;
 
+    [SerializeField] private GameObject InteractUI;
+
     public AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other) 
@@ -15,11 +17,13 @@ public class TapeRecorderPickup : MonoBehaviour
         if (other.tag == "Flashlight Eyes 2")
         {
             Trig = true;
+            InteractUI.SetActive(true);
         }    
     }
     private void OnTriggerExit(Collider other) 
     {
         Trig = false;    
+        InteractUI.SetActive(false);
     }
 
     // Update is called once per frame
