@@ -28,6 +28,7 @@ public class CircuitBreakerManager : MonoBehaviour
 
     // For Scary Moment with AI
     [SerializeField] private GameObject creepyAI;
+    [SerializeField] private GameObject creepyMusic;
     // -------------------------
 
     private void Update() 
@@ -68,6 +69,7 @@ public class CircuitBreakerManager : MonoBehaviour
             if (creepyAI != null)
             {
                 creepyAI.SetActive(true);
+                creepyMusic.SetActive(true);
             }
         }
     }
