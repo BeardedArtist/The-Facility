@@ -22,6 +22,11 @@ public class ServerRoom_Manager : MonoBehaviour
     [SerializeField] private GameObject ServerScene_AI;
     // -------------------------
 
+    // UI
+    [SerializeField] private GameObject powerNotOn_Message;
+    [SerializeField] private float Timer = 5;
+    // -------------------------
+
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
@@ -56,9 +61,21 @@ public class ServerRoom_Manager : MonoBehaviour
 
                 else
                 {
-                    Debug.Log("There are some fuses still off");
+                    PowerNotOnMessage();
                 }
             }
         }    
+    }
+
+    void PowerNotOnMessage()
+    {
+        powerNotOn_Message.SetActive(true);
+        StartCoroutine(turnOfMessage());
+    }
+
+    private IEnumerator turnOfMessage()
+    {
+        yield return new WaitForSeconds(3.0f);
+        powerNotOn_Message.SetActive(false);
     }
 }

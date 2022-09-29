@@ -15,7 +15,14 @@ public class Act1Start : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
 
     private bool canGetup = false;
+    private bool canGetUpMessageIsFinished = false;
     private bool isMethodFinished = false;
+
+
+    // TESTING STARTING CONVERSATION
+    [SerializeField] private GameObject text_1;
+    [SerializeField] private bool text_1IsFinished = false;
+    // TESTING STARTING CONVERSATION
 
     // Start is called before the first frame update
     void Start()
@@ -25,18 +32,17 @@ public class Act1Start : MonoBehaviour
         wakeUp_Anim = wakeUpAnimObject.GetComponent<Animator>();
 
         StartActOne();
-        Invoke("GetUpMessage", 5.0f);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Invoke("GetUpMessage", 5.0f);
+        Invoke("StartUpConversation", 2.0f);
 
         if (canGetup == true)
         {
-            if (Input.anyKey)
+            if (Input.anyKeyDown)
             {
                 getUpMessage.SetActive(false);
                 characterController.enabled = true;
@@ -63,7 +69,28 @@ public class Act1Start : MonoBehaviour
     void GetUpMessage()
     {
         getUpMessage.SetActive(true);
+        canGetUpMessageIsFinished = true;
         canGetup = true;
+    }
+
+
+    void StartUpConversation()
+    {
+        if (text_1IsFinished == false)
+        {
+            text_1.SetActive(true);
+
+            if (Input.anyKeyDown)
+            {
+                text_1IsFinished = true;
+                text_1.SetActive(false);
+            }
+        }
+
+        if (text_1IsFinished == true && canGetUpMessageIsFinished == false)
+        {
+            Invoke("GetUpMessage", 2.0f);
+        }
     }
 
     // private IEnumerator GetUpMessage()
