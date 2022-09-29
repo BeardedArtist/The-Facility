@@ -53,10 +53,20 @@ public class OpenCloseDoor : MonoBehaviour
                 if (!trigger)
                 {
                     myDoor.SetBool("Open", true);
+
+                    if (!audioSource.isPlaying && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(audioClip);
+                    }
                 }
                 else
                 {
                     myDoor.SetBool("Open", false);
+
+                    if (!audioSource.isPlaying && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(audioClip);
+                    }
                 }
             }
         }
