@@ -27,6 +27,11 @@ public class ServerRoom_Manager : MonoBehaviour
     [SerializeField] private float Timer = 5;
     // -------------------------
 
+    // Things to Appear
+    [SerializeField] private GameObject thingsToAppear;
+    [SerializeField] private GameObject extraLightToTurnOff;
+    // --------------------------
+
     private void OnTriggerStay(Collider other) 
     {
         if (other.tag == "Player")
@@ -51,6 +56,8 @@ public class ServerRoom_Manager : MonoBehaviour
                 if (circuitBreakerManager.circuitBreakerOn >= 3)
                 {
                     lightsToBeTurnedOff.SetActive(false);
+                    extraLightToTurnOff.SetActive(false);
+                    thingsToAppear.SetActive(true);
 
                     if (audioSource != null && !audioSource.isPlaying)
                     {

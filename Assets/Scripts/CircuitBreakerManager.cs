@@ -31,6 +31,17 @@ public class CircuitBreakerManager : MonoBehaviour
     [SerializeField] private GameObject creepyMusic;
     // -------------------------
 
+
+    // For Audio
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private bool audiohasPlayed = false;
+    // -------------------------
+
+    // For Scary objects to Appear
+    [SerializeField] private GameObject thingsToAppear;
+    // --------------------------
+
     private void Update() 
     {
         turnOnMainCircuitLights();    
@@ -59,6 +70,7 @@ public class CircuitBreakerManager : MonoBehaviour
         {
             mainCircuit_3.GetComponent<MeshRenderer>().material = greenMat;
             pLight_3.color = colorGreen;
+            thingsToAppear.SetActive(true);
 
             if (hasLightsTurnedOn == false)
             {
@@ -70,6 +82,12 @@ public class CircuitBreakerManager : MonoBehaviour
             {
                 creepyAI.SetActive(true);
                 creepyMusic.SetActive(true);
+            }
+
+            if (audioSource != null && !audioSource.isPlaying && audiohasPlayed == false)
+            {
+                audioSource.PlayOneShot(audioClip);
+                audiohasPlayed = true;
             }
         }
     }
