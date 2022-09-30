@@ -15,6 +15,8 @@ public class CircuitBreaker : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
 
     [SerializeField] private GameObject interactUI;
+    [SerializeField] private GameObject powerSwitch_ON;
+    [SerializeField] private GameObject powerSwitch_OFF;
 
 
     [SerializeField] private bool hasTurnedOn = false;
@@ -33,7 +35,7 @@ public class CircuitBreaker : MonoBehaviour
     
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Flashlight Eyes 2")
+        if (other.tag == "Player")
         {
             Trig = true;
             interactUI.SetActive(true);
@@ -58,6 +60,9 @@ public class CircuitBreaker : MonoBehaviour
                 lightObject.GetComponent<MeshRenderer>().material = greenMat;
                 pLight.color = colorGreen;
                 hasTurnedOn = true;
+
+                powerSwitch_OFF.SetActive(false);
+                powerSwitch_ON.SetActive(true);
             }
         }
     }

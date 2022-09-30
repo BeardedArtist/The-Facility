@@ -29,7 +29,7 @@ public class ServerRoom_Manager : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Flashlight Eyes 2")
+        if (other.tag == "Player")
         {
             trig = true;
             interactUI.SetActive(true);
