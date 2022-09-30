@@ -10,6 +10,8 @@ public class AIController_WalkCreepy : MonoBehaviour
     public GameObject eventTrigger;
     private bool isWalking = false;
 
+    [SerializeField] private MeshRenderer meshRenderer;
+
     private void Start() 
     {
         agent = GetComponent<NavMeshAgent>();    
@@ -27,6 +29,7 @@ public class AIController_WalkCreepy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            meshRenderer.enabled = false;
             agent.destination = pointToWalkTo.position;
             isWalking = true;
             Destroy(eventTrigger);

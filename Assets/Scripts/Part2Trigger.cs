@@ -10,6 +10,9 @@ public class Part2Trigger : MonoBehaviour
 
     [SerializeField] private Animator BlackoutAnimation;
 
+    public Flashlight_Pickup flashlight_PickupScript;
+    public TapeRecorderPickup tapeRecorderPickupScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,7 @@ public class Part2Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && flashlight_PickupScript.pickedUpFlashlight == true && tapeRecorderPickupScript.pickedUpTapeRecorder == true)
         {          
             BlackoutAnimation.SetBool("PlayBlackOut", true);
             StartCoroutine(DelayTransition());

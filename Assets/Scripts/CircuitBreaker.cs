@@ -14,6 +14,8 @@ public class CircuitBreaker : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
+    [SerializeField] private GameObject interactUI;
+
 
     [SerializeField] private bool hasTurnedOn = false;
     private bool Trig;
@@ -29,17 +31,19 @@ public class CircuitBreaker : MonoBehaviour
     }
 
     
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Flashlight Eyes 2")
         {
             Trig = true;
+            interactUI.SetActive(true);
         }    
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        Trig = false;    
+        Trig = false;
+        interactUI.SetActive(false);    
     }
 
     private void Update() 

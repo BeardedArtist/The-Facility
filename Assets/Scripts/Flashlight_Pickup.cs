@@ -6,6 +6,7 @@ public class Flashlight_Pickup : MonoBehaviour
 {
     private bool Trig;
     public GameObject playersFlashlight;
+    public bool pickedUpFlashlight = false;
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -26,6 +27,7 @@ public class Flashlight_Pickup : MonoBehaviour
             {
                 Destroy(gameObject);
                 playersFlashlight.SetActive(true);
+                pickedUpFlashlight = true;
             }
         }
     }

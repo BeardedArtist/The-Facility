@@ -14,6 +14,9 @@ public class Hide : MonoBehaviour
     [SerializeField] private MeshRenderer mainPlayerMesh;
 
 
+    [SerializeField] private GameObject hideUI;
+
+
     [SerializeField] private bool trig;
 
 
@@ -27,11 +30,13 @@ public class Hide : MonoBehaviour
         if (other.tag == "Player")
         {
             trig = true;    
+            hideUI.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other) 
     {
         trig = false;    
+        hideUI.SetActive(false);
     }
 
     private void Update() 

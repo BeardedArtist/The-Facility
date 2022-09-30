@@ -11,11 +11,13 @@ public class TapeRecorderPickup : MonoBehaviour
     [SerializeField] private GameObject InteractUI;
     [SerializeField] private MeshRenderer objectRender;
 
+    public bool pickedUpTapeRecorder = false;
+
     public AudioSource audioSource;
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Flashlight Eyes 2")
+        if (other.tag == "Player")
         {
             Trig = true;
             InteractUI.SetActive(true);
@@ -39,6 +41,7 @@ public class TapeRecorderPickup : MonoBehaviour
                 StartCoroutine(closeMessage());
                 objectRender.enabled = false;
                 Part2Trigger.SetActive(true);
+                pickedUpTapeRecorder = true;
             }
         }
     }

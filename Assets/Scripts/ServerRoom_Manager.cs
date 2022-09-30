@@ -27,9 +27,9 @@ public class ServerRoom_Manager : MonoBehaviour
     [SerializeField] private float Timer = 5;
     // -------------------------
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Flashlight Eyes 2")
         {
             trig = true;
             interactUI.SetActive(true);
