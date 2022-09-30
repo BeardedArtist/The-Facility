@@ -10,6 +10,9 @@ public class LightPop : MonoBehaviour
 
     private bool hasAudioPlayed = false;
 
+
+    public Flashlight flashlightScript;
+
     
     private void OnTriggerEnter(Collider other) 
     {
@@ -18,6 +21,9 @@ public class LightPop : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
             Destroy(lightToDestroy);
             hasAudioPlayed = true;
+
+            flashlightScript.flashlight.SetActive(false);
+            flashlightScript.lightIsOn = false;
         }    
     }
 }
