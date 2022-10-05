@@ -27,10 +27,13 @@ public class ItemPickup : MonoBehaviour
 
     private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (trig)
         {
-            Pickup();
-        }    
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Pickup();
+            }    
+        }
     }
 
     // private void OnTriggerStay(Collider other) 

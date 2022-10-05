@@ -9,15 +9,15 @@ public class OpenCloseDoor_KeyMechanic : MonoBehaviour
     private bool trig;
     private bool hasKey = false;
 
-    // [SerializeField] private AudioSource audioSource;
-    // [SerializeField] private AudioClip audioClip_1;
-    // [SerializeField] private AudioClip audioClip_2;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip_1;
+    [SerializeField] private AudioClip audioClip_2;
 
     [SerializeField] private GameObject doorUI;
 
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private Item itemScript;
-    [SerializeField] private GameObject RedKey;
+    [SerializeField] private bool hasRedKey;
 
 
     // Start is called before the first frame update
@@ -45,21 +45,56 @@ public class OpenCloseDoor_KeyMechanic : MonoBehaviour
         doorUI.SetActive(false);    
     }
 
+    private void checkForItem()
+    {
+        for (int I = 0; I < inventoryManager.Items.Count; I++)
+        {
+            if (inventoryManager.Items[I].name == "RedKey")
+            {
+                hasRedKey = true;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        checkForItem();
+        
         if (trig)
         {
-            if (inventoryManager.hasRedKey == true)
+            trigger = myDoor.GetBool("Open");
+
+            if (Input.GetKeyDown(KeyCode.E) && hasRedKey == false)
             {
-                Debug.Log("You Got the Key!");
+                audioSource.PlayOneShot(audioClip_2);
             }
-            // trigger = myDoor.GetBool("Open");
 
-            // if (Input.GetKeyDown(KeyCode.E))
-            // {
 
-            // }
+            else if (Input.GetKeyDown(KeyCode.E) && hasRedKey == true)
+            {
+                if (!trigger)
+                {
+                    myDoor.SetBool("Open", true);
+
+                    if (!audioSource.isPlaying && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(audioClip_1);
+                    }
+                }
+                else
+                {
+                    myDoor.SetBool("Open", false);
+
+                    if (!audioSource.isPlaying && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(audioClip_1);
+                    }
+                }
+            }
         }
     }
+
+
+    
 }
