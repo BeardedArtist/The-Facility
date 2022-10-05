@@ -15,14 +15,17 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        trig = true;
+        if (other.tag == "Flashlight Eyes 2")
+        {
+            trig = true;
+        }
     }
     private void OnTriggerExit(Collider other) 
     {
         trig = false;    
     }
 
-    private void FixedUpdate() 
+    private void Update() 
     {
         if (Input.GetKeyDown(KeyCode.E))
         {

@@ -29,7 +29,7 @@ public class OpenCloseDoor : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Flashlight Eyes 2")
         {
             trig = true;
             openDoorUI.SetActive(true);
