@@ -10,6 +10,8 @@ public class AIController_MonsterAppear : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
+    private bool hasPlayedAudio = false;
+
     private bool trig;
 
     private void OnTriggerEnter(Collider other) 
@@ -31,7 +33,13 @@ public class AIController_MonsterAppear : MonoBehaviour
         if (trig == true)
         {
             bloodAppear.SetActive(true);
-            audioSource.PlayOneShot(audioClip);
+
+            if (!audioSource.isPlaying && hasPlayedAudio == false)
+            {
+                audioSource.PlayOneShot(audioClip);
+                hasPlayedAudio = true;
+            }
+
             StartCoroutine(MonsterAppear());
         }    
     }
