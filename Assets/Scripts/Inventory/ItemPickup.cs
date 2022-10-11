@@ -35,15 +35,4 @@ public class ItemPickup : MonoBehaviour
             }    
         }
     }
-
-    // private void OnTriggerStay(Collider other) 
-    // {
-    //     Debug.Log("Player in Area");
-
-    //     if (Input.GetKeyDown(KeyCode.E))
-    //     {
-    //         Debug.Log(Input.inputString);
-    //         Pickup();
-    //     }
-    // }
 }

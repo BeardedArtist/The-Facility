@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; // Make sure to always have this for AI
+using UnityEngine.AI; 
 using UnityEngine.SceneManagement;
 
 
@@ -18,9 +18,6 @@ public class AIController : MonoBehaviour
     private float alertTime = 50f;
     public bool playerisHidingBadly = false;
 
-
-
-    // TESTING ATTACK EVENT
     public GameObject deathCam;
     public GameObject hidingCloset;
     public Transform deathCamPosition;
@@ -28,9 +25,6 @@ public class AIController : MonoBehaviour
     public MeshRenderer mainPlayerMesh;
     player Player;
     PlayerMovement playerMovement;
-    //public Hide hide;
-    // TESTING ATTACK EVENT
-
 
 
     // Start is called before the first frame update
@@ -76,12 +70,14 @@ public class AIController : MonoBehaviour
                 // pick random location to walk to
                 Vector3 randomPosition = Random.insideUnitSphere * alertTime;
                 NavMeshHit navHit;
-                NavMesh.SamplePosition(transform.position + randomPosition, out navHit, 50f, NavMesh.AllAreas); // finding a random spot from where the AI is standing on the NavMesh
+                NavMesh.SamplePosition(transform.position + randomPosition, out navHit, 50f, NavMesh.AllAreas); 
+                // finding a random spot from where the AI is standing on the NavMesh
                 
                 // search for player 
                 if (highAlert)
                 {
-                    NavMesh.SamplePosition(playerTransform.position + randomPosition, out navHit, 50f, NavMesh.AllAreas); // finding a random spot from where the AI is standing on the NavMesh
+                    NavMesh.SamplePosition(playerTransform.position + randomPosition, out navHit, 50f, NavMesh.AllAreas); 
+                    // finding a random spot from where the AI is standing on the NavMesh
                     // each time, lose awareness of player position
                     alertTime += 5f;
 
@@ -100,7 +96,8 @@ public class AIController : MonoBehaviour
             // walk
             if (state == "walk")
             {
-                if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending) // If AIs remaining distance is less than stopping distance AND AI is not calculating where to walk...
+                if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending) 
+                // If AIs remaining distance is less than stopping distance AND AI is not calculating where to walk...
                 {
                     state = "search"; // reset to "idle" which allows AI to find new position to walk
                     wait = 5f;

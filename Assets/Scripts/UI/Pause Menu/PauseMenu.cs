@@ -26,7 +26,6 @@ public class PauseMenu : MonoBehaviour
 
         if (isPaused)
         {
-            //ActivateMenu();
             Time.timeScale = 0;
             AudioListener.pause = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -77,14 +76,11 @@ public class PauseMenu : MonoBehaviour
     public void ActivateOptionsMenu()
     {
         isOptionsOpen = true;
-        //pauseMenuUI.SetActive(false);
-        //optionsMenuUI.SetActive(true);
     }
 
     public void DeactivateOptionsMenu()
     {
         isOptionsOpen = false;
         optionsMenuUI.SetActive(false);
-        //pauseMenuUI.SetActive(true);
     }
 }

@@ -81,22 +81,5 @@ public class PlayerMovement : MonoBehaviour
                 isRunning = true;
             }
         }
-
-
-        // if (Input.GetKey(KeyCode.LeftShift) && isRunning)
-        // {
-        //     currentSpeed = sprintSpeed;
-        //     stamina--;
-        // }
-
-        // if (stamina <= 0)
-        // {
-        //     currentSpeed = walkSpeed;
-        // }
-
-        // else
-        // {
-        //     currentSpeed = walkSpeed;
-        // }
     }
 }
