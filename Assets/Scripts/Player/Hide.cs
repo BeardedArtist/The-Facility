@@ -13,6 +13,8 @@ public class Hide : MonoBehaviour
     [SerializeField] public bool isHiding = false;
     [SerializeField] private MeshRenderer mainPlayerMesh;
 
+    private PlayerMovement playerMovement;
+
 
     [SerializeField] private GameObject hideUI;
 
@@ -52,13 +54,14 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is hiding!");
 
                     characterController.enabled = false;
-                    flashlight.SetActive(false);
+                    //flashlight.SetActive(false);
                     mainPlayerMesh.enabled = false;
                     player.transform.position = warpTarget.transform.position;
                     player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
 
                     isHiding = true;   
+                    player.GetComponent<PlayerMovement>().enabled = false;
                     AIController script = aiController.GetComponent<AIController>();
                     script.playerisHidingBadly = true;
 
@@ -72,13 +75,14 @@ public class Hide : MonoBehaviour
                     Debug.Log("Player is not hiding anymore");
 
                     characterController.enabled = false;
-                    flashlight.SetActive(true);
+                    //flashlight.SetActive(true);
                     player.transform.position = warpTarget_2.transform.position;
                     player.transform.rotation = warpTarget_2.transform.rotation;
                     characterController.enabled = true;
                     mainPlayerMesh.enabled = true;
 
                     isHiding = false;
+                    player.GetComponent<PlayerMovement>().enabled = true;
                     AIController script = aiController.GetComponent<AIController>();
                     script.playerisHidingBadly = false;
                 }
