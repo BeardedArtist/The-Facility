@@ -52,7 +52,7 @@ public class OpenCloseDoor : MonoBehaviour
             {
                 if (!trigger)
                 {
-                    myDoor.SetBool("Open", true);
+                    myDoor.SetBool("Open", true); // opening door through a bool
 
                     if (!audioSource.isPlaying && audioSource != null)
                     {
@@ -61,7 +61,7 @@ public class OpenCloseDoor : MonoBehaviour
                 }
                 else
                 {
-                    myDoor.SetBool("Open", false);
+                    myDoor.SetBool("Open", false); // closing door through a bool
 
                     if (!audioSource.isPlaying && audioSource != null)
                     {
