@@ -13,9 +13,9 @@ public class AIController : MonoBehaviour
      
     private string state = "idle";
     private bool alive = true;
-    private float wait = 0f;
+    [SerializeField] private float wait = 0f;
     private bool highAlert = false;
-    private float alertTime = 50f;
+    [SerializeField] private float alertTime = 50f;
     public bool playerisHidingBadly = false;
 
     public GameObject deathCam;
@@ -179,6 +179,7 @@ public class AIController : MonoBehaviour
                     highAlert = true;
                     alertTime = 5f;
                     CheckSight();
+                    // Change state to go back to idle after certain amount of time.
                 }
             }
 
