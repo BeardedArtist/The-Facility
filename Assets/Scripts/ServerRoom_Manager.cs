@@ -58,7 +58,7 @@ public class ServerRoom_Manager : MonoBehaviour
                     lightsToBeTurnedOff.SetActive(false);
                     extraLightToTurnOff.SetActive(false);
                     thingsToAppear.SetActive(true);
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Music/WESTMINSTER_BELLS", GetComponent<Transform>().position);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Music/WESTMINSTER_BELLS_2", GetComponent<Transform>().position);
 
                     // if (audioSource != null && !audioSource.isPlaying)
                     // {
