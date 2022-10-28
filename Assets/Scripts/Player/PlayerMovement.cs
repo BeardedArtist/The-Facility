@@ -55,31 +55,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isRunning)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 currentSpeed = sprintSpeed;
-                stamina--;
+                //stamina--;
             }
             else
             {
                 currentSpeed = walkSpeed;
             }
 
-            if (stamina <= 0)
-            {
-                isRunning = false;
-                currentSpeed = walkSpeed;
-            }
+            // if (stamina <= 0)
+            // {
+            //     isRunning = false;
+            //     currentSpeed = walkSpeed;
+            // }
         }
 
-        if (isRunning == false)
-        {
-            stamina++;
+        // if (isRunning == false)
+        // {
+        //     stamina++;
 
-            if (stamina >= 100)
-            {
-                isRunning = true;
-            }
-        }
+        //     if (stamina >= 100)
+        //     {
+        //         isRunning = true;
+        //     }
+        // }
     }
 }
