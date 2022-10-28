@@ -5,45 +5,55 @@ using UnityEngine;
 public class Gambling : MonoBehaviour
 {
     [SerializeField] private GameObject question;
+    [SerializeField] private GameObject hasMessage_UI;
+    [SerializeField] public bool hasMessage = false;
+
     private bool trig;
 
-    // private void OnTriggerEnter(Collider other) 
-    // {
-    //     if (other.tag == "Player")
-    //     {
-    //         trig = true;    
-    //     }
-    // }
+    public MouseLook mouseLook;
+    
 
-    // private void OnTriggerExit(Collider other) 
-    // {
-    //     trig = false;    
-    // }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (hasMessage == true)
         {
-            question.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            hasMessage_UI.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                //hasMessage_UI.SetActive(false);
+                mouseLook.mouseSensitivity = 0;
+
+                question.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
+    }
 
-        // if (trig == true)
-        // {
-        //     question.SetActive(true);
-        //     Cursor.lockState = CursorLockMode.None;
-        //     Cursor.visible = true;
-        // }
+    public void ButtonTest()
+    {
+        Debug.Log("Interesting");
+        question.SetActive(false);
+        hasMessage = false;
+        hasMessage_UI.SetActive(false);
 
-        // else
-        // {
-        //     question.SetActive(false);
-        //     Cursor.lockState = CursorLockMode.Locked;
-        //     {
-                
-        //     };
-        // }
+        mouseLook.mouseSensitivity = 3;
+    }
+
+    public void ButtonTest_No()
+    {
+        Debug.Log("I wonder...");
+        question.SetActive(false);
+        hasMessage = false;
+        hasMessage_UI.SetActive(false);
+
+        mouseLook.mouseSensitivity = 3;
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
