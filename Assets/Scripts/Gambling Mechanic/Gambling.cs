@@ -7,11 +7,16 @@ public class Gambling : MonoBehaviour
     [SerializeField] private GameObject question;
     [SerializeField] private GameObject hasMessage_UI;
     [SerializeField] int ScareMeterDecider;
-    [SerializeField] int ScareMeter;
+    [SerializeField] int ScareMeter = 0;
     [SerializeField] public bool hasMessage = false;
     private bool trig;
 
+    // TESTING Scare function ---------------------
+    [SerializeField] private GameObject GamblingScare_Test;
+    // TESTING Scare function ---------------------
+
     public MouseLook mouseLook;
+    public Gambling_ActivateBool gambling_ActivateBool;
 
     private void Start() 
     {
@@ -50,6 +55,8 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+
+            CheckTriggerID();
         }
 
         else
@@ -76,6 +83,8 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+
+            CheckTriggerID();
         }
 
         else
@@ -93,5 +102,17 @@ public class Gambling : MonoBehaviour
     public void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void CheckTriggerID()
+    {
+        if (gambling_ActivateBool.TriggerID == 1)
+        {
+            if (ScareMeter >= 1)
+            {
+                GamblingScare_Test.SetActive(true);
+            }
+        }
+        
     }
 }
