@@ -6,16 +6,22 @@ public class Flashlight_Pickup : MonoBehaviour
 {
     private bool Trig;
     public GameObject playersFlashlight;
+    public GameObject pickUpUI;
     public bool pickedUpFlashlight = false;
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
-        Trig = true;
+        if (other.tag == "Flashlight Eyes 2")
+        {
+            Trig = true;
+            pickUpUI.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other) 
     {
         Trig = false;
+        pickUpUI.SetActive(false);
     }
 
     // Update is called once per frame
