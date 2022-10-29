@@ -7,6 +7,8 @@ public class Gambling_ActivateBool : MonoBehaviour
     public Gambling gambling;
     private bool trig;
 
+    public int TriggerID;
+
     private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
