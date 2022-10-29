@@ -6,11 +6,17 @@ public class Gambling : MonoBehaviour
 {
     [SerializeField] private GameObject question;
     [SerializeField] private GameObject hasMessage_UI;
+    [SerializeField] int ScareMeterDecider;
+    [SerializeField] int ScareMeter;
     [SerializeField] public bool hasMessage = false;
-
     private bool trig;
 
     public MouseLook mouseLook;
+
+    private void Start() 
+    {
+        ScareMeterDecider = Random.Range(1,10);    
+    }
     
 
 
@@ -34,22 +40,54 @@ public class Gambling : MonoBehaviour
 
     public void ButtonTest()
     {
-        Debug.Log("Interesting");
-        question.SetActive(false);
-        hasMessage = false;
-        hasMessage_UI.SetActive(false);
+        if (ScareMeterDecider >= 1 && ScareMeterDecider <= 5)
+        {
+            ScareMeter++;
+            ScareMeterDecider = Random.Range(1,10);    
+            Debug.Log("Wrong Answer");
+            question.SetActive(false);
+            hasMessage = false;
+            hasMessage_UI.SetActive(false);
 
-        mouseLook.mouseSensitivity = 3;
+            mouseLook.mouseSensitivity = 3;
+        }
+
+        else
+        {
+            ScareMeter--;
+            Debug.Log("Interesting");
+            question.SetActive(false);
+            hasMessage = false;
+            hasMessage_UI.SetActive(false);
+
+            mouseLook.mouseSensitivity = 3;
+        }
     }
 
     public void ButtonTest_No()
     {
-        Debug.Log("I wonder...");
-        question.SetActive(false);
-        hasMessage = false;
-        hasMessage_UI.SetActive(false);
+        if (ScareMeterDecider >= 6 && ScareMeterDecider <= 11)
+        {
+            ScareMeter++;
+            ScareMeterDecider = Random.Range(1,10);    
+            Debug.Log("Wrong Answer");
+            question.SetActive(false);
+            hasMessage = false;
+            hasMessage_UI.SetActive(false);
 
-        mouseLook.mouseSensitivity = 3;
+            mouseLook.mouseSensitivity = 3;
+        }
+
+        else
+        {
+            ScareMeter--;
+            Debug.Log("Interesting");
+            question.SetActive(false);
+            hasMessage = false;
+            hasMessage_UI.SetActive(false);
+
+            mouseLook.mouseSensitivity = 3;
+        }
     }
 
     public void LockCursor()
