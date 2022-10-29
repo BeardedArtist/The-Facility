@@ -53,24 +53,34 @@ public class PlayerMovement : MonoBehaviour
 
     void Sprint()
     {
-        if (isRunning)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                currentSpeed = sprintSpeed;
-                //stamina--;
-            }
-            else
-            {
-                currentSpeed = walkSpeed;
-            }
-
-            // if (stamina <= 0)
-            // {
-            //     isRunning = false;
-            //     currentSpeed = walkSpeed;
-            // }
+            currentSpeed = sprintSpeed;
         }
+
+        else
+        {
+            currentSpeed = walkSpeed;
+        }
+
+        // if (isRunning)
+        // {
+        //     if (Input.GetKeyDown(KeyCode.LeftShift))
+        //     {
+        //         currentSpeed = sprintSpeed;
+        //         //stamina--;
+        //     }
+        //     else
+        //     {
+        //         currentSpeed = walkSpeed;
+        //     }
+
+        //     // if (stamina <= 0)
+        //     // {
+        //     //     isRunning = false;
+        //     //     currentSpeed = walkSpeed;
+        //     // }
+        // }
 
         // if (isRunning == false)
         // {
