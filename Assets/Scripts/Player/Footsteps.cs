@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Footsteps : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
 
     [SerializeField] AudioSource audioSource;
+
+    [SerializeField] EventReference eventName;
+    public string inputSound;
+    bool playerIsMoving;
+    public float walkingSpeed;
+
+
 
 
     // Start is called before the first frame update
@@ -23,9 +31,10 @@ public class Footsteps : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                audioSource.volume = Random.Range(0.3f, 0.5f);
-                audioSource.pitch = Random.Range(0.8f, 1.1f);
-                audioSource.Play();
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/FOOTSTEPS/TILERUNNING/TILERUNNING", GetComponent<Transform>().position);
+                // audioSource.volume = Random.Range(0.3f, 0.5f);
+                // audioSource.pitch = Random.Range(0.8f, 1.1f);
+                // audioSource.Play();
             }
         }
     }
