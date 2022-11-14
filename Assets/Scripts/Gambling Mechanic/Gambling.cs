@@ -11,11 +11,24 @@ public class Gambling : MonoBehaviour
     [SerializeField] public bool hasMessage = false;
     private bool trig;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] bool audioPlayed = false;
+
     // TESTING Scare function ---------------------
     [SerializeField] private GameObject GamblingScare_Test;
+
+    // ADD TIMER 
+    // Change question "Will something scary happen in ...?"
+    // Change sound
+    // Put Icon at top right (timer)
+    // Build it in playtest level
+    // Add player speed up
+
     // TESTING Scare function ---------------------
 
     public MouseLook mouseLook;
+    public PlayerMovement playerMovement;
     public Gambling_ActivateBool gambling_ActivateBool;
 
     private void Start() 
@@ -29,17 +42,12 @@ public class Gambling : MonoBehaviour
     {
         if (hasMessage == true)
         {
-            hasMessage_UI.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.T))
+            if (!audioSource.isPlaying && audioPlayed == false)
             {
-                //hasMessage_UI.SetActive(false);
-                mouseLook.mouseSensitivity = 0;
-
-                question.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                audioSource.PlayOneShot(audioClip);
+                audioPlayed = true;
             }
+            StartCoroutine(showMessage());
         }
     }
 
@@ -55,6 +63,7 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+            playerMovement.walkSpeed = 3;
 
             CheckTriggerID();
         }
@@ -68,6 +77,7 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+            playerMovement.walkSpeed = 3;
         }
     }
 
@@ -83,6 +93,7 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+            playerMovement.walkSpeed = 3;
 
             CheckTriggerID();
         }
@@ -96,6 +107,7 @@ public class Gambling : MonoBehaviour
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
+            playerMovement.walkSpeed = 3;
         }
     }
 
@@ -113,6 +125,18 @@ public class Gambling : MonoBehaviour
                 GamblingScare_Test.SetActive(true);
             }
         }
+        
+    }
+
+    IEnumerator showMessage()
+    {
+        yield return new WaitForSeconds(1f);
+        mouseLook.mouseSensitivity = 0;
+        playerMovement.walkSpeed = 0;
+
+        question.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         
     }
 }
