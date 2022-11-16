@@ -5,7 +5,7 @@ using UnityEngine;
 public class CantGoHereTeleport : MonoBehaviour
 {
     public GameObject player;
-    public GameObject warpTarget;
+    public Transform warpTarget;
 
     [SerializeField] private GameObject topLid;
     [SerializeField] private GameObject bottomLid;
@@ -24,37 +24,38 @@ public class CantGoHereTeleport : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerStay(Collider other) 
     {
         if (other.tag == "Player")
         {
-            trig = true;
+            // blink_Anim.Play("TopLidBlink", 0, 0.0f);
+            // blink_Anim_2.Play("BottomLidBlink", 0, 0.0f);
+            //characterController.enabled = false;
+            Debug.Log("Player Entered");
+            Vector3 offset = other.transform.position - transform.position;
+            other.transform.position = warpTarget.position + offset;
+
+
         }
     }
 
-    private void OnTriggerExit(Collider other) 
-    {
-        trig = false;    
-    }
 
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     if (trig)
+    //     {
+    //         //StartCoroutine(blinkTransition());
+    //     }
+    // }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (trig)
-        {
-            blink_Anim.Play("TopLidBlink", 0, 0.0f);
-            blink_Anim_2.Play("BottomLidBlink", 0, 0.0f);
-            StartCoroutine(blinkTransition());
-        }
-    }
+    // IEnumerator blinkTransition()
+    // {
+    //     yield return new WaitForSeconds(0.8f);
+    //     characterController.enabled = false;
+    //     player.transform.position = warpTarget.transform.position;
+    //     player.transform.rotation = warpTarget.transform.rotation;
 
-    IEnumerator blinkTransition()
-    {
-        yield return new WaitForSeconds(0.8f);
-        characterController.enabled = false;
-        player.transform.position = warpTarget.transform.position;
-        player.transform.rotation = warpTarget.transform.rotation;
-        characterController.enabled = true;
-    }
+    //     characterController.enabled = true;
+    // }
 }
