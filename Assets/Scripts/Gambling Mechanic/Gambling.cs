@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Gambling : MonoBehaviour
 {
     [SerializeField] private GameObject question;
     [SerializeField] private GameObject hasMessage_UI;
+    [SerializeField] private GameObject phone_UI;
     [SerializeField] int ScareMeterDecider;
     [SerializeField] int ScareMeter = 0;
     [SerializeField] public bool hasMessage = false;
@@ -19,7 +22,7 @@ public class Gambling : MonoBehaviour
     [SerializeField] private GameObject GamblingScare_Test;
 
     // ADD TIMER 
-    // Change question "Will something scary happen in ...?"
+    // Change question "Will something scary happen in ...?" (Text Changed (DONE) --- "X" Seconds variable (NOT DONE))
     // Change sound
     // Put Icon at top right (timer)
     // Build it in playtest level
@@ -31,9 +34,17 @@ public class Gambling : MonoBehaviour
     public PlayerMovement playerMovement;
     public Gambling_ActivateBool gambling_ActivateBool;
 
+
+    // TESTING Timer function ---------------------
+    [SerializeField] private float timer;
+    [SerializeField] private bool timerIsOn = false;
+    [SerializeField] private TextMeshProUGUI timerText;
+    // TESTING Timer function ---------------------
+
     private void Start() 
     {
-        ScareMeterDecider = Random.Range(1,10);    
+        ScareMeterDecider = Random.Range(1,10);   
+        timer = 20f;
     }
     
 
@@ -47,7 +58,18 @@ public class Gambling : MonoBehaviour
                 audioSource.PlayOneShot(audioClip);
                 audioPlayed = true;
             }
-            StartCoroutine(showMessage());
+
+            question.SetActive(true);
+            phone_UI.SetActive(true);
+            mouseLook.mouseSensitivity = 0;
+            playerMovement.walkSpeed = 0;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            timerText.text = timer.ToString();
+            Timer();
+            //StartCoroutine(showMessage());
         }
     }
 
@@ -59,6 +81,7 @@ public class Gambling : MonoBehaviour
             ScareMeterDecider = Random.Range(1,10);    
             Debug.Log("Wrong Answer");
             question.SetActive(false);
+            phone_UI.SetActive(false);
             hasMessage = false;
             hasMessage_UI.SetActive(false);
 
@@ -73,6 +96,7 @@ public class Gambling : MonoBehaviour
             ScareMeter--;
             Debug.Log("Interesting");
             question.SetActive(false);
+            phone_UI.SetActive(false);
             hasMessage = false;
             hasMessage_UI.SetActive(false);
 
@@ -89,6 +113,7 @@ public class Gambling : MonoBehaviour
             ScareMeterDecider = Random.Range(1,10);    
             Debug.Log("Wrong Answer");
             question.SetActive(false);
+            phone_UI.SetActive(false);
             hasMessage = false;
             hasMessage_UI.SetActive(false);
 
@@ -103,6 +128,7 @@ public class Gambling : MonoBehaviour
             ScareMeter--;
             Debug.Log("Interesting");
             question.SetActive(false);
+            phone_UI.SetActive(false);
             hasMessage = false;
             hasMessage_UI.SetActive(false);
 
@@ -128,15 +154,36 @@ public class Gambling : MonoBehaviour
         
     }
 
-    IEnumerator showMessage()
-    {
-        yield return new WaitForSeconds(1f);
-        mouseLook.mouseSensitivity = 0;
-        playerMovement.walkSpeed = 0;
+    // IEnumerator showMessage()
+    // {
+    //     yield return new WaitForSeconds(1f);
+    //     mouseLook.mouseSensitivity = 0;
+    //     playerMovement.walkSpeed = 0;
 
-        question.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+    //     question.SetActive(true);
+    //     Cursor.lockState = CursorLockMode.None;
+    //     Cursor.visible = true;
         
+    // }
+
+    void Timer()
+    {
+        // timerIsOn = true;
+
+        // if (timerIsOn == true)
+        // {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                timerText.text = timer.ToString();
+            }
+        //}
+        // else if (timer <= 0)
+        // {
+        //     //Debug.Log("Time is up!");
+        //     question.SetActive(false);
+        //     timerIsOn = false;
+        //     //timer = 20f;
+        // }
     }
 }

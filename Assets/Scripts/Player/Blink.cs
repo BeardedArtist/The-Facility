@@ -13,7 +13,7 @@ public class Blink : MonoBehaviour
 
     private void Start() 
     {
-        timer = Random.Range(4.0f, 10.0f);    
+        timer = Random.Range(8.0f, 15.0f);    
     }
     // Update is called once per frame
     void Update()
