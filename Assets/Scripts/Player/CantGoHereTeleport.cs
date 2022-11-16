@@ -7,6 +7,13 @@ public class CantGoHereTeleport : MonoBehaviour
     public GameObject player;
     public GameObject warpTarget;
 
+    [SerializeField] private GameObject topLid;
+    [SerializeField] private GameObject bottomLid;
+    [SerializeField] private Animator blink_Anim;
+    [SerializeField] private Animator blink_Anim_2;
+    [SerializeField] bool isBlinking;
+    [SerializeField] private float timer; // DONT NEED
+
     private CharacterController characterController;
     [SerializeField] private bool trig;
 
@@ -36,10 +43,18 @@ public class CantGoHereTeleport : MonoBehaviour
     {
         if (trig)
         {
-            characterController.enabled = false;
-            player.transform.position = warpTarget.transform.position;
-            player.transform.rotation = warpTarget.transform.rotation;
-            characterController.enabled = true;
+            blink_Anim.Play("TopLidBlink", 0, 0.0f);
+            blink_Anim_2.Play("BottomLidBlink", 0, 0.0f);
+            StartCoroutine(blinkTransition());
         }
+    }
+
+    IEnumerator blinkTransition()
+    {
+        yield return new WaitForSeconds(0.8f);
+        characterController.enabled = false;
+        player.transform.position = warpTarget.transform.position;
+        player.transform.rotation = warpTarget.transform.rotation;
+        characterController.enabled = true;
     }
 }
