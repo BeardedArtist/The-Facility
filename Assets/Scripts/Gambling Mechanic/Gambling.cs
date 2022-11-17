@@ -36,15 +36,24 @@ public class Gambling : MonoBehaviour
 
 
     // TESTING Timer function ---------------------
-    [SerializeField] private float timer;
+    [SerializeField] public float timer;
     [SerializeField] private bool timerIsOn = false;
     [SerializeField] private TextMeshProUGUI timerText;
+
+
+    // Timer Slider Test
+    [SerializeField] private Slider timerSlider;
+    private bool stopTimer;
     // TESTING Timer function ---------------------
 
     private void Start() 
     {
         ScareMeterDecider = Random.Range(1,10);   
-        timer = 20f;
+        timer = 10f;
+
+        stopTimer = false;
+        timerSlider.maxValue = timer;
+        timerSlider.value = timer;
     }
     
 
@@ -63,6 +72,7 @@ public class Gambling : MonoBehaviour
             phone_UI.SetActive(true);
             mouseLook.mouseSensitivity = 0;
             playerMovement.walkSpeed = 0;
+            timer = 10f;
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -168,22 +178,25 @@ public class Gambling : MonoBehaviour
 
     void Timer()
     {
-        // timerIsOn = true;
-
-        // if (timerIsOn == true)
-        // {
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
                 timerText.text = timer.ToString();
             }
-        //}
-        // else if (timer <= 0)
-        // {
-        //     //Debug.Log("Time is up!");
-        //     question.SetActive(false);
-        //     timerIsOn = false;
-        //     //timer = 20f;
-        // }
+
+            if (timer <= 0)
+            {
+                stopTimer = true;
+                Debug.Log("Time is up!");
+                question.SetActive(false);
+                phone_UI.SetActive(false);
+                ScareMeter++;
+            }
+
+
+            if (stopTimer == false)
+            {
+                timerSlider.value = timer;
+            }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Flashlight Eyes
   - Flashlight Eyes 2
   - Enemy
+  - Carpet
   layers:
   - Default
   - TransparentFX
