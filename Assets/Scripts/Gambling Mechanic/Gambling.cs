@@ -20,12 +20,9 @@ public class Gambling : MonoBehaviour
 
     // TESTING Scare function ---------------------
     [SerializeField] private GameObject GamblingScare_Test;
+    public PushObject_Scare pushObject_Scare;
 
-    // ADD TIMER 
-    // Change question "Will something scary happen in ...?" (Text Changed (DONE) --- "X" Seconds variable (NOT DONE))
     // Change sound
-    // Put Icon at top right (timer)
-    // Build it in playtest level
     // Add player speed up
 
     // TESTING Scare function ---------------------
@@ -34,8 +31,6 @@ public class Gambling : MonoBehaviour
     public PlayerMovement playerMovement;
     public Gambling_ActivateBool gambling_ActivateBool;
 
-
-    // TESTING Timer function ---------------------
     [SerializeField] public float timer;
     [SerializeField] private bool timerIsOn = false;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -44,7 +39,6 @@ public class Gambling : MonoBehaviour
     // Timer Slider Test
     [SerializeField] private Slider timerSlider;
     private bool stopTimer;
-    // TESTING Timer function ---------------------
 
     private void Start() 
     {
@@ -72,7 +66,7 @@ public class Gambling : MonoBehaviour
             phone_UI.SetActive(true);
             mouseLook.mouseSensitivity = 0;
             playerMovement.walkSpeed = 0;
-            timer = 10f;
+            
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -158,7 +152,7 @@ public class Gambling : MonoBehaviour
         {
             if (ScareMeter >= 1)
             {
-                GamblingScare_Test.SetActive(true);
+                pushObject_Scare.TriggerOneScare();
             }
         }
         

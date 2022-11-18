@@ -16,11 +16,11 @@ public class Footsteps : MonoBehaviour
 
     private void Update() 
     {
-        if (Input.GetAxis ("Vertical") >= 0.01f || Input.GetAxis("Horizontal") >= 0.01f || Input.GetAxis ("Vertical") <= -0.01f || Input.GetAxis ("Horizontal") <= -0.01f)
+        if (Input.GetAxis ("Vertical") >= 0.02f || Input.GetAxis("Horizontal") >= 0.02f || Input.GetAxis ("Vertical") <= -0.02f || Input.GetAxis ("Horizontal") <= -0.02f)
         {
             playerIsMoving = true;
         }
-        else if (Input.GetAxis ("Vertical") == 0 || Input.GetAxis ("Horizontal") == 0)
+        else if (Input.GetAxis ("Vertical") <= 0.01f || Input.GetAxis ("Horizontal") >= 0.01f)
         {
             playerIsMoving = false;
         }

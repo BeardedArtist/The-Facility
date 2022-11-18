@@ -6,6 +6,7 @@ public class PushObject_Scare : MonoBehaviour
 {
     public float thrust = 1.0f;
     public Rigidbody rb;
+    private bool hasAudioPlayed = false;
 
     [SerializeField] private GameObject BookshelfCollider;
     [SerializeField] private AudioSource audioSource;
@@ -20,15 +21,23 @@ public class PushObject_Scare : MonoBehaviour
     {
         if (other.tag == "Carpet")
         {
-            Debug.Log("Crashed");
-            audioSource.PlayOneShot(audioClip);
+            if (!audioSource.isPlaying && hasAudioPlayed == false)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
+            
+            StartCoroutine(isKinematic());
         }    
     }
 
-    private void Update() {
-        if (Input.GetKey(KeyCode.P))
-        {
-            rb.AddForce(0 , 0, thrust, ForceMode.Impulse);    
-        }
+    public void TriggerOneScare()
+    {
+        rb.AddForce(0 , 0, thrust, ForceMode.Impulse);
+    }
+
+    IEnumerator isKinematic()
+    {
+        yield return new WaitForSeconds(0.2f);
+        rb.isKinematic = true;
     }
 }
