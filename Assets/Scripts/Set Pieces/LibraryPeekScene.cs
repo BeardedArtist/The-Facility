@@ -6,11 +6,18 @@ public class LibraryPeekScene : MonoBehaviour
 {
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject libraryCamera;
+    [SerializeField] private GameObject AI_LibraryScene;
     [SerializeField] private GameObject peakInDoorUI;
     [SerializeField] private GameObject flashLight;
     [SerializeField] private bool isLibraryCameraOn = false;
-    [SerializeField] private MouseLook mouseLook;
     private bool trig = false;
+
+    // Referencing Other Scripts ----------------------------------
+    [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private AIController_LibraryScene aIController_LibraryScene;
+    [SerializeField] private OpenCloseDoor openCloseDoor;
+    [SerializeField] private OpenCloseDoor_LOCKED openCloseDoor_LOCKED;
+    // ------------------------------------------------------------
 
 
     private void OnTriggerStay(Collider other) 
@@ -41,6 +48,7 @@ public class LibraryPeekScene : MonoBehaviour
                     isLibraryCameraOn = true;
                     libraryCamera.SetActive(true);
                     flashLight.SetActive(false);
+                    AI_LibraryScene.SetActive(true);
                     mouseLook.mouseSensitivity = 0;
                     Debug.Log("Library Camera Active");
                 }
@@ -57,6 +65,13 @@ public class LibraryPeekScene : MonoBehaviour
                     Debug.Log("Library Camera False");
                 }
             }
+        }
+
+
+        if (aIController_LibraryScene.isAIActive == false)
+        {
+            openCloseDoor_LOCKED.enabled = false;
+            openCloseDoor.enabled = true;
         }    
     }
 }

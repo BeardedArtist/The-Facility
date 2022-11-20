@@ -19,7 +19,7 @@ public class AIController_ServerSearch : MonoBehaviour
 
     // ATTACK EVENT
     public GameObject deathCam;
-    public GameObject hidingCloset;
+    //public GameObject hidingCloset;
     public Transform deathCamPosition;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
@@ -192,7 +192,7 @@ public class AIController_ServerSearch : MonoBehaviour
                 if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
                 {
                     agent.destination = playerTransform.position;
-                    hidingCloset.SetActive(false);
+                    //hidingCloset.SetActive(false);
                     state = "kill";
 
                     mainPlayer.GetComponent<PlayerMovement>().enabled = false;

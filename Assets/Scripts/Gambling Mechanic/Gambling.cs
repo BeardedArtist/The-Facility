@@ -21,6 +21,7 @@ public class Gambling : MonoBehaviour
     // TESTING Scare function ---------------------
     [SerializeField] private GameObject GamblingScare_Test;
     public PushObject_Scare pushObject_Scare;
+    public Trigger2_Scare trigger2_Scare;
 
     // Change sound
     // Add player speed up
@@ -153,6 +154,14 @@ public class Gambling : MonoBehaviour
             if (ScareMeter >= 1)
             {
                 pushObject_Scare.TriggerOneScare();
+            }
+        }
+
+        if (gambling_ActivateBool.TriggerID == 2)
+        {
+            if (ScareMeter >= 1)
+            {
+                trigger2_Scare.Trigger2();
             }
         }
         
