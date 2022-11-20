@@ -10,6 +10,11 @@ public class Part2Trigger : MonoBehaviour
 
     [SerializeField] private Animator BlackoutAnimation;
 
+    //TESTING BLINK ANIMATION
+    [SerializeField] private Animator blink_Anim;
+    [SerializeField] private Animator blink_Anim_2;
+    // TESTING BLINK ANIMATION
+
     public Flashlight_Pickup flashlight_PickupScript;
     public TapeRecorderPickup tapeRecorderPickupScript;
 
@@ -23,19 +28,26 @@ public class Part2Trigger : MonoBehaviour
     {
         if (other.tag == "Player" && flashlight_PickupScript.pickedUpFlashlight == true && tapeRecorderPickupScript.pickedUpTapeRecorder == true)
         {          
-            BlackoutAnimation.SetBool("PlayBlackOut", true);
+            //BlackoutAnimation.SetBool("PlayBlackOut", true);
+
+            if (this.blink_Anim.GetCurrentAnimatorStateInfo(0).IsName("TopLidBlink") && this.blink_Anim_2.GetCurrentAnimatorStateInfo(0).IsName("BottomLidBlink"))
+            {
+                blink_Anim.Play("TopLidBlink", 0, 0);
+                blink_Anim_2.Play("BottomLidBlink", 0, 0);
+            }
+
             StartCoroutine(DelayTransition());
 
-            if (this.BlackoutAnimation.GetCurrentAnimatorStateInfo(0).IsName("PlayBlackOut"))
-            {
-                BlackoutAnimation.SetBool("PlayBlackOut", false);
-            }
+            // if (this.BlackoutAnimation.GetCurrentAnimatorStateInfo(0).IsName("PlayBlackOut"))
+            // {
+            //     BlackoutAnimation.SetBool("PlayBlackOut", false);
+            // }
         }
     }
 
     private IEnumerator DelayTransition()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         characterController.enabled = false;
         player.transform.position = warpPlayerToAnomaly.transform.position;
         player.transform.rotation = warpPlayerToAnomaly.transform.rotation;
