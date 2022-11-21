@@ -22,6 +22,7 @@ public class Gambling : MonoBehaviour
     [SerializeField] private GameObject GamblingScare_Test;
     public PushObject_Scare pushObject_Scare;
     public Trigger2_Scare trigger2_Scare;
+    public Trigger3_Scare trigger3_Scare;
 
     
     [SerializeField] private int TriggerID = 0;
@@ -186,6 +187,11 @@ public class Gambling : MonoBehaviour
                 trigger2_Scare.Trigger2();
                 Debug.Log("Activating Scare 2");
             //}
+        }
+
+        if (TriggerID == 3)
+        {
+            trigger3_Scare.TriggerThreeScare_Audio();
         }
         
     }

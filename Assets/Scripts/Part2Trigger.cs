@@ -47,7 +47,7 @@ public class Part2Trigger : MonoBehaviour
 
     private IEnumerator DelayTransition()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.7f);
         characterController.enabled = false;
         player.transform.position = warpPlayerToAnomaly.transform.position;
         player.transform.rotation = warpPlayerToAnomaly.transform.rotation;
