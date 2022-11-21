@@ -16,17 +16,18 @@ public class Gambling : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
-    [SerializeField] bool audioPlayed = false;
+    private bool hasAudioPlayed = false;
 
-    // TESTING Scare function ---------------------
+    // Scare functions ---------------------
     [SerializeField] private GameObject GamblingScare_Test;
     public PushObject_Scare pushObject_Scare;
     public Trigger2_Scare trigger2_Scare;
 
-    // Change sound
+    
+    [SerializeField] private int TriggerID = 0;
     // Add player speed up
 
-    // TESTING Scare function ---------------------
+    // Scare functions ---------------------
 
     public MouseLook mouseLook;
     public PlayerMovement playerMovement;
@@ -57,16 +58,17 @@ public class Gambling : MonoBehaviour
     {
         if (hasMessage == true)
         {
-            if (!audioSource.isPlaying && audioPlayed == false)
+            if (!audioSource.isPlaying && hasAudioPlayed == false)
             {
                 audioSource.PlayOneShot(audioClip);
-                audioPlayed = true;
+                hasAudioPlayed = true;
             }
 
             question.SetActive(true);
             phone_UI.SetActive(true);
             mouseLook.mouseSensitivity = 0;
-            playerMovement.walkSpeed = 0;
+            //playerMovement.walkSpeed = 0;
+            playerMovement.enabled = false;
             
 
             Cursor.lockState = CursorLockMode.None;
@@ -83,15 +85,20 @@ public class Gambling : MonoBehaviour
         if (ScareMeterDecider >= 1 && ScareMeterDecider <= 5)
         {
             ScareMeter++;
+            TriggerID++;
+            timer = 10f;
             ScareMeterDecider = Random.Range(1,10);    
             Debug.Log("Wrong Answer");
             question.SetActive(false);
             phone_UI.SetActive(false);
             hasMessage = false;
+            hasAudioPlayed = false;
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
-            playerMovement.walkSpeed = 3;
+            //playerMovement.walkSpeed = 3;
+            playerMovement.enabled = true;
+            playerMovement.walkSpeed = playerMovement.walkSpeed - 0.5f;
 
             CheckTriggerID();
         }
@@ -99,14 +106,19 @@ public class Gambling : MonoBehaviour
         else
         {
             ScareMeter--;
+            TriggerID++;
+            timer = 10f;
             Debug.Log("Interesting");
             question.SetActive(false);
             phone_UI.SetActive(false);
             hasMessage = false;
+            hasAudioPlayed = false;
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
-            playerMovement.walkSpeed = 3;
+            //playerMovement.walkSpeed = 3;
+            playerMovement.enabled = true;
+            playerMovement.walkSpeed = playerMovement.walkSpeed + 0.5f;
         }
     }
 
@@ -115,15 +127,20 @@ public class Gambling : MonoBehaviour
         if (ScareMeterDecider >= 6 && ScareMeterDecider <= 11)
         {
             ScareMeter++;
+            TriggerID++;
+            timer = 10f;
             ScareMeterDecider = Random.Range(1,10);    
             Debug.Log("Wrong Answer");
             question.SetActive(false);
             phone_UI.SetActive(false);
             hasMessage = false;
+            hasAudioPlayed = false;
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
-            playerMovement.walkSpeed = 3;
+            //playerMovement.walkSpeed = 3;
+            playerMovement.enabled = true;
+            playerMovement.walkSpeed = playerMovement.walkSpeed - 0.5f;
 
             CheckTriggerID();
         }
@@ -131,14 +148,19 @@ public class Gambling : MonoBehaviour
         else
         {
             ScareMeter--;
+            TriggerID++;
+            timer = 10f;
             Debug.Log("Interesting");
             question.SetActive(false);
             phone_UI.SetActive(false);
             hasMessage = false;
+            hasAudioPlayed = false;
             hasMessage_UI.SetActive(false);
 
             mouseLook.mouseSensitivity = 3;
-            playerMovement.walkSpeed = 3;
+            //playerMovement.walkSpeed = 3;
+            playerMovement.enabled = true;
+            playerMovement.walkSpeed = playerMovement.walkSpeed + 0.5f;
         }
     }
 
@@ -149,7 +171,7 @@ public class Gambling : MonoBehaviour
 
     public void CheckTriggerID()
     {
-        if (gambling_ActivateBool.TriggerID == 1)
+        if (TriggerID == 1)
         {
             if (ScareMeter >= 1)
             {
@@ -157,12 +179,13 @@ public class Gambling : MonoBehaviour
             }
         }
 
-        if (gambling_ActivateBool.TriggerID == 2)
+        if (TriggerID == 2)
         {
-            if (ScareMeter >= 1)
-            {
+            //if (ScareMeter >= 1)
+            //{
                 trigger2_Scare.Trigger2();
-            }
+                Debug.Log("Activating Scare 2");
+            //}
         }
         
     }

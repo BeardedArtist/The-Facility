@@ -7,6 +7,8 @@ public class Gambling_ActivateBool : MonoBehaviour
     public Gambling gambling;
     private bool trig;
 
+    [SerializeField] private Collider thisCollider;
+
 
     public int TriggerID;
 
@@ -14,10 +16,9 @@ public class Gambling_ActivateBool : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //trig = true;
-            TriggerID = TriggerID;
+            Debug.Log("The Current Trigger ID is " + TriggerID);
             gambling.hasMessage = true;
-            //Destroy(this);
+            thisCollider.enabled = false;
         }    
     }
 }
