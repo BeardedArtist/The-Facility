@@ -43,10 +43,13 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded) // allows for player to jump
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); 
-        }
+        // DISABLING JUMPING FOR NOW (After adjusting Crouching Script)
+
+        // if (Input.GetButtonDown("Jump") && controller.isGrounded) // allows for player to jump
+        // {
+        //     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity); 
+        // }
+        // ----------------------------------------------------------------
 
         Sprint();
     }
@@ -62,34 +65,5 @@ public class PlayerMovement : MonoBehaviour
         {
             currentSpeed = walkSpeed;
         }
-
-        // if (isRunning)
-        // {
-        //     if (Input.GetKeyDown(KeyCode.LeftShift))
-        //     {
-        //         currentSpeed = sprintSpeed;
-        //         //stamina--;
-        //     }
-        //     else
-        //     {
-        //         currentSpeed = walkSpeed;
-        //     }
-
-        //     // if (stamina <= 0)
-        //     // {
-        //     //     isRunning = false;
-        //     //     currentSpeed = walkSpeed;
-        //     // }
-        // }
-
-        // if (isRunning == false)
-        // {
-        //     stamina++;
-
-        //     if (stamina >= 100)
-        //     {
-        //         isRunning = true;
-        //     }
-        // }
     }
 }
