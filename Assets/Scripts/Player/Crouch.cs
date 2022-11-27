@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class Crouch : MonoBehaviour
 {
+    private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
+
+    [Header("Controls")]
+    [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
+
+    // TESTING NEW CROUCHING METHOD
+    [Header("Crouch Parameters")]
+    [SerializeField] private float crouchHeight = 0.5f;
+    [SerializeField] private float standingHeight = 2f;
+    [SerializeField] private float timeToCrouch = 0.25f;
+    [SerializeField] private float crouchSpeed = 1.5f; // IMPLEMENT LATER
+    [SerializeField] private Vector3 crouchingCenter = new Vector3 (0, 0.5f, 0); 
+    [SerializeField] private Vector3 standingCenter = new Vector3 (0, 0, 0);
+    [SerializeField] private bool canCrouch = true;
+    private bool isCrouching;
+    private bool duringCrouchAnimation;
+
+
+    [Header("Character Controller")]
     public CharacterController characterController;
-
-    // TESTING NEW CROUCHING METHOD
-    [SerializeField] private Transform mainCameraTransform = null;
-    [SerializeField] private float crouchSpeed = 0.3f;
-    [SerializeField] private float standHeight = 2.0f;
-    [SerializeField] private float crouchHeight = 1.0f;
-
-    private bool _crouching;
-    // TESTING NEW CROUCHING METHOD
 
     // Start is called before the first frame update
     void Start()
@@ -24,49 +34,43 @@ public class Crouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _crouching = Input.GetKey(KeyCode.LeftControl);
-
-        // ORIGINAL CODE BELOW
-        // if(Input.GetKey(KeyCode.LeftControl))
-        // {
-        //     // ORIGINAL CODE
-        //     //characterController.height = 0.1f;
-
-        //     //TEST
-
-        //     //TEST
-        // }
-        // else
-        // {
-        //     // ORIGINAL CODE
-        //     //characterController.height = 2f;
-
-        //     //TEST
-        //     //TEST
-        // }
-    }
-
-    // CODE WORKS GREAT! But there is a bug with jumping.
-    private void FixedUpdate() 
-    {
-        var desiredHeight = _crouching ? crouchHeight : standHeight;
-
-        if (characterController.height != desiredHeight)
+        if (canCrouch)
         {
-            AdjustHeight(desiredHeight);
-
-            var camPos = mainCameraTransform.transform.position;
-            camPos.y = characterController.height;
-
-            mainCameraTransform.transform.position = camPos;
+            HandleCrouch();
         }
     }
 
-    private void AdjustHeight(float height)
+    private void HandleCrouch()
     {
-        float center = height / 2;
+        if (shouldCrouch)
+        {
+            StartCoroutine(CrouchStand());
+        }
+    }
 
-        characterController.height = Mathf.Lerp(characterController.height, height, crouchSpeed);
-        characterController.center = Vector3.Lerp(characterController.center, new Vector3(0, center, 0), crouchSpeed);
+    private IEnumerator CrouchStand()
+    {
+        duringCrouchAnimation = true;
+
+        float timeElapsed = 0;
+        float targetHeight = isCrouching ? standingHeight : crouchHeight;
+        float currentHeight = characterController.height;
+        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
+        Vector3 currentCenter = characterController.center;
+
+        while (timeElapsed < timeToCrouch)
+        {
+            characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        characterController.height = targetHeight;
+        characterController.center = targetCenter;
+
+        isCrouching = !isCrouching;
+
+        duringCrouchAnimation = false;
     }
 }
