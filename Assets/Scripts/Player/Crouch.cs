@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Crouch : MonoBehaviour
 {
+    [SerializeField] private GameObject playerCamera;
     private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
 
     [Header("Controls")]
@@ -50,6 +51,11 @@ public class Crouch : MonoBehaviour
 
     private IEnumerator CrouchStand()
     {
+        if (isCrouching && Physics.Raycast(playerCamera.transform.position, Vector3.up, 1f)) // Check to see if anything is obstructing player to stand
+        {
+            yield break;
+        }
+
         duringCrouchAnimation = true;
 
         float timeElapsed = 0;
