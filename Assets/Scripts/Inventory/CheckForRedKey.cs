@@ -6,7 +6,11 @@ public class CheckForRedKey : MonoBehaviour
 {
     // Script to Check for Utility Room Key (Red Key)
     [SerializeField] private InventoryManager inventoryManager;
-    [SerializeField] private GameObject objectsToAppear;
+    //[SerializeField] private GameObject objectsToAppear;
+
+    [SerializeField] private GameObject[] objectsToAppear;
+    [SerializeField] private GameObject[] objectsToDisappear;
+
     private bool hasRedKey = false;
     private bool trig = false;
 
@@ -43,7 +47,15 @@ public class CheckForRedKey : MonoBehaviour
 
             if (hasRedKey == true)
             {
-                objectsToAppear.SetActive(true);
+                for (int i = 0; i < objectsToAppear.Length; i++)
+                {
+                    objectsToAppear[i].SetActive(true);
+                }
+
+                for (int i = 0; i < objectsToDisappear.Length; i++)
+                {
+                    objectsToDisappear[i].SetActive(false);
+                }
             }
         }
     }
