@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2ba36274-bd6c-4240-a55e-c8ca889a63ac}">
+		<property name="assetPath">
+			<value>Hostile Presence Master.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>132</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8e277654-03b2-407b-beaa-44fcbad77ca4}</destination>
+		</relationship>
+	</object>
+</objects>

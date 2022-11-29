@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4131d3c5-ca48-4bcc-b1a1-6c100f526d04}">
+		<property name="assetPath">
+			<value>Non Euclidean Transition Master.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>16</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8e277654-03b2-407b-beaa-44fcbad77ca4}</destination>
+		</relationship>
+	</object>
+</objects>
