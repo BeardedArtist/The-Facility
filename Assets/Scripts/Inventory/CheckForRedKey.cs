@@ -6,10 +6,14 @@ public class CheckForRedKey : MonoBehaviour
 {
     // Script to Check for Utility Room Key (Red Key)
     [SerializeField] private InventoryManager inventoryManager;
-    //[SerializeField] private GameObject objectsToAppear;
 
+    // These two arrays hold the objects that will appear/disappear upon key pickup.
     [SerializeField] private GameObject[] objectsToAppear;
     [SerializeField] private GameObject[] objectsToDisappear;
+
+    // These two variables will activate the lock on the Janitor's closet.
+    [SerializeField] private OpenCloseDoor openCloseDoor;
+    [SerializeField] private OpenCloseDoor_LOCKED openCloseDoor_LOCKED;
 
     private bool hasRedKey = false;
     private bool trig = false;
@@ -56,6 +60,9 @@ public class CheckForRedKey : MonoBehaviour
                 {
                     objectsToDisappear[i].SetActive(false);
                 }
+
+                openCloseDoor.enabled = true;
+                openCloseDoor_LOCKED.enabled = false;
             }
         }
     }

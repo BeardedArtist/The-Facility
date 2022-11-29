@@ -5,7 +5,7 @@
 			<value>WOODEN_STEPS</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{0f157ae8-37ef-4b67-b44d-16a5820e8aa4}</destination>
@@ -114,7 +114,6 @@
 	<object class="MixerBusEffectChain" id="{7a4f66d1-4825-467a-bf33-7372ac4b86c1}">
 		<relationship name="effects">
 			<destination>{f46bb7ac-be18-41dd-a920-8bd037587a29}</destination>
-			<destination>{b7798483-ab6f-43f0-ba81-29fe9295b161}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{96c1fe48-9a4f-4e80-b7a1-25b9545dd48b}" />
@@ -136,6 +135,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{34241854-d07c-4114-9080-c622718dede0}" />
 	<object class="MixerBusFader" id="{f46bb7ac-be18-41dd-a920-8bd037587a29}" />
-	<object class="SpatialiserEffect" id="{b7798483-ab6f-43f0-ba81-29fe9295b161}" />
 	<object class="MixerBusFader" id="{364fa418-d041-4727-b70e-d113cb8dd67f}" />
 </objects>

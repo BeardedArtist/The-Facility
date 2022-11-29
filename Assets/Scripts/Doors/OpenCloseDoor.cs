@@ -53,6 +53,7 @@ public class OpenCloseDoor : MonoBehaviour
                 if (!trigger)
                 {
                     myDoor.SetBool("Open", true); // opening door through a bool
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Doors/WOODENDOOROPENWITHKNOB", GetComponent<Transform>().position);
 
                     if (!audioSource.isPlaying && audioSource != null)
                     {
@@ -62,7 +63,8 @@ public class OpenCloseDoor : MonoBehaviour
                 else
                 {
                     myDoor.SetBool("Open", false); // closing door through a bool
-
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Doors/WOODENDOOROPENWITHKNOB", GetComponent<Transform>().position);
+                    
                     if (!audioSource.isPlaying && audioSource != null)
                     {
                         audioSource.PlayOneShot(audioClip);
