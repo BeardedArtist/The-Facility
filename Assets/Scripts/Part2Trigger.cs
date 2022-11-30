@@ -36,6 +36,8 @@ public class Part2Trigger : MonoBehaviour
                 blink_Anim_2.Play("BottomLidBlink", 0, 0);
             }
 
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Level Music/Transition", GetComponent<Transform>().position);
+
             StartCoroutine(DelayTransition());
 
             // if (this.BlackoutAnimation.GetCurrentAnimatorStateInfo(0).IsName("PlayBlackOut"))
