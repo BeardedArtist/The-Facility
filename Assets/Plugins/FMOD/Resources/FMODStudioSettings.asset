@@ -286,7 +286,7 @@ MonoBehaviour:
   sourceProjectPath: Audio/Banks/Desktop/Test_Audio/Build/Desktop/Test_Audo_2/Test_Audo_2.fspro
   sourceBankPath: Audio/Banks/Desktop/Test_Audio/Build/Desktop/Test_Audo_2/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0

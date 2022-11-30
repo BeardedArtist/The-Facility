@@ -8,9 +8,25 @@ public class FMODBackgroundMusic : MonoBehaviour
 
     void Start()
     {
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Level Music/LEVEL_MUSIC");
-        Music.start(); // Disable this later
-        Music.release();
+        // Music = FMODUnity.RuntimeManager.CreateInstance("event:/Level Music/LEVEL_MUSIC");
+        // Music.start(); // Disable this later
+        // Music.release();
+    }
+
+    private void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Level Music/LEVEL_MUSIC");
+            Music.start(); // Disable this later
+            //Music.release();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            Music.release();
+        }    
     }
 
     public void Progress (float ProgressLevel)
