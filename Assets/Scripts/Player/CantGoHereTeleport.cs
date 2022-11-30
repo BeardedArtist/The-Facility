@@ -5,6 +5,7 @@ using UnityEngine;
 public class CantGoHereTeleport : MonoBehaviour
 {
     public Transform warpTarget;
+    private bool trig = false;
 
     private void OnTriggerStay(Collider other) 
     {
@@ -13,8 +14,6 @@ public class CantGoHereTeleport : MonoBehaviour
             Debug.Log("Player Entered");
             Vector3 offset = other.transform.position - transform.position;
             other.transform.position = warpTarget.position + offset;
-
-
         }
     }
 }
