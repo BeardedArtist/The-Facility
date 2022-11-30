@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{eea24d66-ff5d-4823-98b5-5a79a7a90dcc}">
+		<property name="assetPath">
+			<value>PAGERIPPINGwav.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.125</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8e277654-03b2-407b-beaa-44fcbad77ca4}</destination>
+		</relationship>
+	</object>
+</objects>
