@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class TapeRecorderPickup : MonoBehaviour
 {
+    // Objects & Bools that won't be touched
     [SerializeField] private bool Trig;
     [SerializeField] private GameObject goBackMessage;
-    [SerializeField] private GameObject Part2Trigger;
-
     [SerializeField] private GameObject InteractUI;
     [SerializeField] private MeshRenderer objectRender;
-
     public bool pickedUpTapeRecorder = false;
-
     public AudioSource audioSource;
+    // Objects & Bools that won't be touched
+
+    // Adding objects that will be effected
+    // -------------------------------------------------------------------
+
+    [SerializeField] private GameObject Part2Trigger;
+    [SerializeField] private BoxCollider audioTrigger_Start;
+    [SerializeField] private BoxCollider audioTrigger_Stop;
+    
+
+    // Adding objects that will be effected
+    // -------------------------------------------------------------------
 
     private void OnTriggerStay(Collider other) 
     {
@@ -42,6 +51,9 @@ public class TapeRecorderPickup : MonoBehaviour
                 objectRender.enabled = false;
                 Part2Trigger.SetActive(true);
                 pickedUpTapeRecorder = true;
+
+                audioTrigger_Start.enabled = false;
+                audioTrigger_Stop.enabled = true;
             }
         }
     }
