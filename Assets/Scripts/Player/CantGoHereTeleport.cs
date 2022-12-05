@@ -7,7 +7,7 @@ public class CantGoHereTeleport : MonoBehaviour
     public Transform warpTarget;
     private bool trig = false;
 
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.tag == "Player")
         {
