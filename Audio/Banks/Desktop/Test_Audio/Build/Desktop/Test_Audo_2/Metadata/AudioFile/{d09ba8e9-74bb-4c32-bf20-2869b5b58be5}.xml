@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d09ba8e9-74bb-4c32-bf20-2869b5b58be5}">
+		<property name="assetPath">
+			<value>Breaker Switch Sound.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>6</value>
+		</property>
+		<property name="length">
+			<value>2.2826666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8e277654-03b2-407b-beaa-44fcbad77ca4}</destination>
+		</relationship>
+	</object>
+</objects>
