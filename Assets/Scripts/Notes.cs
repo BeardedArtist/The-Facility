@@ -9,6 +9,8 @@ public class Notes : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private CharacterController characterController;
 
+    [SerializeField] private GameObject[] ObjectsToInteract;
+
     private bool trig;
     [SerializeField] private bool isPickedUp = false;
 
@@ -41,13 +43,31 @@ public class Notes : MonoBehaviour
     {
         if (trig == true && isPickedUp == false)
         {
+
             if (Input.GetKeyDown(KeyCode.E))
             {
-                noteUI.SetActive(true);
-                characterController.enabled = false;
-                mouseLook.mouseSensitivity = 0;
-                pickUpUI.SetActive(false);
-                isPickedUp = true;
+                for (int i = 0; i < ObjectsToInteract.Length; i++)
+                {
+                    if (ObjectsToInteract[i].name == "Journal")
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/JOURNALOPEN", GetComponent<Transform>().position);
+                        noteUI.SetActive(true);
+                        characterController.enabled = false;
+                        mouseLook.mouseSensitivity = 0;
+                        pickUpUI.SetActive(false);
+                        isPickedUp = true;
+                    }
+
+                    if (ObjectsToInteract[i].name == "Note")
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab", GetComponent<Transform>().position);
+                        noteUI.SetActive(true);
+                        characterController.enabled = false;
+                        mouseLook.mouseSensitivity = 0;
+                        pickUpUI.SetActive(false);
+                        isPickedUp = true;
+                    }
+                }
             }
         }
 

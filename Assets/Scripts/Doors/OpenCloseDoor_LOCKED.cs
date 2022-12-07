@@ -33,7 +33,8 @@ public class OpenCloseDoor_LOCKED : MonoBehaviour
             {
                 if (audioSource != null && !audioSource.isPlaying)
                 {
-                    audioSource.PlayOneShot(audioClip);
+                    //audioSource.PlayOneShot(audioClip);
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Doors/Door LOCKED/LOCKEDDOORUPGRADEDRY", GetComponent<Transform>().position);
                 }
             }
         }

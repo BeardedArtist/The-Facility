@@ -9,6 +9,7 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/KEYSPICKUPECHO", GetComponent<Transform>().position);
         Destroy(gameObject);
         InventoryManager.Instance.Add(Item);
     }
