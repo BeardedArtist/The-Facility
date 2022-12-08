@@ -6,7 +6,7 @@ using FMODUnity;
 public class BathroomLightReveal : MonoBehaviour
 {
     // TESTING
-    [SerializeField] private GameObject[] objectsToAppear;
+    [SerializeField] private GameObject[] objectsToDisappear;
     private bool hasAudioPlayed = false;
     // TESTING
 
@@ -17,7 +17,7 @@ public class BathroomLightReveal : MonoBehaviour
 
     IEnumerator MakeObjectsAppear()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         if (hasAudioPlayed == false)
         {
@@ -25,9 +25,9 @@ public class BathroomLightReveal : MonoBehaviour
             hasAudioPlayed = true;
         }
 
-        for (int i = 0; i < objectsToAppear.Length; i++)
+        for (int i = 0; i < objectsToDisappear.Length; i++)
         {
-            objectsToAppear[i].SetActive(true);
+            objectsToDisappear[i].SetActive(false);
         }
     }
 }
