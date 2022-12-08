@@ -5,8 +5,6 @@ using UnityEngine;
 public class OpenCloseDoor_LOCKED : MonoBehaviour
 {
     private bool trig;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip audioClip;
     [SerializeField] private GameObject openDoorUI;
 
     private void OnTriggerStay(Collider other) 
@@ -31,11 +29,7 @@ public class OpenCloseDoor_LOCKED : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (audioSource != null && !audioSource.isPlaying)
-                {
-                    //audioSource.PlayOneShot(audioClip);
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Doors/Door LOCKED/LOCKEDDOORUPGRADEDRY", GetComponent<Transform>().position);
-                }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Doors/Door LOCKED/LOCKEDDOORUPGRADEDRY", GetComponent<Transform>().position);
             }
         }
     }

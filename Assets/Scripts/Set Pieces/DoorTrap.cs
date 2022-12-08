@@ -49,6 +49,12 @@ public class DoorTrap : MonoBehaviour
 
                 // ADD AUDIO
             }
+
+            if (!trigger)
+            {
+                openCloseDoor.enabled = false;
+                openCloseDoor_LOCKED.enabled = true;
+            }
         }
     }
 }
