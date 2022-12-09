@@ -11,7 +11,7 @@ public class Footsteps : MonoBehaviour
 
     [SerializeField] EventReference eventName;
     public string inputSound;
-    bool playerIsMoving;
+    public bool playerIsMoving;
     public float walkingSpeed;
 
     private void Update() 

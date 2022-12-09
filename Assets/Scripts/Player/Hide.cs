@@ -8,18 +8,19 @@ public class Hide : MonoBehaviour
     public GameObject warpTarget;
     public GameObject warpTarget_2;
     [SerializeField] private GameObject flashlight;
-    private CharacterController characterController;
-    public GameObject aiController;
-    [SerializeField] public bool isHiding = false;
     [SerializeField] private MeshRenderer mainPlayerMesh;
+    [SerializeField] private Footsteps footsteps;
 
     private PlayerMovement playerMovement;
+    private CharacterController characterController;
+    
 
 
     [SerializeField] private GameObject hideUI;
 
 
     [SerializeField] private bool trig;
+    [SerializeField] public bool isHiding = false;
 
 
     private void Start() 
@@ -29,12 +30,13 @@ public class Hide : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Flashlight Eyes 2")
         {
             trig = true;    
-            hideUI.SetActive(true);
+            // hideUI.SetActive(true);
         }
     }
+
     private void OnTriggerExit(Collider other) 
     {
         trig = false;    
@@ -45,13 +47,14 @@ public class Hide : MonoBehaviour
     {
         if (trig)
         {
-            Debug.Log("Player can hide");
-
             if (isHiding == false)
             {
+                hideUI.SetActive(true); // TRYING OUT NEW UI 
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Player is hiding!");
+                    hideUI.SetActive(false);
 
                     characterController.enabled = false;
                     //flashlight.SetActive(false);
@@ -60,10 +63,17 @@ public class Hide : MonoBehaviour
                     player.transform.rotation = warpTarget.transform.rotation;
                     characterController.enabled = true;
 
-                    isHiding = true;   
+                    // other scripts
                     player.GetComponent<PlayerMovement>().enabled = false;
-                    AIController script = aiController.GetComponent<AIController>();
-                    script.playerisHidingBadly = true;
+                    footsteps.GetComponent<Footsteps>().enabled = false;
+
+                    // Bools
+                    isHiding = true;   
+
+
+                    // ** Need to get rid of these? **
+                    // AIController script = aiController.GetComponent<AIController>();
+                    // script.playerisHidingBadly = true;
 
                 }
             }
@@ -81,10 +91,16 @@ public class Hide : MonoBehaviour
                     characterController.enabled = true;
                     mainPlayerMesh.enabled = true;
 
-                    isHiding = false;
+                    // Other Scripts
                     player.GetComponent<PlayerMovement>().enabled = true;
-                    AIController script = aiController.GetComponent<AIController>();
-                    script.playerisHidingBadly = false;
+                    footsteps.GetComponent<Footsteps>().enabled = true;
+                    
+                    // Bools
+                    isHiding = false;
+
+                    // ** Need to get rid of these? **
+                    // AIController script = aiController.GetComponent<AIController>();
+                    // script.playerisHidingBadly = false;
                 }
             }
         }
