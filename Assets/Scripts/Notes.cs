@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Notes : MonoBehaviour
 {
+    // Game Object References
     [SerializeField] private GameObject noteUI;
     [SerializeField] private GameObject pickUpUI;
     [SerializeField] private GameObject player;
-    [SerializeField] private CharacterController characterController;
-
     [SerializeField] private GameObject[] ObjectsToInteract;
 
+    // Bool References
     private bool trig;
+    private bool canBePickedUp = true;
     [SerializeField] private bool isPickedUp = false;
 
-    public MouseLook mouseLook;
+    // Script References
+    [SerializeField] private MouseLook mouseLook;
+    //[SerializeField] private Hide hideScript;
+    //[SerializeField] private FMODSfxAudio fMODSfxAudio;
+    [SerializeField] private CharacterController characterController;
+
 
     private void Start() 
     {
         characterController = player.GetComponent<CharacterController>();    
     }
-
-
 
     private void OnTriggerStay(Collider other) 
     {
@@ -67,6 +72,12 @@ public class Notes : MonoBehaviour
                         pickUpUI.SetActive(false);
                         isPickedUp = true;
                     }
+
+                    if (ObjectsToInteract[i].name == "Note_2")
+                    {
+                        BathroomNotePickUp();
+                        //fMODSfxAudio.BathroomNotePickUp_Audio();
+                    }
                 }
             }
         }
@@ -82,5 +93,16 @@ public class Notes : MonoBehaviour
                 isPickedUp = false;
             }
         }
+    }
+
+
+    public void BathroomNotePickUp()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab", GetComponent<Transform>().position);
+        noteUI.SetActive(true);
+        characterController.enabled = false;
+        mouseLook.mouseSensitivity = 0;
+        pickUpUI.SetActive(false);
+        isPickedUp = true;
     }
 }
