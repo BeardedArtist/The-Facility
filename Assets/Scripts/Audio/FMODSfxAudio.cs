@@ -25,17 +25,38 @@ public class FMODSfxAudio : MonoBehaviour
     IEnumerator startMonsterDoorAudio()
     {
         yield return new WaitForSeconds(3.0f);
+        PlayAudioThroughIEnumerator();
+    }
+    // For Note_2 in the bathroom ------------------------
+
+
+
+
+    // For AI banging on bathroom doors --------------------------
+    public void AiHitBathroomDoor_Audio()
+    {
+        StartCoroutine(AiHittingBathroomDoor());
+    }
+
+    public void AiHitBathroomDoor_Audio_Immediate()
+    {
+        PlayAudioImmediately();
+    }
+
+    IEnumerator AiHittingBathroomDoor()
+    {
+        yield return new WaitForSeconds(1.0f);
 
         if (!FMODExtension.IsPlaying(SFX))
         {
-            SFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
-            SFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(SFX, GetComponent<Transform>());
-            SFX.start();
-            SFX.release();
+            PlayAudioThroughIEnumerator();
         }
     }
-    // For Note_2 in the bathroom ------------------------
+
+
+    // For AI banging on bathroom doors --------------------------
+
+
 
 
     // Stoppping SFX
@@ -47,6 +68,28 @@ public class FMODSfxAudio : MonoBehaviour
             SFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             SFX.release();
         }
+    }
+
+    // Playing SFX
+    public void PlayAudioThroughIEnumerator()
+    {
+        if (!FMODExtension.IsPlaying(SFX))
+        {
+            SFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+            SFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(SFX, GetComponent<Transform>());
+            SFX.start();
+            SFX.release();
+        }
+    }
+
+    public void PlayAudioImmediately()
+    {
+            SFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+            SFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(SFX, GetComponent<Transform>());
+            SFX.start();
+            SFX.release();
     }
 }
 

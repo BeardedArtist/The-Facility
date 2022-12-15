@@ -13,13 +13,11 @@ public class Notes : MonoBehaviour
 
     // Bool References
     private bool trig;
-    private bool canBePickedUp = true;
-    [SerializeField] private bool isPickedUp = false;
+    private bool isPickedUp = false;
+    public bool isBathroomNotePickedUp = false;
 
     // Script References
     [SerializeField] private MouseLook mouseLook;
-    //[SerializeField] private Hide hideScript;
-    //[SerializeField] private FMODSfxAudio fMODSfxAudio;
     [SerializeField] private CharacterController characterController;
 
 
@@ -65,7 +63,7 @@ public class Notes : MonoBehaviour
 
                     if (ObjectsToInteract[i].name == "Note")
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab", GetComponent<Transform>().position);
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab_Updated", GetComponent<Transform>().position);
                         noteUI.SetActive(true);
                         characterController.enabled = false;
                         mouseLook.mouseSensitivity = 0;
@@ -73,10 +71,12 @@ public class Notes : MonoBehaviour
                         isPickedUp = true;
                     }
 
-                    if (ObjectsToInteract[i].name == "Note_2")
+                    if (ObjectsToInteract[i].name == "Note_2" && isBathroomNotePickedUp == false)
                     {
                         BathroomNotePickUp();
-                        //fMODSfxAudio.BathroomNotePickUp_Audio();
+                        isPickedUp = true;
+                        isBathroomNotePickedUp = true;
+                        // DISABLE MESH
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class Notes : MonoBehaviour
 
     public void BathroomNotePickUp()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab", GetComponent<Transform>().position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab_Updated", GetComponent<Transform>().position);
         noteUI.SetActive(true);
         characterController.enabled = false;
         mouseLook.mouseSensitivity = 0;

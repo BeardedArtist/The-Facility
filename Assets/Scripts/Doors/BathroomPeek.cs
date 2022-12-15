@@ -9,7 +9,7 @@ public class BathroomPeek : MonoBehaviour
     [SerializeField] private GameObject flashlight;
     [SerializeField] private Animator myBathroomDoor = null;
     [SerializeField] private GameObject openBathroomDoorUI;
-    [SerializeField] private Hide hide;
+    [SerializeField] private HideBathroomScene hide;
     [SerializeField] private bool isStallCameraOn = false;
     private bool trigger;
     private bool trig;
@@ -27,25 +27,10 @@ public class BathroomPeek : MonoBehaviour
         trigger = false;
     }
 
-    // private void OnTriggerStay(Collider other) 
-    // {
-    //     if (other.tag == "Flashlight Eyes 2")
-    //     {
-    //         trig = true;
-    //         openBathroomDoorUI.SetActive(true);
-    //     }    
-    // }
-
-    // private void OnTriggerExit(Collider other) 
-    // {
-    //     trig = false;
-    //     openBathroomDoorUI.SetActive(false);    
-    // }
-
     // Update is called once per frame
     void Update()
     {
-        if (hide.isHiding == true)
+        if (hide.isHidingInBathroom == true)
         {
             trigger = myBathroomDoor.GetBool("Open");
             openBathroomDoorUI.SetActive(true);
@@ -58,6 +43,8 @@ public class BathroomPeek : MonoBehaviour
                     stallCamera.SetActive(true);
                     flashlight.SetActive(false);
                     mouseLook.mouseSensitivity = 0;
+
+                    hide.enabled = false; // TESTING
 
                     if (!trigger)
                     {
@@ -76,30 +63,17 @@ public class BathroomPeek : MonoBehaviour
                     flashlight.SetActive(true);
                     mouseLook.mouseSensitivity = 3;
 
+                    hide.enabled = true;
+
                     if (trigger)
                     {
                         myBathroomDoor.SetBool("Open", false);
                     }
                 }
             }
-
-            // if (Input.GetKeyDown(KeyCode.R))
-            // {
-            //     if (!trigger)
-            //     {
-            //         myBathroomDoor.SetBool("Open", true);
-            //         // ADD AUDIO
-            //     }
-
-            //     else
-            //     {
-            //     myBathroomDoor.SetBool("Open", false);
-            //     // PLAY AUDIO
-            //     }
-            // }
         }
 
-        if (hide.isHiding == false)
+        if (hide.isHidingInBathroom == false)
         {
             openBathroomDoorUI.SetActive(false);
         }

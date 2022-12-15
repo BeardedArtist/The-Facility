@@ -43,6 +43,10 @@ public class AIController_ServerSearch : MonoBehaviour
     // AUDIO FOR AI <--
 
 
+    // Bool Reference for activation
+    public bool isAiActive;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +58,8 @@ public class AIController_ServerSearch : MonoBehaviour
         {
             audioSource.Play();
         }
+
+        isAiActive = true;
     }
 
     // Check if we can see player
@@ -117,6 +123,7 @@ public class AIController_ServerSearch : MonoBehaviour
                     else if (currentWayPoint >= this.wayPointList.Length)
                     {
                         Destroy(gameObject);
+                        isAiActive = false;
                     }
                     //-----
                     state = "search";

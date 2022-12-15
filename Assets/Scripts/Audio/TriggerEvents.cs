@@ -13,5 +13,11 @@ public class TriggerEvents : MonoBehaviour
         {
             OnEnter.Invoke();
         }
+
+        // TEST
+        if (other.tag == "BathroomEnemy")
+        {
+            OnEnter.Invoke();
+        }
     }
 }
