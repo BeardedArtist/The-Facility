@@ -13,6 +13,7 @@ public class BathroomPeek : MonoBehaviour
     [SerializeField] private bool isStallCameraOn = false;
     private bool trigger;
     private bool trig;
+    public bool isPeaking;
 
     // Referecing Other Scripts ---------------------------------------
     [SerializeField] private MouseLook mouseLook;
@@ -40,11 +41,12 @@ public class BathroomPeek : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     isStallCameraOn = true;
+                    isPeaking = true;
                     stallCamera.SetActive(true);
                     flashlight.SetActive(false);
                     mouseLook.mouseSensitivity = 0;
 
-                    hide.enabled = false; // TESTING
+                    //hide.enabled = false; // TESTING
 
                     if (!trigger)
                     {
@@ -59,11 +61,12 @@ public class BathroomPeek : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     isStallCameraOn = false;
+                    isPeaking = false;
                     stallCamera.SetActive(false);
                     flashlight.SetActive(true);
                     mouseLook.mouseSensitivity = 3;
 
-                    hide.enabled = true;
+                    //hide.enabled = true;
 
                     if (trigger)
                     {

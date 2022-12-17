@@ -14,6 +14,8 @@ public class HideBathroomScene : MonoBehaviour
     // Script References
     [SerializeField] private Footsteps footsteps;
     [SerializeField] private Notes noteScript;
+    [SerializeField] private BathroomPeek bathroomPeekScript;
+    [SerializeField] private BathroomOpenDoorNonEuclidean bathroomOpenDoorNonEuclidean_Script;
     private PlayerMovement playerMovement;
     private CharacterController characterController;
 
@@ -76,6 +78,16 @@ public class HideBathroomScene : MonoBehaviour
                     // Bools
                     isHidingInBathroom = true;
 
+                    if (bathroomPeekScript.isPeaking == true)
+                    {
+                        enabled = false;
+                    }
+
+                    if (bathroomPeekScript.isPeaking == false)
+                    {
+                        enabled = true;
+                    }
+
                     if (noteScript.isBathroomNotePickedUp == true)
                     {
                         if (bathroomAI_Object is not null && AI_WalkingPoints is not null)
@@ -87,14 +99,23 @@ public class HideBathroomScene : MonoBehaviour
                         enabled = false;
                     }
 
-                    else if (noteScript.isBathroomNotePickedUp == true && bathroomAI_Object is null)
+                    if (noteScript.isBathroomNotePickedUp == true)
                     {
-                        enabled = true;
-                        AI_WalkingPoints.SetActive(false);
+                        if (bathroomAI_Object is null)
+                        {
+                            AI_WalkingPoints.SetActive(false);
+                            enabled = true;
+                        }
                     }
 
                 }
             }
+
+            // else if (isHidingInBathroom == true && noteScript.isBathroomNotePickedUp == true && bathroomAI_Object is null)
+            // {
+            //     bathroomOpenDoorNonEuclidean_Script.canTransition = true;
+            //     bathroomOpenDoorNonEuclidean_Script.BathroomDoorSmoothOpen();
+            // }
 
 
             else if (isHidingInBathroom == true)
