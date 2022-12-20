@@ -42,9 +42,11 @@ public class AIController_ServerSearch : MonoBehaviour
     //[SerializeField] AudioClip audioClip;
     // AUDIO FOR AI <--
 
+    [SerializeField] HideBathroomScene hideBathroomScene_Script;
+
 
     // Bool Reference for activation
-    public bool isAiActive;
+    //public bool isAiActive;
 
 
     // Start is called before the first frame update
@@ -59,7 +61,7 @@ public class AIController_ServerSearch : MonoBehaviour
             audioSource.Play();
         }
 
-        isAiActive = true;
+        hideBathroomScene_Script.DisableHide();
     }
 
     // Check if we can see player
@@ -123,7 +125,7 @@ public class AIController_ServerSearch : MonoBehaviour
                     else if (currentWayPoint >= this.wayPointList.Length)
                     {
                         Destroy(gameObject);
-                        isAiActive = false;
+                        //isAiActive = false;
                     }
                     //-----
                     state = "search";
@@ -252,5 +254,13 @@ public class AIController_ServerSearch : MonoBehaviour
         agent.speed = 0f;
         agent.acceleration = 0f;
         agent.angularSpeed = 0f;
+    }
+
+    private void OnDestroy() 
+    {
+        hideBathroomScene_Script.AiIsActive = false;    
+        hideBathroomScene_Script.bathroomSceneIsActive = false;
+
+        hideBathroomScene_Script.EnableHide();
     }
 }

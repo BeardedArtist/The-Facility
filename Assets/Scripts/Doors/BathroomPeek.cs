@@ -17,6 +17,7 @@ public class BathroomPeek : MonoBehaviour
 
     // Referecing Other Scripts ---------------------------------------
     [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private HideBathroomScene hideBathroomScene_Script;
     // Referecing Other Scripts ---------------------------------------
 
     // Start is called before the first frame update
@@ -40,19 +41,7 @@ public class BathroomPeek : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    isStallCameraOn = true;
-                    isPeaking = true;
-                    stallCamera.SetActive(true);
-                    flashlight.SetActive(false);
-                    mouseLook.mouseSensitivity = 0;
-
-                    //hide.enabled = false; // TESTING
-
-                    if (!trigger)
-                    {
-                        myBathroomDoor.SetBool("Open", true);
-                        // ADD AUDIO
-                    }
+                    PeakON();
                 }
             }
 
@@ -60,17 +49,16 @@ public class BathroomPeek : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    isStallCameraOn = false;
-                    isPeaking = false;
-                    stallCamera.SetActive(false);
-                    flashlight.SetActive(true);
-                    mouseLook.mouseSensitivity = 3;
-
-                    //hide.enabled = true;
-
-                    if (trigger)
+                    if (hideBathroomScene_Script.AiIsActive == true)
                     {
-                        myBathroomDoor.SetBool("Open", false);
+                        hide.enabled = false;
+                        PeakOFF();
+                    }
+
+                    if (hideBathroomScene_Script.AiIsActive == false)
+                    {
+                        hide.enabled = true;
+                        PeakOFF();
                     }
                 }
             }
@@ -79,6 +67,38 @@ public class BathroomPeek : MonoBehaviour
         if (hide.isHidingInBathroom == false)
         {
             openBathroomDoorUI.SetActive(false);
+        }
+    }
+
+    private void PeakON()
+    {
+        isStallCameraOn = true;
+        isPeaking = true;
+        stallCamera.SetActive(true);
+        flashlight.SetActive(false);
+        mouseLook.mouseSensitivity = 0;
+
+        hide.enabled = false; // TESTING
+
+        if (!trigger)
+        {
+            myBathroomDoor.SetBool("Open", true);
+            // ADD AUDIO
+        }
+    }
+
+    private void PeakOFF()
+    {
+        isStallCameraOn = false;
+        isPeaking = false;
+        stallCamera.SetActive(false);
+        flashlight.SetActive(true);
+        mouseLook.mouseSensitivity = 3;
+        //hide.enabled = true;
+
+        if (trigger)
+        {
+            myBathroomDoor.SetBool("Open", false);
         }
     }
 }

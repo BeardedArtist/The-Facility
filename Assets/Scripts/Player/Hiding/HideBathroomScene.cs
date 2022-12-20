@@ -15,7 +15,6 @@ public class HideBathroomScene : MonoBehaviour
     [SerializeField] private Footsteps footsteps;
     [SerializeField] private Notes noteScript;
     [SerializeField] private BathroomPeek bathroomPeekScript;
-    [SerializeField] private BathroomOpenDoorNonEuclidean bathroomOpenDoorNonEuclidean_Script;
     private PlayerMovement playerMovement;
     private CharacterController characterController;
 
@@ -29,6 +28,8 @@ public class HideBathroomScene : MonoBehaviour
     [SerializeField] private GameObject hideUI;
     [SerializeField] private bool trig;
     [SerializeField] public bool isHidingInBathroom = false;
+    [SerializeField] public bool AiIsActive = false;
+    [SerializeField] public bool bathroomSceneIsActive;
 
 
     private void Start() 
@@ -78,36 +79,15 @@ public class HideBathroomScene : MonoBehaviour
                     // Bools
                     isHidingInBathroom = true;
 
-                    if (bathroomPeekScript.isPeaking == true)
-                    {
-                        enabled = false;
-                    }
-
-                    if (bathroomPeekScript.isPeaking == false)
-                    {
-                        enabled = true;
-                    }
-
                     if (noteScript.isBathroomNotePickedUp == true)
                     {
-                        if (bathroomAI_Object is not null && AI_WalkingPoints is not null)
-                        {
-                            bathroomAI_Object.SetActive(true);
-                            AI_WalkingPoints.SetActive(true);
-                        }
-                        
-                        enabled = false;
-                    }
+                        bathroomAI_Object.SetActive(true);
+                        AI_WalkingPoints.SetActive(true);
+                        //enabled = false;
 
-                    if (noteScript.isBathroomNotePickedUp == true)
-                    {
-                        if (bathroomAI_Object is null)
-                        {
-                            AI_WalkingPoints.SetActive(false);
-                            enabled = true;
-                        }
+                        AiIsActive = true;
+                        bathroomSceneIsActive = true;
                     }
-
                 }
             }
 
@@ -139,8 +119,28 @@ public class HideBathroomScene : MonoBehaviour
                     isHidingInBathroom = false;
                 }
             }
+
+
+
+
+            if (noteScript.isBathroomNotePickedUp == true)
+            {
+                if (AiIsActive == false && bathroomSceneIsActive == false)
+                {
+                    AI_WalkingPoints.SetActive(false);
+                    // enabled = true;
+                }
+            }
         }
     }
 
+    public void EnableHide()
+    {
+        enabled = true;
+    }
 
+    public void DisableHide()
+    {
+        enabled = false;
+    }
 }
