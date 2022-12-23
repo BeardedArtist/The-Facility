@@ -20,9 +20,7 @@ public class Notes : MonoBehaviour
     // Script References
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private CharacterController characterController;
-
-    // Animator Reference
-    [SerializeField] private Animator bloodRise_1_Anim;
+    [SerializeField] private BloodAnimation bloodAnimation;
 
 
     private void Start() 
@@ -85,7 +83,6 @@ public class Notes : MonoBehaviour
                     if (ObjectsToInteract[i].name == "Note_3" && isBloodyNotePickedUp == false)
                     {
                         BathroomNotePickUp();
-                        isBloodyNotePickedUp = true;
                     }
                 }
             }
@@ -101,9 +98,12 @@ public class Notes : MonoBehaviour
                 mouseLook.mouseSensitivity = 3;
                 isPickedUp = false;
 
+                isBloodyNotePickedUp = true;
+
                 if (isBloodyNotePickedUp == true)
                 {
-                    bloodRise_1_Anim.Play("BloodPool_RiseInSink", 0, 0);
+                    bloodAnimation.BloodRiseAnimation_1_BathroomSink();
+                    bloodAnimation.BloodRiseAnimation_2_BathroomRoom();
                 }
             }
         }
@@ -119,6 +119,4 @@ public class Notes : MonoBehaviour
         pickUpUI.SetActive(false);
         isPickedUp = true;
     }
-
-
 }

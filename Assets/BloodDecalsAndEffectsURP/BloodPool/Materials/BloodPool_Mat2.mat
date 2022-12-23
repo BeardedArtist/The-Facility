@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BloodPool_Mat2
   m_Shader: {fileID: 4800000, guid: c2630e0b0d44f7045946eac307580599, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -79,6 +80,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
@@ -93,8 +95,8 @@ Material:
     - _Fade: 0
     - _FadeRange: 0.05
     - _FalloffArea1: 85.9
-    - _FalloffArea2: 92.3
-    - _FinalNormal_Power: 1
+    - _FalloffArea2: 0
+    - _FinalNormal_Power: 0.09
     - _Float2: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -112,7 +114,7 @@ Material:
     - _Tiling: 1
     - _Tiling1: 18.3
     - _Tiling2: 8.1
-    - _ToneBias: 0.235
+    - _ToneBias: 0.657
     - _ToneScale: 0.72
     - _UVSec: 0
     - _VAVAVAVAVAV: 0
@@ -125,3 +127,4 @@ Material:
     - _PositionOffset1: {r: -0.7, g: -4.14, b: 0, a: 0}
     - _PositionOffset2: {r: -0.07, g: -2.59, b: 0, a: 0}
     - _Vector1: {r: 5, g: 2.6, b: 0, a: 0}
+  m_BuildTextureStacks: []
