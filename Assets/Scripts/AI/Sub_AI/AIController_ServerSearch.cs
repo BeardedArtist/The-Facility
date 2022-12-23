@@ -43,6 +43,7 @@ public class AIController_ServerSearch : MonoBehaviour
     // AUDIO FOR AI <--
 
     [SerializeField] HideBathroomScene hideBathroomScene_Script;
+    [SerializeField] AppearDisappear appearDisappear_Script;
 
 
     // Bool Reference for activation
@@ -261,6 +262,8 @@ public class AIController_ServerSearch : MonoBehaviour
         hideBathroomScene_Script.AiIsActive = false;    
         hideBathroomScene_Script.bathroomSceneIsActive = false;
 
-        hideBathroomScene_Script.EnableHide();
+        //hideBathroomScene_Script.EnableHide();
+        hideBathroomScene_Script.EnablePlayerMovement();
+        appearDisappear_Script.EnvironmentChange();
     }
 }

@@ -73,8 +73,7 @@ public class HideBathroomScene : MonoBehaviour
                     characterController.enabled = true;
 
                     // other scripts
-                    player.GetComponent<PlayerMovement>().enabled = false;
-                    footsteps.GetComponent<Footsteps>().enabled = false;
+                    DisablePlayerMovement();
 
                     // Bools
                     isHidingInBathroom = true;
@@ -112,8 +111,7 @@ public class HideBathroomScene : MonoBehaviour
                     mainPlayerMesh.enabled = true;
 
                     // Other Scripts
-                    player.GetComponent<PlayerMovement>().enabled = true;
-                    footsteps.GetComponent<Footsteps>().enabled = true;
+                    EnablePlayerMovement();
                     
                     // Bools
                     isHidingInBathroom = false;
@@ -137,6 +135,20 @@ public class HideBathroomScene : MonoBehaviour
     public void EnableHide()
     {
         enabled = true;
+    }
+
+    public void EnablePlayerMovement()
+    {
+        // Other Scripts
+        player.GetComponent<PlayerMovement>().enabled = true;
+        footsteps.GetComponent<Footsteps>().enabled = true;
+    }
+
+    public void DisablePlayerMovement()
+    {
+        // Other Scripts
+        player.GetComponent<PlayerMovement>().enabled = false;
+        footsteps.GetComponent<Footsteps>().enabled = false;
     }
 
     public void DisableHide()
