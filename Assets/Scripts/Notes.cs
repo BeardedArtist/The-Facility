@@ -15,10 +15,14 @@ public class Notes : MonoBehaviour
     private bool trig;
     private bool isPickedUp = false;
     public bool isBathroomNotePickedUp = false;
+    private bool isBloodyNotePickedUp = false;
 
     // Script References
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private CharacterController characterController;
+
+    // Animator Reference
+    [SerializeField] private Animator bloodRise_1_Anim;
 
 
     private void Start() 
@@ -46,7 +50,6 @@ public class Notes : MonoBehaviour
     {
         if (trig == true && isPickedUp == false)
         {
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 for (int i = 0; i < ObjectsToInteract.Length; i++)
@@ -79,9 +82,10 @@ public class Notes : MonoBehaviour
                         // DISABLE MESH
                     }
 
-                    if (ObjectsToInteract[i].name == "Note_3")
+                    if (ObjectsToInteract[i].name == "Note_3" && isBloodyNotePickedUp == false)
                     {
                         BathroomNotePickUp();
+                        isBloodyNotePickedUp = true;
                     }
                 }
             }
@@ -96,6 +100,11 @@ public class Notes : MonoBehaviour
                 mouseLook.enabled = true;
                 mouseLook.mouseSensitivity = 3;
                 isPickedUp = false;
+
+                if (isBloodyNotePickedUp == true)
+                {
+                    bloodRise_1_Anim.Play("BloodPool_RiseInSink", 0, 0);
+                }
             }
         }
     }
@@ -110,4 +119,6 @@ public class Notes : MonoBehaviour
         pickUpUI.SetActive(false);
         isPickedUp = true;
     }
+
+
 }
