@@ -78,6 +78,11 @@ public class Notes : MonoBehaviour
                         isBathroomNotePickedUp = true;
                         // DISABLE MESH
                     }
+
+                    if (ObjectsToInteract[i].name == "Note_3")
+                    {
+                        BathroomNotePickUp();
+                    }
                 }
             }
         }
