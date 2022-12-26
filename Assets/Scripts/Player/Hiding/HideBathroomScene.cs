@@ -20,7 +20,7 @@ public class HideBathroomScene : MonoBehaviour
 
     // AI Script & Object Reference
     [SerializeField] private GameObject bathroomAI_Object;
-    [SerializeField] private GameObject AI_WalkingPoints;
+    [SerializeField] public GameObject AI_WalkingPoints;
     private AIController_ServerSearch bathroomAI_Script;
     
 

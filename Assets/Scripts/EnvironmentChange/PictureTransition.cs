@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PictureTransition : MonoBehaviour
 {
-    // [SerializeField] private GameObject mainCamera;
-    // [SerializeField] private GameObject transitionCamera;
+    // Object References
     [SerializeField] private GameObject PictureUI;
+    [SerializeField] private GameObject player;
 
     // Bool References
     private bool trig;
@@ -15,65 +15,67 @@ public class PictureTransition : MonoBehaviour
     // Script References
     [SerializeField] private MouseLook mouseLook_Script;
     [SerializeField] private PlayerMovement playerMovement_Script;
+    private CharacterController characterController_Script;
 
     // Transform Reference
     public Transform warpTarget;
 
+    // Player Collider Reference
+    [SerializeField] private Collider other;
+
+    private void Start() 
+    {
+        characterController_Script = player.GetComponent<CharacterController>();    
+    }
+
     private void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
+        if (other.tag == "Flashlight Eyes 2")
         {
             trig = true;
             // Add Interact UI
-
-            if (trig == true)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    if (isPictureSeen == false)
-                    {
-                        isPictureSeen = true;
-                        PictureUI.SetActive(true);
-                        mouseLook_Script.mouseSensitivity = 0;
-                        playerMovement_Script.enabled = false;
-
-                        Vector3 offset = other.transform.position - transform.position;
-                        other.transform.position = warpTarget.position + offset;
-                    }
-                }
-            }
-
-            // else if (isPictureSeen == true)
-            // {
-            //     if (Input.GetKeyDown(KeyCode.E))
-            //     {
-            //         isPictureSeen = false;
-            //         PictureUI.SetActive(false);
-            //         mouseLook_Script.mouseSensitivity = 3;
-            //         playerMovement_Script.enabled = true;
-            //     }
-            // }
-        }
-
-        if (trig == false)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (isPictureSeen == true)
-                {
-                    isPictureSeen = false;
-                    PictureUI.SetActive(false);
-                    mouseLook_Script.mouseSensitivity = 3;
-                    playerMovement_Script.enabled = true;
-                }
-            }
-        }    
+        }  
     }
 
     private void OnTriggerExit(Collider other) 
     {
         trig = false;
         // Disable Interact UI    
+    }
+
+
+    private void Update() 
+    {
+        if (trig == true && isPictureSeen == false)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PictureUI.SetActive(true);
+                mouseLook_Script.mouseSensitivity = 0;
+                playerMovement_Script.enabled = false;
+                isPictureSeen = true;
+            }
+        }
+
+        else if (trig == true && isPictureSeen == true)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PictureUI.SetActive(false);
+                mouseLook_Script.mouseSensitivity = 3;
+                playerMovement_Script.enabled = true;
+                isPictureSeen = false;
+
+                // TEST TELEPORT
+                characterController_Script.enabled = false;
+                player.transform.position = warpTarget.transform.position;
+                player.transform.rotation = warpTarget.transform.rotation;
+                characterController_Script.enabled = true;
+
+                // Vector3 offsetPosition = other.transform.position - transform.position;
+                // other.transform.position = warpTarget.position + offsetPosition;
+            }
+        }   
     }
 
 
