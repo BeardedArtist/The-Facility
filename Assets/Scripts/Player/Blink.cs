@@ -8,7 +8,7 @@ public class Blink : MonoBehaviour
     [SerializeField] private GameObject bottomLid;
     [SerializeField] private Animator blink_Anim;
     [SerializeField] private Animator blink_Anim_2;
-    [SerializeField] bool isBlinking;
+    [SerializeField] public bool isBlinking;
     [SerializeField] private float timer;
 
     private void Start() 

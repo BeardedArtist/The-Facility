@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BathroomOpenDoorNonEuclidean : MonoBehaviour
 {
+    // Game Object Refereces
+    [SerializeField] private GameObject OpenDoorUI;
+
     // Animator Reference
     [SerializeField] private Animator myBathroomDoor_NonEuclidean = null;
 
     // Bool References
-    public bool canTransition = false;
+    public bool trig;
     private bool trigger;
 
 
@@ -21,18 +24,24 @@ public class BathroomOpenDoorNonEuclidean : MonoBehaviour
         trigger = false;
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (hideBathroomScene_Script.isHidingInBathroom == true && noteScript.isBathroomNotePickedUp == true && bathroomAI_Object is null)
-    //     {
-
-    //     }
-    // }
-
-    public void BathroomDoorSmoothOpen()
+    private void OnTriggerStay(Collider other)
     {
-        if (canTransition == true)
+        if (other.tag == "Flashlight Eyes 2")
+        {
+            trig = true;
+            OpenDoorUI.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        trig = false;
+        OpenDoorUI.SetActive(false);    
+    }
+
+    private void Update() 
+    {
+        if (trig)
         {
             trigger = myBathroomDoor_NonEuclidean.GetBool("Open");
 
@@ -40,18 +49,16 @@ public class BathroomOpenDoorNonEuclidean : MonoBehaviour
             {
                 if (!trigger)
                 {
-                    myBathroomDoor_NonEuclidean.SetBool("Open", true);
-                    // ADD AUDIO
+                    myBathroomDoor_NonEuclidean.SetBool("Open", true); 
+                    // ADD FMOD AUDIO
+                }
+
+                else
+                {
+                    myBathroomDoor_NonEuclidean.SetBool("Open", false);
+                    // ADD FMOD AUDIO
                 }
             }
-        }
-
-        // else if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     if (trigger)
-        //     {
-        //         myBathroomDoor_NonEuclidean.SetBool("Open", false);
-        //     }
-        // }
+        }    
     }
 }
