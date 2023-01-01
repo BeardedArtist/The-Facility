@@ -9,6 +9,7 @@ public class PlayAnimationOneTime : MonoBehaviour
 
     // Bool Reference
     private bool trig;
+    private bool hasAnimationPlayed = false;
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -23,8 +24,21 @@ public class PlayAnimationOneTime : MonoBehaviour
         trig = false;    
     }
 
+    private void Update() 
+    {
+        if (trig == true && hasAnimationPlayed == false)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PlayAnimation();
+                hasAnimationPlayed = true;
+            }
+        }    
+    }
+
     private void PlayAnimation()
     {
-        animator_OneShot.Play("");
+        Debug.Log("Animation should play");
+        animator_OneShot.Play("MoveCounter_Anim", 0, 0);
     }
 }
