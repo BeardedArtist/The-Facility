@@ -125,7 +125,7 @@ public class AIController : MonoBehaviour
 
                 //lose sight of player
                 float distance = Vector3.Distance(transform.position, playerTransform.position);
-                if (distance > 10f)
+                if (distance > 10f) // UPDATE 10f value to inspector
                 {
                     state = "find";
                 }
