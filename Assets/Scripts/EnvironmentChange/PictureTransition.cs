@@ -71,6 +71,7 @@ public class PictureTransition : MonoBehaviour
                     blink_Anim.Play("TopLidBlink", 0, 0.25f);
                     blink_Anim_2.Play("BottomLidBlink", 0, 0.25f);
                     StartCoroutine(TransitionAfterBlink());
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Transitions/Transition_Jing", GetComponent<Transform>().position);
 
                     // PictureUI.SetActive(false);
                     // mouseLook_Script.mouseSensitivity = 3;

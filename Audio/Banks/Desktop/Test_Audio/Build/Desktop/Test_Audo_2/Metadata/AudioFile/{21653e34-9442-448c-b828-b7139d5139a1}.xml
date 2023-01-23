@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{21653e34-9442-448c-b828-b7139d5139a1}">
+		<property name="assetPath">
+			<value>Being Stared At Master (1).ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>98</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8e277654-03b2-407b-beaa-44fcbad77ca4}</destination>
+		</relationship>
+	</object>
+</objects>
