@@ -12,7 +12,7 @@ public class PlayMusic_AI : MonoBehaviour
         if (other.tag == "Enemy" && !audioSource.isPlaying && hasPlayed == false)
         {
             //audioSource.Play();
-            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/PAGESRIPPING", GetComponent<Transform>().position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Books/PAGESRIPPING", GetComponent<Transform>().position);
             hasPlayed = true;
         }    
     }
