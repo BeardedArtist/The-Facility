@@ -2,10 +2,10 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{2adcb95a-508c-4d5c-911f-8617649686b5}">
 		<property name="name">
-			<value>WOODSTEPSECHO</value>
+			<value>WOOD STEPS ECHO</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c087b176-f41a-437f-947d-9c6db78bedd4}</destination>
@@ -114,7 +114,6 @@
 	<object class="MixerBusEffectChain" id="{5be8045c-de2e-489c-93fa-003e734e6ea1}">
 		<relationship name="effects">
 			<destination>{7f7cb2ad-5831-4cb4-8e77-0fc5eb57097a}</destination>
-			<destination>{314234d2-caba-488d-8d9c-cb7c16bd3ab4}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3bef5424-1c62-4a3b-9df8-0680a1759b21}" />
@@ -136,6 +135,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{581015c7-2dce-4c97-8b53-f03aca61ac50}" />
 	<object class="MixerBusFader" id="{7f7cb2ad-5831-4cb4-8e77-0fc5eb57097a}" />
-	<object class="SpatialiserEffect" id="{314234d2-caba-488d-8d9c-cb7c16bd3ab4}" />
 	<object class="MixerBusFader" id="{c1c9e65b-4c55-42b8-bad7-cc52baf9d7eb}" />
 </objects>
