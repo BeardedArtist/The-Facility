@@ -11,6 +11,8 @@ public class BloodAnimation : MonoBehaviour
     public void BloodRiseAnimation_1_BathroomSink()
     {
         bloodRiseBathroomSink_Anim.Play("BloodPool_RiseInSink", 0, 0);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/BLOODFAUCET");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/BLOOD_SINK_HORROR");
     }
 
     public void BloodRiseAnimation_2_BathroomRoom()
