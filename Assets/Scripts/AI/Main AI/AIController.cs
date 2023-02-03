@@ -27,12 +27,21 @@ public class AIController : MonoBehaviour
     PlayerMovement playerMovement;
 
 
+    // TEST FOR ANIMATIONS
+    Animator animator;
+    // TEST FOR ANIMATIONS
+
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<player>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        // TEST
+        animator = GetComponent<Animator>();
+        // TEST
     }
 
     //check if we can see player
@@ -101,7 +110,9 @@ public class AIController : MonoBehaviour
                 {
                     state = "search"; // reset to "idle" which allows AI to find new position to walk
                     wait = 5f;
-                } 
+                }
+
+                animator.SetBool("isWalking", true); 
             }
 
             //search
@@ -116,12 +127,15 @@ public class AIController : MonoBehaviour
                 {
                     state = "idle";
                 }
+                animator.SetBool("isWalking", false);
             }
 
             // chase
             if (state == "chase")
             {
                 agent.destination = playerTransform.position;
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", true);
 
                 //lose sight of player
                 float distance = Vector3.Distance(transform.position, playerTransform.position);
@@ -150,24 +164,24 @@ public class AIController : MonoBehaviour
                 // TESTING ATTACK EVENT
             }
 
-            // TEST --> If player hides during chase
-            if (state == "chase" && playerisHidingBadly == true)
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
-                {
-                    agent.destination = playerTransform.position;
-                    hidingCloset.SetActive(false);
-                    state = "kill";
+            // // TEST --> If player hides during chase
+            // if (state == "chase" && playerisHidingBadly == true)
+            // {
+            //     if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
+            //     {
+            //         agent.destination = playerTransform.position;
+            //         hidingCloset.SetActive(false);
+            //         state = "kill";
 
-                    mainPlayer.GetComponent<PlayerMovement>().enabled = false;
-                    mainPlayerMesh.enabled = false;
-                    deathCam.SetActive(true);
-                    deathCam.transform.position = Camera.main.transform.position;
-                    deathCam.transform.rotation = Camera.main.transform.rotation;
-                    Camera.main.gameObject.SetActive(false);
-                    Invoke("reset", 1f);
-                }
-            }
+            //         mainPlayer.GetComponent<PlayerMovement>().enabled = false;
+            //         mainPlayerMesh.enabled = false;
+            //         deathCam.SetActive(true);
+            //         deathCam.transform.position = Camera.main.transform.position;
+            //         deathCam.transform.rotation = Camera.main.transform.rotation;
+            //         Camera.main.gameObject.SetActive(false);
+            //         Invoke("reset", 1f);
+            //     }
+            // }
 
             //find
             if (state == "find")
@@ -181,6 +195,8 @@ public class AIController : MonoBehaviour
                     CheckSight();
                     // Change state to go back to idle after certain amount of time.
                 }
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isRunning", false);
             }
 
             // TESTING ATTACK EVENT
@@ -192,6 +208,9 @@ public class AIController : MonoBehaviour
                 deathCam.transform.rotation = Quaternion.Slerp(deathCam.transform.rotation, deathCamPosition.rotation, 10f * Time.deltaTime);
                 agent.SetDestination(deathCam.transform.position);
                 agent.speed = 0f;
+
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
             }
 
             // TESTING ATTACK EVENT
