@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchStepMultiplier = 1.5f;
     [SerializeField] private float sprintStepMultiplier = 0.6f;
     [SerializeField] EventReference woodFootsteps = default;
+    [SerializeField] EventReference TileFootsteps = default;
     [SerializeField] EventReference ventFootsteps = default;
     [SerializeField] EventReference wetFootsteps = default;
     [SerializeField] EventReference carpetFootsteps = default;
@@ -190,6 +191,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     case "Wood":
                         FMODUnity.RuntimeManager.PlayOneShot(woodFootsteps);
+                        break;
+                    case "Tile":
+                        FMODUnity.RuntimeManager.PlayOneShot(TileFootsteps);
                         break;
                     case "Wet":
                         FMODUnity.RuntimeManager.PlayOneShot(wetFootsteps);

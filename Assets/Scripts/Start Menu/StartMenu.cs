@@ -8,7 +8,7 @@ public class StartMenu : MonoBehaviour
     public void StartGame()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI Sounds/Menu UI DETUNE", GetComponent<Transform>().position);
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

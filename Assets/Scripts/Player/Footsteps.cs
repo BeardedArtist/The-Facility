@@ -14,39 +14,39 @@ public class Footsteps : MonoBehaviour
     public bool playerIsMoving;
     public float walkingSpeed;
 
-    private void Update() 
-    {
-        if (Input.GetAxis ("Vertical") >= 0.02f || Input.GetAxis("Horizontal") >= 0.02f || Input.GetAxis ("Vertical") <= -0.02f || Input.GetAxis ("Horizontal") <= -0.02f)
-        {
-            playerIsMoving = true;
-        }
-        else if (Input.GetAxis ("Vertical") <= 0.01f || Input.GetAxis ("Horizontal") >= 0.01f)
-        {
-            playerIsMoving = false;
-        }
-    }
+    // private void Update() 
+    // {
+    //     if (Input.GetAxis ("Vertical") >= 0.02f || Input.GetAxis("Horizontal") >= 0.02f || Input.GetAxis ("Vertical") <= -0.02f || Input.GetAxis ("Horizontal") <= -0.02f)
+    //     {
+    //         playerIsMoving = true;
+    //     }
+    //     else if (Input.GetAxis ("Vertical") <= 0.01f || Input.GetAxis ("Horizontal") >= 0.01f)
+    //     {
+    //         playerIsMoving = false;
+    //     }
+    // }
 
-    void CallFootsteps()
-    {
-        if (playerIsMoving == true)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(eventName);
-        }
-    }
+    // void CallFootsteps()
+    // {
+    //     if (playerIsMoving == true)
+    //     {
+    //         FMODUnity.RuntimeManager.PlayOneShot(eventName);
+    //     }
+    // }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating ("CallFootsteps", 0, walkingSpeed);
+    // // Start is called before the first frame update
+    // void Start()
+    // {
+    //     InvokeRepeating ("CallFootsteps", 0, walkingSpeed);
 
-        controller = GetComponent<CharacterController>();
-        audioSource = GetComponent<AudioSource>();
-    }
+    //     controller = GetComponent<CharacterController>();
+    //     audioSource = GetComponent<AudioSource>();
+    // }
 
-    void onDisable()
-    {
-        playerIsMoving = false;
-    }
+    // void onDisable()
+    // {
+    //     playerIsMoving = false;
+    // }
 
 
 
