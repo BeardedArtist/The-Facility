@@ -74,7 +74,7 @@ public class RedRoom_PCInteraction : MonoBehaviour
             // redRoomComputerSFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
             // redRoomComputerSFX.start();
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/RRCOMPSCREEN", GetComponent<Transform>().position);
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/RRCOMPSCREEN", GetComponent<Transform>().position);
 
         }
     }

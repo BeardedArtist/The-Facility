@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
     public Transform eyes; // creating a transform for the 'eyes' cone in the AI
     NavMeshAgent agent;
      
-    private string state = "idle";
+    [SerializeField] private string state = "idle";
     private bool alive = true;
     [SerializeField] private float wait = 0f;
     private bool highAlert = false;
@@ -19,7 +19,6 @@ public class AIController : MonoBehaviour
     public bool playerisHidingBadly = false;
 
     public GameObject deathCam;
-    public GameObject hidingCloset;
     public Transform deathCamPosition;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
@@ -29,6 +28,8 @@ public class AIController : MonoBehaviour
 
     // TEST FOR ANIMATIONS
     Animator animator;
+    // ADD FOOTSTEPS
+
     // TEST FOR ANIMATIONS
 
 
@@ -68,7 +69,7 @@ public class AIController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Debug.DrawLine(eyes.position, playerTransform.position, Color.green);
         if (alive)
@@ -111,8 +112,6 @@ public class AIController : MonoBehaviour
                     state = "search"; // reset to "idle" which allows AI to find new position to walk
                     wait = 5f;
                 }
-
-                animator.SetBool("isWalking", true); 
             }
 
             //search
@@ -121,21 +120,18 @@ public class AIController : MonoBehaviour
                 if (wait > 0f)
                 {
                     wait -= Time.deltaTime;
-                    transform.Rotate(0f, 120f * Time.deltaTime, 0f);
+                    //transform.Rotate(0f, 120f * Time.deltaTime, 0f);
                 }
                 else 
                 {
                     state = "idle";
                 }
-                animator.SetBool("isWalking", false);
             }
 
             // chase
             if (state == "chase")
             {
                 agent.destination = playerTransform.position;
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isRunning", true);
 
                 //lose sight of player
                 float distance = Vector3.Distance(transform.position, playerTransform.position);
@@ -164,25 +160,6 @@ public class AIController : MonoBehaviour
                 // TESTING ATTACK EVENT
             }
 
-            // // TEST --> If player hides during chase
-            // if (state == "chase" && playerisHidingBadly == true)
-            // {
-            //     if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
-            //     {
-            //         agent.destination = playerTransform.position;
-            //         hidingCloset.SetActive(false);
-            //         state = "kill";
-
-            //         mainPlayer.GetComponent<PlayerMovement>().enabled = false;
-            //         mainPlayerMesh.enabled = false;
-            //         deathCam.SetActive(true);
-            //         deathCam.transform.position = Camera.main.transform.position;
-            //         deathCam.transform.rotation = Camera.main.transform.rotation;
-            //         Camera.main.gameObject.SetActive(false);
-            //         Invoke("reset", 1f);
-            //     }
-            // }
-
             //find
             if (state == "find")
             {
@@ -195,8 +172,8 @@ public class AIController : MonoBehaviour
                     CheckSight();
                     // Change state to go back to idle after certain amount of time.
                 }
-                animator.SetBool("isWalking", true);
-                animator.SetBool("isRunning", false);
+                //animator.SetBool("isWalking", true);  ////////////////////////////
+                //animator.SetBool("isRunning", false); /////////////////////////////
             }
 
             // TESTING ATTACK EVENT
@@ -209,16 +186,49 @@ public class AIController : MonoBehaviour
                 agent.SetDestination(deathCam.transform.position);
                 agent.speed = 0f;
 
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isRunning", false);
+                //animator.SetBool("isWalking", false); /////////////////////////////////
+                //animator.SetBool("isRunning", false); /////////////////////////////////
             }
 
             // TESTING ATTACK EVENT
 
             // agent.destination = playerTransform.position; // this gives the AI the players position and tells it to walk to the player
         }
-
         
+        HandleAnimation();        
+    }
+
+    void HandleAnimation()
+    {
+        if (state == "walk")
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+
+        if (state == "search")
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+        }
+
+        if (state == "chase")
+        {
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isWalking", false);
+        }
+
+        if (state == "find")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", true);
+        }
+
+        if (state == "kill")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+        }
     }
 
     //reset//
