@@ -1,0 +1,64 @@
+{a69bd447-35b2-462f-9378-bdab95ec95a1} bank:/Master
+{3e86f493-44c9-0a6d-1531-3755641f9339} bank:/Master.strings
+{a9079631-dc1d-488f-86c7-045073bd27de} bus:/
+{6ae006f9-0a14-4730-b294-254f058b0853} bus:/Reverb
+{5f7e619e-c73a-4250-9276-4286b45fa42f} event:/Level Music/Being Stared At
+{3d7963ba-a31f-446d-ab67-1448a4475e05} event:/Level Music/Chase
+{a9cc5672-e6ec-4f48-af7b-6ed28db72b33} event:/Level Music/First Glimpse
+{0e6b3517-564e-47bc-bcbb-22b848d22512} event:/Level Music/LEVEL_MUSIC
+{5faf9f5d-87ea-44f1-9be3-ef27f2f115e7} event:/Level Music/Losing Hope/Losing Hope Extended
+{42e08956-5df4-4798-906a-e33cb294c282} event:/Level Music/Losing Hope/Losing Hope Synth & Hichiriki
+{8b99d5c0-4f16-4115-b53f-1d68a4decc7c} event:/Level Music/Losing Hope/Lost Hope V1
+{302a93e8-344c-48c6-a30c-158c9738dd12} event:/Level Music/Possible Main Theme Extended Master 3
+{6f79f42a-426e-4244-9529-92486d764460} event:/Level Music/The Red Room
+{1683a2ef-8b78-48a4-8ceb-38f141d52857} event:/Level Music/The Red Room_3
+{16e1ddfd-bf1f-48a1-a7c2-fd1424d92f39} event:/Level Music/Transition
+{76ca62e7-6924-4202-8f3e-8075221fd71f} event:/OUT_OF_BREATH/OUT_OF_BREATH_SPRINTING
+{ae827eb7-84a2-4b19-8779-cec060cc64be} event:/SFX/BLOODFAUCET
+{f024ea75-7997-483a-9eea-5a6fe3682042} event:/SFX/BLOOD_SINK_HORROR
+{21d5ec7f-28fe-40bc-ba3f-d85895c5c7b0} event:/SFX/Books/BOOKFALLING
+{6447f5db-2196-4041-b0c4-7d793a35de4f} event:/SFX/Books/BOOKFALLINGECHO
+{9b7a4cd3-ac6a-4b82-ba2d-bb3bcfad8b0e} event:/SFX/Books/PAGESRIPPING
+{59534c3f-b067-4046-81ab-a012d32e038d} event:/SFX/Books/Pages Ripping
+{8c09b00e-8df6-47f8-9f05-ecd5eff70a01} event:/SFX/Doors/BATHROOMDOOR
+{1ca12286-49c0-4ae5-9a65-60551fdc9332} event:/SFX/Doors/Banging on Door/Banging on Metal Door
+{1a270c69-4a85-41aa-84bc-e843b0b0536e} event:/SFX/Doors/Banging on Door/Forcibly Opening Locked Door
+{8bd3bd52-3308-4736-9642-dfec1f9fdb86} event:/SFX/Doors/Banging on Door/Monster Bang on Door
+{e91d180e-6408-423f-85cd-10b4ccbe2624} event:/SFX/Doors/CREEKINGDOOR1
+{7b4f72ef-ffb9-4c11-8918-5c4583f6da48} event:/SFX/Doors/CREEKINGDOOR1MOREECHO
+{65522f36-1ee7-4396-b339-08235ca2bbea} event:/SFX/Doors/CREEKINGDOOR2
+{05855dce-15ea-4749-bfc8-35483500137e} event:/SFX/Doors/CREEKINGDOOR2MOREECHO
+{e4f66d0e-1b35-4a76-9c92-d97fd69b0f11} event:/SFX/Doors/Door LOCKED/LOCKEDDOORUPGRADEDRY
+{17dacdac-b6f0-4dbf-993d-fbea720305bd} event:/SFX/Doors/Door LOCKED/LOCKEDOORUPGRADEWET
+{c78a8864-0ab6-4d45-815c-d9022d0a7252} event:/SFX/Doors/WOODDOORCLOSE
+{b78086b4-86d5-48ba-b72f-8d69fc1033d9} event:/SFX/Doors/WOODDOORCLOSEECHO
+{26c44faf-86ce-4c96-843d-439ad801a9f2} event:/SFX/Doors/WOODENDOOROPENWITHKNOB
+{4390b3b6-2609-4c4f-a0ec-b164704dae94} event:/SFX/Doors/WOODENDOOROPENWITHKNOBECHO
+{e9bb6305-de1b-4ae8-95bc-f9cc9a5c516a} event:/SFX/FOOTSTEPS/Footsteps_Updated/CARPET STEPS
+{3ed96945-e42d-4227-a718-56b371873bee} event:/SFX/FOOTSTEPS/Footsteps_Updated/TILE RUNNING/TILERUNNING
+{8fc54df0-e6df-48fc-94ca-623c26b0d2b2} event:/SFX/FOOTSTEPS/Footsteps_Updated/TILE RUNNING/TILESTEP_DRY
+{0564b978-d983-4f3b-afe3-6579006d85ff} event:/SFX/FOOTSTEPS/Footsteps_Updated/TILE RUNNING/TILESTEP_WET
+{ccbec662-8a0a-4041-aecc-4574e57a26b0} event:/SFX/FOOTSTEPS/Footsteps_Updated/VENT STEPS
+{904081dc-38b4-4d28-97eb-ec6bfc7879e7} event:/SFX/FOOTSTEPS/Footsteps_Updated/WET STEP
+{d365621b-1dd3-4172-9d4c-97fad3c2e1c1} event:/SFX/FOOTSTEPS/Footsteps_Updated/WOOD STEPS
+{2adcb95a-508c-4d5c-911f-8617649686b5} event:/SFX/FOOTSTEPS/Footsteps_Updated/WOOD STEPS ECHO
+{7d4e4bbf-2652-43a2-8d28-b44209e50a07} event:/SFX/Flood Light Turn On
+{b3593029-059e-4871-bfc9-24954ecea557} event:/SFX/Item Interaction/JOURNALOPEN
+{aa06124e-e764-4e59-9e41-2b656b1a400a} event:/SFX/Item Interaction/KEYSPICKUP
+{8b86f819-2d05-4fa4-a046-9445e53bd7b0} event:/SFX/Item Interaction/KEYSPICKUPECHO
+{f7ccae5f-3f1d-4817-903b-a0baa6969436} event:/SFX/Item Interaction/Page Grab
+{fb2f7856-5ef2-4e1f-95fb-1c70d28d0f59} event:/SFX/Item Interaction/Page Grab_Updated
+{cc8cd323-e44a-4ddd-9412-e3e6c50cfed3} event:/SFX/Music/WESTMINSTER_BELLS
+{9d90d32f-0bd1-41ee-9caa-96cd23770070} event:/SFX/Music/WESTMINSTER_BELLS_2
+{dd90e9b7-3184-4b1d-bb4f-1878e262e756} event:/SFX/Panicked_Breathing
+{be163f59-65f5-4010-a853-724de15941ad} event:/SFX/RRCOMPSCREEN
+{db14a57a-c26f-4a83-b3ff-58e3036ad96b} event:/SFX/SCRATCHINGWOOD
+{92dc875a-b0a1-4c84-8895-61c919da01de} event:/SFX/SCRATCHINGWOODMOREECHO
+{8b98a68d-c18d-4936-be09-81b30a41e47c} event:/SFX/Transitions/Transition_Daiko
+{43cb6cb1-5200-464c-95fa-70319df747ca} event:/SFX/Transitions/Transition_Jing
+{961f30c0-46c4-4623-8c70-ee0d81a16f76} event:/SFX/UI Sounds/Menu UI DETUNE
+{895747fc-9165-4194-9c92-50de5c4b5b35} event:/SFX/UI Sounds/Menu UI SOUND
+{6f218257-b09f-4840-8ab1-805333c895b4} event:/Test_Audio
+{5b0e67f2-47c9-408a-b2e5-217ecadf42ad} parameter:/Distance
+{4de87289-547b-4a76-8cd0-838ec97e6aaf} parameter:/Parameter 1
+{42bfc034-7954-4f8a-9bc1-ae7a407ca601} parameter:/ProgressTest

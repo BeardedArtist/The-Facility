@@ -10,7 +10,7 @@ public class AIController_LibraryScene : MonoBehaviour
     public Transform eyes; // creating a transform for the 'eyes' cone in the AI.
     NavMeshAgent agent;
 
-    private string state = "idle";
+    [SerializeField] private string state = "idle";
     private bool alive = true;
     private float wait = 0f;
     private bool highAlert = false;
@@ -43,6 +43,8 @@ public class AIController_LibraryScene : MonoBehaviour
     //[SerializeField] AudioClip audioClip;
     // AUDIO FOR AI <--
 
+    Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,7 @@ public class AIController_LibraryScene : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<AIController_ServerSearch_Eyes>();
         playerMovement = GetComponent<PlayerMovement>();
+        anim = GetComponent<Animator>();
 
         if (audioSource != null & !audioSource.isPlaying)
         {
@@ -106,6 +109,8 @@ public class AIController_LibraryScene : MonoBehaviour
             // walk
             if (state == "walk")
             {
+                anim.SetBool("isRunning", true);
+
                 if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                 {
                     currentWayPoint ++;
