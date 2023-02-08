@@ -20,7 +20,7 @@ public class Notes : MonoBehaviour
     // Script References
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private BloodAnimation bloodAnimation;
+    [SerializeField] private BloodAnimation bloodAnimation = default;
 
 
     private void Start() 

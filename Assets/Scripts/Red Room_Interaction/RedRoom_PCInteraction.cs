@@ -13,8 +13,10 @@ public class RedRoom_PCInteraction : MonoBehaviour
 
 
     // FMOD Parameters ---------------------------
-    [SerializeField] EventReference eventName;
-    private static FMOD.Studio.EventInstance redRoomComputerSFX;
+    // [SerializeField] EventReference eventName;
+    // private static FMOD.Studio.EventInstance redRoomComputerSFX;
+
+    [SerializeField] private AudioSource audioSource;
     // FMOD Parameters ---------------------------
 
     private bool trig;
@@ -69,25 +71,30 @@ public class RedRoom_PCInteraction : MonoBehaviour
 
     private void PlayAudio()
     {
-        if (!FMODExtension.IsPlaying(redRoomComputerSFX))
+        if (!audioSource.isPlaying)
         {
-            // redRoomComputerSFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
-            // redRoomComputerSFX.start();
-
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/RRCOMPSCREEN", GetComponent<Transform>().position);
-
+            audioSource.Play();
         }
+
+        // if (!FMODExtension.IsPlaying(redRoomComputerSFX))
+        // {
+        //     // redRoomComputerSFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
+        //     // redRoomComputerSFX.start();
+
+        //     //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/RRCOMPSCREEN", GetComponent<Transform>().position);
+
+        // }
     }
 
-    private void StopAudio()
-    {
-        redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        redRoomComputerSFX.release();
-    }
+    // private void StopAudio()
+    // {
+    //     redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    //     redRoomComputerSFX.release();
+    // }
 
-    private void OnDestroy() 
-    {
-        redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        redRoomComputerSFX.release();
-    }
+    // private void OnDestroy() 
+    // {
+    //     redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    //     redRoomComputerSFX.release();
+    // }
 }
