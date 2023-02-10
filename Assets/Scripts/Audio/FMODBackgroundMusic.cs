@@ -26,48 +26,4 @@ public class FMODBackgroundMusic : MonoBehaviour
         Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         Music.release();
     }
-
-    // private void OnTriggerEnter(Collider other) 
-    // {
-    //     if (other.tag == "Player")
-    //     {
-    //         Music = FMODUnity.RuntimeManager.CreateInstance(eventName);
-    //         Music.start();
-    //     } 
-    // }
-
-
-
-    // private void Update() 
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         Music = FMODUnity.RuntimeManager.CreateInstance(eventName);
-    //         Music.start();
-    //     }
-
-    //     if (Input.GetKeyDown(KeyCode.Q))
-    //     {
-    //         Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    //         Music.release();
-    //     }    
-    // }
-
-    // private void OnDestroy() // Music will fade out if scene changes
-    // {
-    //     Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);    
-    // }
-
-
-
-    // Add below method when we get a better grasp on FMOD
-    // -------------------------------------------------------
-
-    // public void Progress (float ProgressLevel)
-    // {
-    //     Music.setParameterByName("Progress", ProgressLevel);
-    // }
-
-    // Add above method when we get a better grasp on FMOD
-    // -------------------------------------------------------
 }
