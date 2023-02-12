@@ -74,15 +74,16 @@ public class Notes : MonoBehaviour
 
                     if (ObjectsToInteract[i].name == "Note_2" && isBathroomNotePickedUp == false)
                     {
-                        BathroomNotePickUp();
+                        NotePickUp();
                         isPickedUp = true;
-                        isBathroomNotePickedUp = true;
+                        //isBathroomNotePickedUp = true;
                         // DISABLE MESH
                     }
 
                     if (ObjectsToInteract[i].name == "Note_3" && isBloodyNotePickedUp == false)
                     {
                         BathroomNotePickUp();
+                        isBloodyNotePickedUp = true;
                     }
                 }
             }
@@ -98,7 +99,7 @@ public class Notes : MonoBehaviour
                 mouseLook.mouseSensitivity = 3;
                 isPickedUp = false;
 
-                isBloodyNotePickedUp = true;
+                // isBloodyNotePickedUp = true;
 
                 if (isBloodyNotePickedUp == true)
                 {
@@ -109,6 +110,16 @@ public class Notes : MonoBehaviour
         }
     }
 
+
+    public void NotePickUp()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Item Interaction/Page Grab_Updated", GetComponent<Transform>().position);
+        noteUI.SetActive(true);
+        characterController.enabled = false;
+        mouseLook.mouseSensitivity = 0;
+        pickUpUI.SetActive(false);
+        isPickedUp = true;
+    }
 
     public void BathroomNotePickUp()
     {
