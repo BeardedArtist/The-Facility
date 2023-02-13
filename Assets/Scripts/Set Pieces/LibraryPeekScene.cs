@@ -31,6 +31,8 @@ public class LibraryPeekScene : MonoBehaviour
         {
             trig = true;
             peakInDoorUI.SetActive(true);
+
+            Debug.Log("Yo this works");
         }    
     }
 

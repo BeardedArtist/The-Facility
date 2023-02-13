@@ -76,7 +76,7 @@ public class Notes : MonoBehaviour
                     {
                         NotePickUp();
                         isPickedUp = true;
-                        //isBathroomNotePickedUp = true;
+                        isBathroomNotePickedUp = true;
                         // DISABLE MESH
                     }
 

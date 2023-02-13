@@ -109,7 +109,7 @@ public class BathroomPeek : MonoBehaviour
         stallCamera.SetActive(false);
         flashlight.SetActive(true);
         mouseLook.mouseSensitivity = 3;
-        openBathroomDoorUI.SetActive(true);
+        openBathroomDoorUI.SetActive(false);
 
         if (trigger)
         {

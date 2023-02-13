@@ -6,7 +6,7 @@ using FMODUnity;
 public class PlayerMovement : MonoBehaviour
 {
     public bool CanMove { get; private set; } = true;
-    private bool isSprinting => canSprint && Input.GetKey(sprintKey); // Checks if canSprint is TRUE && sprintKey is pressed
+    private bool isSprinting => canSprint && Input.GetKey(sprintKey) && !isCrouching; // Checks if canSprint is TRUE && sprintKey is pressed
     private bool shouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded; // Checks if jumpKey is pressed && character is grounded
     private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
     // => is called Lambda 
@@ -126,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        currentInput = new Vector2((isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal")); // Gets our front & back movement -- Gets our left & right movements
+        //currentInput = new Vector2((isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal")); // Gets our front & back movement -- Gets our left & right movements
+        currentInput = new Vector2((isSprinting ? sprintSpeed : isCrouching ? crouchSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isSprinting ? sprintSpeed : isCrouching ? crouchSpeed : walkSpeed) * Input.GetAxis("Horizontal")); // Gets our front & back movement -- Gets our left & right movements
 
         float moveDirectionY = moveDirection.y;
         moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);

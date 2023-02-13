@@ -7,31 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class AIController : MonoBehaviour
 {
-    public Transform playerTransform;
-    public Transform eyes; // creating a transform for the 'eyes' cone in the AI
-    NavMeshAgent agent;
-     
+    [Header("AI Parameters")]
     [SerializeField] private string state = "idle";
-    private bool alive = true;
     [SerializeField] private float wait = 0f;
-    private bool highAlert = false;
     [SerializeField] private float alertTime = 50f;
-    public bool playerisHidingBadly = false;
-
+    public Transform eyes; // creating a transform for the 'eyes' cone in the AI
+    private bool highAlert = false;
     public GameObject deathCam;
     public Transform deathCamPosition;
+    NavMeshAgent agent;
+    Animator animator;
+
+    // Values Not Being Used
+    //public bool playerisHidingBadly = false;
+
+    [Header("Player Parameters")]
+    public Transform playerTransform;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
     player Player;
     PlayerMovement playerMovement;
-
-
-    // TEST FOR ANIMATIONS
-    Animator animator;
-    // ADD FOOTSTEPS
-
-    // TEST FOR ANIMATIONS
-
+    private bool alive = true;
+    
 
     // Start is called before the first frame update
     void Start()
