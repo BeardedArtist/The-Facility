@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChaseScene_FINAL : MonoBehaviour
 {
+    // AI Reference
+    [SerializeField] private GameObject AI_Chase;
     
     // Script References
     [SerializeField] PlayerMovement playerMovement;
@@ -14,16 +16,25 @@ public class ChaseScene_FINAL : MonoBehaviour
     [SerializeField] private bool isAnimationPlaying = false;
 
     // Animator Reference
-    [SerializeField] Animator animator;
-
-
-    // Testing Moving Player
-    [SerializeField] private Transform playerBody;
-    [SerializeField] private Transform playerCamera;
-    private bool isCameraInPosition = false;
     [SerializeField] private Animator blink_Anim;
     [SerializeField] private Animator blink_Anim_2;
     [SerializeField] private Blink blink_Script;
+
+
+    // COMMENTED OUT CODE - IMPLEMENT LATER MAYBE -----------------------------------------------
+
+    //Animator Reference
+    //This was the animator for the player body (Camera Control Cutscene) -- COMMENTED OUT NOW
+    [SerializeField] Animator animator;
+
+
+    //Testing Moving Player
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform playerCamera;
+    private bool isCameraInPosition = false;
+    private bool hasAnimationPlayed = false;
+
+    // COMMENTED OUT CODE - IMPLEMENT LATER MAYBE -----------------------------------------------
 
 
 
@@ -32,26 +43,33 @@ public class ChaseScene_FINAL : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             trig = true;
+            blink_Anim.Play("TopLidBlink", 0, 0.25f);
+            blink_Anim_2.Play("BottomLidBlink", 0, 0.25f);
+            //HandleFinalScene();
+            HandlePlayerCamera();
         }
     }
 
-    private void Update() 
+    void HandleFinalScene()
     {
-        if (trig)
-        {
-            if (blink_Script.isBlinking == false)
-            {
-                blink_Anim.Play("TopLidBlink", 0, 0.25f);
-                blink_Anim_2.Play("BottomLidBlink", 0, 0.25f);
-                //HandlePlayerCamera();
-            }
-        }
+        StartCoroutine(ActivateFinalScene());
+    }
+
+    IEnumerator ActivateFinalScene()
+    {
+        yield return new WaitForSeconds(0.40f);
+        AI_Chase.SetActive(true);
+
+        // Activate New Environment
     }
 
 
     void HandlePlayerCamera()
-    {      
-        StartCoroutine(PositionPlayerForAnimation());
+    {
+        if (hasAnimationPlayed == false)
+        {
+            StartCoroutine(PositionPlayerForAnimation());
+        }
     }
 
     IEnumerator PositionPlayerForAnimation()
@@ -73,13 +91,15 @@ public class ChaseScene_FINAL : MonoBehaviour
             mouseLook.enabled = false;
         }
 
-        else
-        {
-            isAnimationPlaying = false; // don't need this?
-            animator.enabled = false;
-            playerMovement.enabled = true;
-            mouseLook.enabled = true;
-            trig = false;
-        }
+
+        yield return new WaitForSeconds(15.5f);
+
+        isAnimationPlaying = false; // don't need this?
+        animator.enabled = false;
+        playerMovement.enabled = true;
+        mouseLook.enabled = true;
+        trig = false;
+
+        hasAnimationPlayed = true;
     }
 }

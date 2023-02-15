@@ -26,7 +26,8 @@ public class AIController : MonoBehaviour
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
     player Player;
-    PlayerMovement playerMovement;
+    //PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
     private bool alive = true;
     
 
@@ -35,7 +36,7 @@ public class AIController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<player>();
-        playerMovement = GetComponent<PlayerMovement>();
+        //playerMovement = GetComponent<PlayerMovement>();
 
         // TEST
         animator = GetComponent<Animator>();
@@ -231,6 +232,13 @@ public class AIController : MonoBehaviour
     //reset//
     void reset()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // TEST CHECKPOINT
+        playerMovement.HandleDeath();
+
+        mainPlayer.GetComponent<PlayerMovement>().enabled = true;
+        deathCam.SetActive(false);
+        Camera.main.gameObject.SetActive(true);
     }
 }
