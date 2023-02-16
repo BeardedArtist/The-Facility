@@ -23,9 +23,16 @@ public class AIController : MonoBehaviour
 
     [Header("Player Parameters")]
     public Transform playerTransform;
+    public GameObject playerCamera;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
     player Player;
+
+
+    // Testing Video for death scene
+    [SerializeField] GameObject DeathVideo;
+    // Testing Video for death scene
+
     //PlayerMovement playerMovement;
     [SerializeField] PlayerMovement playerMovement;
     private bool alive = true;
@@ -170,8 +177,6 @@ public class AIController : MonoBehaviour
                     CheckSight();
                     // Change state to go back to idle after certain amount of time.
                 }
-                //animator.SetBool("isWalking", true);  ////////////////////////////
-                //animator.SetBool("isRunning", false); /////////////////////////////
             }
 
             // TESTING ATTACK EVENT
@@ -183,9 +188,6 @@ public class AIController : MonoBehaviour
                 deathCam.transform.rotation = Quaternion.Slerp(deathCam.transform.rotation, deathCamPosition.rotation, 10f * Time.deltaTime);
                 agent.SetDestination(deathCam.transform.position);
                 agent.speed = 0f;
-
-                //animator.SetBool("isWalking", false); /////////////////////////////////
-                //animator.SetBool("isRunning", false); /////////////////////////////////
             }
 
             // TESTING ATTACK EVENT
@@ -235,10 +237,25 @@ public class AIController : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         // TEST CHECKPOINT
-        playerMovement.HandleDeath();
+        StartCoroutine(ActivateDeathScene());
+    }
 
+
+    IEnumerator ActivateDeathScene()
+    {
+        yield return new WaitForSeconds(1f);
+        playerCamera.SetActive(true);
+        DeathVideo.SetActive(true);
+
+        playerMovement.HandleDeath();
         mainPlayer.GetComponent<PlayerMovement>().enabled = true;
         deathCam.SetActive(false);
+
         Camera.main.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+        DeathVideo.SetActive(false);
+        state = "idle";
+        agent.speed = 1;
     }
 }
