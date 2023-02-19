@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private MouseLook mouseLook;
+
+    [SerializeField] EventReference mainThemeMusic;
+    private static FMOD.Studio.EventInstance Music;
 
     private void Start() 
     {
@@ -26,6 +30,12 @@ public class PauseMenu : MonoBehaviour
 
         if (isPaused)
         {
+            if (!FMODExtension.IsPlaying(Music))
+            {
+                Music = FMODUnity.RuntimeManager.CreateInstance(mainThemeMusic);
+                Music.start();
+            }
+
             Time.timeScale = 0;
             AudioListener.pause = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -41,7 +51,7 @@ public class PauseMenu : MonoBehaviour
 
         else
         {
-            DeactivateMenu();
+            //DeactivateMenu();
         }    
     }
 
@@ -71,17 +81,23 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         mouseLook.enabled = true;
         isPaused = false;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI Sounds/Menu UI DETUNE");
+
+        Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        Music.release();
     }
 
     public void ActivateOptionsMenu()
     {
         isOptionsOpen = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI Sounds/Menu UI DETUNE");
     }
 
     public void DeactivateOptionsMenu()
     {
         isOptionsOpen = false;
         optionsMenuUI.SetActive(false);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/UI Sounds/Menu UI DETUNE");
     }
 
     public void LockCursor()

@@ -7,32 +7,47 @@ using UnityEngine.SceneManagement;
 
 public class AIController : MonoBehaviour
 {
-    public Transform playerTransform;
-    public Transform eyes; // creating a transform for the 'eyes' cone in the AI
-    NavMeshAgent agent;
-     
-    private string state = "idle";
-    private bool alive = true;
+    [Header("AI Parameters")]
+    [SerializeField] private string state = "idle";
     [SerializeField] private float wait = 0f;
-    private bool highAlert = false;
     [SerializeField] private float alertTime = 50f;
-    public bool playerisHidingBadly = false;
-
+    public Transform eyes; // creating a transform for the 'eyes' cone in the AI
+    private bool highAlert = false;
     public GameObject deathCam;
-    public GameObject hidingCloset;
     public Transform deathCamPosition;
+    NavMeshAgent agent;
+    Animator animator;
+
+    // Values Not Being Used
+    //public bool playerisHidingBadly = false;
+
+    [Header("Player Parameters")]
+    public Transform playerTransform;
+    public GameObject playerCamera;
     public GameObject mainPlayer;
     public MeshRenderer mainPlayerMesh;
     player Player;
-    PlayerMovement playerMovement;
 
+
+    // Testing Video for death scene
+    [SerializeField] GameObject DeathVideo;
+    // Testing Video for death scene
+
+    //PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
+    private bool alive = true;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Player = GetComponent<player>();
-        playerMovement = GetComponent<PlayerMovement>();
+        //playerMovement = GetComponent<PlayerMovement>();
+
+        // TEST
+        animator = GetComponent<Animator>();
+        // TEST
     }
 
     //check if we can see player
@@ -59,7 +74,7 @@ public class AIController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Debug.DrawLine(eyes.position, playerTransform.position, Color.green);
         if (alive)
@@ -101,7 +116,7 @@ public class AIController : MonoBehaviour
                 {
                     state = "search"; // reset to "idle" which allows AI to find new position to walk
                     wait = 5f;
-                } 
+                }
             }
 
             //search
@@ -110,7 +125,7 @@ public class AIController : MonoBehaviour
                 if (wait > 0f)
                 {
                     wait -= Time.deltaTime;
-                    transform.Rotate(0f, 120f * Time.deltaTime, 0f);
+                    //transform.Rotate(0f, 120f * Time.deltaTime, 0f);
                 }
                 else 
                 {
@@ -150,25 +165,6 @@ public class AIController : MonoBehaviour
                 // TESTING ATTACK EVENT
             }
 
-            // TEST --> If player hides during chase
-            if (state == "chase" && playerisHidingBadly == true)
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance + 5f && !agent.pathPending)
-                {
-                    agent.destination = playerTransform.position;
-                    hidingCloset.SetActive(false);
-                    state = "kill";
-
-                    mainPlayer.GetComponent<PlayerMovement>().enabled = false;
-                    mainPlayerMesh.enabled = false;
-                    deathCam.SetActive(true);
-                    deathCam.transform.position = Camera.main.transform.position;
-                    deathCam.transform.rotation = Camera.main.transform.rotation;
-                    Camera.main.gameObject.SetActive(false);
-                    Invoke("reset", 1f);
-                }
-            }
-
             //find
             if (state == "find")
             {
@@ -198,13 +194,68 @@ public class AIController : MonoBehaviour
 
             // agent.destination = playerTransform.position; // this gives the AI the players position and tells it to walk to the player
         }
-
         
+        HandleAnimation();        
+    }
+
+    void HandleAnimation()
+    {
+        if (state == "walk")
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+
+        if (state == "search")
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+        }
+
+        if (state == "chase")
+        {
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isWalking", false);
+        }
+
+        if (state == "find")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", true);
+        }
+
+        if (state == "kill")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+        }
     }
 
     //reset//
     void reset()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // TEST CHECKPOINT
+        StartCoroutine(ActivateDeathScene());
+    }
+
+
+    IEnumerator ActivateDeathScene()
+    {
+        yield return new WaitForSeconds(1f);
+        playerCamera.SetActive(true);
+        DeathVideo.SetActive(true);
+
+        playerMovement.HandleDeath();
+        mainPlayer.GetComponent<PlayerMovement>().enabled = true;
+        deathCam.SetActive(false);
+
+        Camera.main.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+        DeathVideo.SetActive(false);
+        state = "idle";
+        agent.speed = 1;
     }
 }

@@ -10,6 +10,11 @@ TagManager:
   - Enemy
   - Carpet
   - BathroomEnemy
+  - Wood
+  - Vent
+  - Wet
+  - Tile
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

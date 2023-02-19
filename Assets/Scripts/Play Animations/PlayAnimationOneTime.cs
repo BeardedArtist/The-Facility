@@ -6,6 +6,7 @@ public class PlayAnimationOneTime : MonoBehaviour
 {
     // Animator References
     [SerializeField] private Animator animator_OneShot;
+    [SerializeField] private GameObject interactUI;
 
     // Bool Reference
     private bool trig;
@@ -16,12 +17,14 @@ public class PlayAnimationOneTime : MonoBehaviour
         if (other.tag == "Flashlight Eyes 2")
         {
             trig = true; 
+            interactUI.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        trig = false;    
+        trig = false;   
+        interactUI.SetActive(false); 
     }
 
     private void Update() 

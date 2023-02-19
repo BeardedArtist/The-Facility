@@ -9,6 +9,8 @@ public class FMODSfxAudio : MonoBehaviour
     [SerializeField] EventReference eventName;
     private static FMOD.Studio.EventInstance SFX;
 
+    private bool hasAudioPlayed = false;
+
 
     // private void Start() 
     // {
@@ -35,12 +37,21 @@ public class FMODSfxAudio : MonoBehaviour
     // For AI banging on bathroom doors --------------------------
     public void AiHitBathroomDoor_Audio()
     {
-        StartCoroutine(AiHittingBathroomDoor());
+        if (hasAudioPlayed == false)
+        {
+            StartCoroutine(AiHittingBathroomDoor());
+            hasAudioPlayed = true;
+        }
     }
 
     public void AiHitBathroomDoor_Audio_Immediate()
     {
-        PlayAudioImmediately();
+        if (hasAudioPlayed == false)
+        {
+            PlayAudioImmediately();
+            hasAudioPlayed = true;
+        }
+
     }
 
     IEnumerator AiHittingBathroomDoor()

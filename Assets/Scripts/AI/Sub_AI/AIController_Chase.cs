@@ -9,7 +9,7 @@ public class AIController_Chase : MonoBehaviour
     public Transform playerTransform;
     NavMeshAgent agent;
 
-    private string state = "chase";
+    [SerializeField] private string state = "chase";
     private float wait = 0f;
     private bool highAlert = false;
     private float alertTime = 50f;
@@ -21,11 +21,14 @@ public class AIController_Chase : MonoBehaviour
     public MeshRenderer mainPlayerMesh;
     PlayerMovement playerMovement;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerMovement = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -55,10 +58,21 @@ public class AIController_Chase : MonoBehaviour
             agent.SetDestination(deathCam.transform.position);
             agent.speed = 0f;
         }
+
+        HandleAnimation();
     }
 
     void reset() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);    
+    }
+
+
+    void HandleAnimation()
+    {
+        if (state == "chase")
+        {
+            animator.SetBool("isWalking", true);
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class LibraryPeekScene : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class LibraryPeekScene : MonoBehaviour
     [SerializeField] private OpenCloseDoor_LOCKED openCloseDoor_LOCKED;
     // ------------------------------------------------------------
 
+    // Bool Reference ---------------------------------------
+    private bool hasAudioPlayed = false;
+    // ------------------------------------------------------
+
 
     private void OnTriggerStay(Collider other) 
     {
@@ -26,6 +31,8 @@ public class LibraryPeekScene : MonoBehaviour
         {
             trig = true;
             peakInDoorUI.SetActive(true);
+
+            Debug.Log("Yo this works");
         }    
     }
 
@@ -51,6 +58,12 @@ public class LibraryPeekScene : MonoBehaviour
                     AI_LibraryScene.SetActive(true);
                     mouseLook.mouseSensitivity = 0;
                     Debug.Log("Library Camera Active");
+
+                    if (hasAudioPlayed == false)
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Shadow Peek");
+                        hasAudioPlayed = true;
+                    }
                 }
             }
 
