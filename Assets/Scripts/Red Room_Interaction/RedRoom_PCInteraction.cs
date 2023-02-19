@@ -1,23 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
 
 public class RedRoom_PCInteraction : MonoBehaviour
 {
     [SerializeField] private GameObject computerUI;
     [SerializeField] private GameObject redRoomInteractUI;
     [SerializeField] private GameObject redRoomText;
+
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private MouseLook mouseLook;
-
-
-    // FMOD Parameters ---------------------------
-    // [SerializeField] EventReference eventName;
-    // private static FMOD.Studio.EventInstance redRoomComputerSFX;
-
-    [SerializeField] private AudioSource audioSource;
-    // FMOD Parameters ---------------------------
 
     private bool trig;
     private bool isViewingComputer = false;
@@ -40,9 +32,6 @@ public class RedRoom_PCInteraction : MonoBehaviour
 
     private void Update() 
     {
-        PlayAudio();
-
-        
         if (trig == true && isViewingComputer == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -67,34 +56,4 @@ public class RedRoom_PCInteraction : MonoBehaviour
             }
         }    
     }
-
-
-    private void PlayAudio()
-    {
-        if (!audioSource.isPlaying)
-        {
-            audioSource.Play();
-        }
-
-        // if (!FMODExtension.IsPlaying(redRoomComputerSFX))
-        // {
-        //     // redRoomComputerSFX = FMODUnity.RuntimeManager.CreateInstance(eventName);
-        //     // redRoomComputerSFX.start();
-
-        //     //FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/RRCOMPSCREEN", GetComponent<Transform>().position);
-
-        // }
-    }
-
-    // private void StopAudio()
-    // {
-    //     redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    //     redRoomComputerSFX.release();
-    // }
-
-    // private void OnDestroy() 
-    // {
-    //     redRoomComputerSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    //     redRoomComputerSFX.release();
-    // }
 }

@@ -10,20 +10,15 @@ public class AIController_WalkCreepy_2 : MonoBehaviour
     public GameObject eventTrigger;
     private bool isWalking = false;
 
-    Animator anim;
-
     private void Start() 
     {
         agent = GetComponent<NavMeshAgent>();    
-
-        anim = GetComponent<Animator>();
     }
 
     private void Update() 
     {
         if (isWalking == true)
         {
-            HandleAnimation();
             CreepyWalk();
         }
     }
@@ -43,13 +38,18 @@ public class AIController_WalkCreepy_2 : MonoBehaviour
         if (agent.remainingDistance < 0.1)
         {
             Destroy(gameObject);
-            anim.SetBool("isCrawling", false);
             isWalking = false;
         }
-    }
 
-    private void HandleAnimation()
-    {
-        anim.SetBool("isCrawling", true);
+        // if (!agent.pathPending)
+        //     {
+        //         if (agent.remainingDistance <= agent.stoppingDistance)
+        //         {
+        //             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+        //             {
+        //                 Destroy(eventTrigger);
+        //             }
+        //         }
+        //     }
     }
 }

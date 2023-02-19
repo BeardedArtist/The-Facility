@@ -10,7 +10,7 @@ public class AIController_ServerSearch : MonoBehaviour
     public Transform eyes; // creating a transform for the 'eyes' cone in the AI.
     NavMeshAgent agent;
 
-    [SerializeField] private string state = "idle";
+    private string state = "idle";
     private bool alive = true;
     private float wait = 0f;
     private bool highAlert = false;
@@ -38,14 +38,12 @@ public class AIController_ServerSearch : MonoBehaviour
     // Decided points to walk to <--
 
     // AUDIO FOR AI --> 
-    //[SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     //[SerializeField] AudioClip audioClip;
     // AUDIO FOR AI <--
 
     [SerializeField] HideBathroomScene hideBathroomScene_Script;
     [SerializeField] AppearDisappear appearDisappear_Script;
-
-    Animator animator;
 
 
     // Bool Reference for activation
@@ -59,19 +57,12 @@ public class AIController_ServerSearch : MonoBehaviour
         Player = GetComponent<AIController_ServerSearch_Eyes>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        animator = GetComponent<Animator>();
-
-        // if (audioSource != null & !audioSource.isPlaying)
-        // {
-        //     audioSource.Play();
-        // }
+        if (audioSource != null & !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
 
         hideBathroomScene_Script.DisableHide();
-    }
-
-    private void Awake() 
-    {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Level Music/What is She", GetComponent<Transform>().position);
     }
 
     // Check if we can see player
@@ -249,20 +240,6 @@ public class AIController_ServerSearch : MonoBehaviour
             }
 
             // TESTING ATTACK EVENT
-        }
-
-        HandleAnimation();
-    }
-
-    void HandleAnimation()
-    {
-        if (state == "walk")
-        {
-            animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
         }
     }
 

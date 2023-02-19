@@ -101,21 +101,4 @@ public class BathroomPeek : MonoBehaviour
             myBathroomDoor.SetBool("Open", false);
         }
     }
-
-    public void PeakDisabled()
-    {
-        isStallCameraOn = false;
-        isPeaking = false;
-        stallCamera.SetActive(false);
-        flashlight.SetActive(true);
-        mouseLook.mouseSensitivity = 3;
-        openBathroomDoorUI.SetActive(false);
-
-        if (trigger)
-        {
-            myBathroomDoor.SetBool("Open", false);
-        }
-
-        this.enabled = false;
-    }
 }
