@@ -120,8 +120,11 @@
 		<property name="initialValue">
 			<value>-80</value>
 		</property>
+		<property name="releaseTime">
+			<value>6249.99707</value>
+		</property>
 		<property name="releaseShape">
-			<value>0.291794986</value>
+			<value>0.516696215</value>
 		</property>
 		<property name="finalValue">
 			<value>-80</value>

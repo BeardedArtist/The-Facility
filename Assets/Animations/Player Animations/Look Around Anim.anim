@@ -366,14 +366,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 14.5
+  - time: 12
     functionName: StopAudio
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 14.966666
+  - time: 13.5
     functionName: PlaySfxOnce
     data: 
     objectReferenceParameter: {fileID: 0}
