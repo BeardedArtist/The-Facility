@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class AIController : MonoBehaviour
 {
     public Transform playerTransform;
+<<<<<<< HEAD
     public Transform eyes; // creating a transform for the 'eyes' cone in the AI
     NavMeshAgent agent;
      
@@ -26,6 +27,15 @@ public class AIController : MonoBehaviour
     player Player;
     PlayerMovement playerMovement;
 
+=======
+    public GameObject mainPlayer;
+    public MeshRenderer mainPlayerMesh;
+    player Player;
+    //PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
+    private bool alive = true;
+    
+>>>>>>> parent of 4f73646 (Added Update to Death Scene)
 
     // Start is called before the first frame update
     void Start()
@@ -181,6 +191,8 @@ public class AIController : MonoBehaviour
                     CheckSight();
                     // Change state to go back to idle after certain amount of time.
                 }
+                //animator.SetBool("isWalking", true);  ////////////////////////////
+                //animator.SetBool("isRunning", false); /////////////////////////////
             }
 
             // TESTING ATTACK EVENT
@@ -192,6 +204,9 @@ public class AIController : MonoBehaviour
                 deathCam.transform.rotation = Quaternion.Slerp(deathCam.transform.rotation, deathCamPosition.rotation, 10f * Time.deltaTime);
                 agent.SetDestination(deathCam.transform.position);
                 agent.speed = 0f;
+
+                //animator.SetBool("isWalking", false); /////////////////////////////////
+                //animator.SetBool("isRunning", false); /////////////////////////////////
             }
 
             // TESTING ATTACK EVENT
@@ -205,6 +220,17 @@ public class AIController : MonoBehaviour
     //reset//
     void reset()
     {
+<<<<<<< HEAD
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+=======
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // TEST CHECKPOINT
+        playerMovement.HandleDeath();
+
+        mainPlayer.GetComponent<PlayerMovement>().enabled = true;
+        deathCam.SetActive(false);
+        Camera.main.gameObject.SetActive(true);
+>>>>>>> parent of 4f73646 (Added Update to Death Scene)
     }
 }
